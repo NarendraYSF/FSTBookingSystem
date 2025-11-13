@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />    
+    <meta name="description" content="" />
+    
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- PAGE TITLE HERE -->
+    <title>Login - University Classroom Booking System</title>
+    
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
+    <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" /><!-- FONTAWESOME STYLE SHEET -->
+    <link rel="stylesheet" href="css/style.css"><!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet" class="skin" href="css/skin/skin-1.css"><!-- THEME COLOR CHANGE STYLE SHEET -->
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            margin: 20px;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header img {
+            max-width: 350px;
+            margin-bottom: 20px;
+        }
+        .login-header h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .login-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-control {
+            height: 50px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+        }
+        .btn-login {
+            background: #c19b76;
+            color: white;
+            height: 50px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            background: #a88867;
+            transform: translateY(-2px);
+        }
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .remember-me input {
+            margin-right: 10px;
+        }
+        .user-type-select {
+            margin-bottom: 20px;
+        }
+        .user-type-select .btn-group {
+            width: 100%;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        .user-type-select .highlight-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 33.3333%;
+            background: #c19b76;
+            border-radius: 0;
+            z-index: 0;
+            transition: left 0.3s linear, width 0.3s linear;
+        }
+        .user-type-select .btn {
+            flex: 1 1 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: transparent;
+            color: #666;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s;
+        }
+        .user-type-select .btn.active {
+            color: white;
+            border-color: #4a90e2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="images/uni-logo.png" alt="University Logo">
+            <h2>Welcome!</h2>
+            <p>Please login to access the classroom booking system</p>
+        </div>
+        
+        <form id="loginForm" method="post">
+            <div class="user-type-select">
+                <div class="btn-group" role="group" id="user-type-group" style="position: relative;">
+                    <div class="highlight-bar"></div>
+                    <button type="button" class="btn active">Mahasiswa</button>
+                    <button type="button" class="btn">Dosen</button>
+                    <button type="button" class="btn">Staff</button>
+                </div>
+            </div>
+            <input type="hidden" name="user_type" id="user_type" value="Student">
+
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Student ID Number" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            
+            <button type="submit" class="btn btn-login btn-block">Login</button>
+            
+            <div class="login-footer">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery-3.7.1.min.js"></script><!-- JQUERY.MIN JS -->
+    <script src="js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+    <script>
+        $(document).ready(function() {
+            function moveHighlightBar(index) {
+                var $group = $('#user-type-group');
+                var $buttons = $group.find('.btn');
+                var $bar = $group.find('.highlight-bar');
+                var btnWidth = 100 / $buttons.length;
+                $bar.css({
+                    left: (index * btnWidth) + '%',
+                    width: btnWidth + '%'
+                });
+            }
+
+            // Set initial position
+            var $activeBtn = $('#user-type-group .btn.active');
+            moveHighlightBar($activeBtn.index() - 1); // -1 because .highlight-bar is first child
+
+            $('.user-type-select .btn').click(function() {
+                $('.user-type-select .btn').removeClass('active');
+                $(this).addClass('active');
+                $('#user_type').val($(this).text().trim());
+                moveHighlightBar($(this).index() - 1);
+                // Change placeholder based on user type
+                var userType = $(this).text().trim();
+                if(userType === 'Student') {
+                    $('input[type="text"]').attr('placeholder', 'Student ID Number');
+                } else {
+                    $('input[type="text"]').attr('placeholder', 'ID Number');
+                }
+            });
+
+            // Login form submission handler
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = {
+                    username: $(this).find('input[name="username"]').val().trim(),
+                    password: $(this).find('input[name="password"]').val(),
+                    user_type: $('#user_type').val()
+                };
+                
+                // Try PHP authentication first, fallback to JavaScript if it fails
+                $.ajax({
+                    type: 'POST',
+                    url: 'login_handler.php',
+                    data: formData,
+                    dataType: 'json',
+                    timeout: 5000, // 5 second timeout
+                    success: function(response) {
+                        if (response.success) {
+                            // Store in localStorage as backup
+                            localStorage.setItem('loggedIn', 'true');
+                            localStorage.setItem('username', formData.username);
+                            localStorage.setItem('user_type', formData.user_type);
+                            
+                            // Redirect to index page
+                            window.location.href = response.redirect;
+                        } else {
+                            alert(response.message || 'Login failed. Please try again.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Fallback to JavaScript authentication
+                        console.log('PHP authentication failed, trying JavaScript fallback...');
+                        
+                        // JavaScript authentication
+                        if ((formData.username === '1234567890' && formData.password === 'kelompok1keren') ||
+                            (formData.username === '12456789' && formData.password === 'kelompok1keren')) {
+                            
+                            // Store in localStorage
+                            localStorage.setItem('loggedIn', 'true');
+                            localStorage.setItem('username', formData.username);
+                            localStorage.setItem('user_type', formData.user_type);
+                            
+                            // Redirect to index page
+                            window.location.href = 'index.html';
+                        } else {
+                            alert('Invalid ID number or password. Please try again.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />    
+    <meta name="description" content="" />
+    
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- PAGE TITLE HERE -->
+    <title>FST Booking | Home</title>
+    
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+ 
+    <link rel="stylesheet"  href="css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
+	<link rel="stylesheet"  href="css/t-datepicker.min.css" ><!-- BOOTSTRAP DATEPICKER STYLE SHEET -->
+	<link rel="stylesheet"  href="css/t-datepicker-blue.css" ><!-- BOOTSTRAP DATEPICKER STYLE SHEET -->     
+    <link rel="stylesheet"  href="css/fontawesome/css/font-awesome.min.css" /><!-- FONTAWESOME STYLE SHEET -->
+    <link rel="stylesheet"  href="css/owl.carousel.min.css"><!-- OWL CAROUSEL STYLE SHEET -->
+    <link rel="stylesheet"  href="css/magnific-popup.min.css"><!-- MAGNIFIC POPUP STYLE SHEET -->
+    <link rel="stylesheet"  href="css/loader.min.css"><!-- LOADER STYLE SHEET -->    
+    <link rel="stylesheet"  href="css/style.css"><!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet"  class="skin"  href="css/skin/skin-1.css"><!-- THEME COLOR CHANGE STYLE SHEET -->
+    <link rel="stylesheet"  href="css/flaticon.min.css"><!-- FLATICON STYLE SHEET -->
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+             
+    
+
+    <!-- REVOLUTION SLIDER CSS -->
+    <link rel="stylesheet"  href="plugins/revolution/revolution/css/settings.css">
+    <!-- REVOLUTION NAVIGATION STYLE -->
+    <link rel="stylesheet"  href="plugins/revolution/revolution/css/navigation.css">
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text:400,400i&display=swap&subset=latin-ext" rel="stylesheet"> 
+        <!-- CUSTOM CSS FOR BOOKING FORM -->
+        <style>
+            /* Increase width of booking form input fields */
+            .booking-form .form-control {
+                min-width: 200px !important;
+                width: 100% !important;
+            }
+            
+            .booking-form select.form-control {
+                min-width: 220px !important;
+                width: 100% !important;
+            }
+            
+            .booking-form input[type="date"],
+            .booking-form input[type="time"] {
+                min-width: 180px !important;
+                width: 100% !important;
+            }
+            
+            /* Ensure proper spacing for form elements */
+            .booking-form .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .booking-form .row {
+                margin: 0;
+            }
+            
+            .booking-form .col-md-6 {
+                padding: 0 10px;
+            }
+            
+            .booking-form .col-md-12 {
+                padding: 0 10px;
+            }
+            
+            /* Make the booking form more responsive */
+            @media (max-width: 768px) {
+                .booking-form .form-control {
+                    min-width: 100% !important;
+                }
+                
+                .booking-form select.form-control {
+                    min-width: 100% !important;
+                }
+            }
+
+            .booking-bar-inner {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+                float: none;
+            }
+
+            /* AI CHATBOT STYLES */
+            #chatbot-widget {
+                position: fixed;
+                bottom: 70px;
+                right: 20px;
+                z-index: 9998;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                transition: all 0.3s ease;
+                color: white;
+                font-size: 24px;
+            }
+
+            .chatbot-toggle:hover {
+                transform: scale(1.1);
+                box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+            }
+
+            .chatbot-container {
+                position: absolute;
+                bottom: 80px;
+                right: 0;
+                width: 350px;
+                height: 500px;
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                display: none;
+                flex-direction: column;
+                overflow: hidden;
+            }
+
+            .chatbot-container.active {
+                display: flex;
+            }
+
+            .chatbot-header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .chatbot-header h4 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .chatbot-close {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                padding: 0;
+                width: 25px;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .chatbot-messages {
+                flex: 1;
+                padding: 20px;
+                overflow-y: auto;
+                background: #f8f9fa;
+            }
+
+            .message {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: flex-start;
+            }
+
+            .message.user {
+                justify-content: flex-end;
+            }
+
+            .message.bot {
+                justify-content: flex-start;
+            }
+
+            .message-content {
+                max-width: 80%;
+                padding: 12px 16px;
+                border-radius: 18px;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .message.user .message-content {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-bottom-right-radius: 4px;
+            }
+
+            .message.bot .message-content {
+                background: white;
+                color: #333;
+                border: 1px solid #e9ecef;
+                border-bottom-left-radius: 4px;
+            }
+
+            .chatbot-input-container {
+                padding: 15px 20px;
+                background: white;
+                border-top: 1px solid #e9ecef;
+                display: flex;
+                gap: 10px;
+            }
+
+            #chatbot-input {
+                flex: 1;
+                border: 1px solid #ddd;
+                border-radius: 25px;
+                padding: 12px 16px;
+                font-size: 14px;
+                outline: none;
+                transition: border-color 0.3s ease;
+            }
+
+            #chatbot-input:focus {
+                border-color: #667eea;
+            }
+
+            .chatbot-send {
+                width: 45px;
+                height: 45px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border: none;
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+            .chatbot-send:hover {
+                transform: scale(1.05);
+            }
+
+            .chatbot-send:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            /* Typing indicator */
+            .typing-indicator {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 12px 16px;
+                background: white;
+                border: 1px solid #e9ecef;
+                border-radius: 18px;
+                border-bottom-left-radius: 4px;
+                max-width: 80px;
+            }
+
+            .typing-dot {
+                width: 8px;
+                height: 8px;
+                background: #999;
+                border-radius: 50%;
+                animation: typing 1.4s infinite ease-in-out;
+            }
+
+            .typing-dot:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .typing-dot:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+
+            @keyframes typing {
+                0%, 60%, 100% {
+                    transform: translateY(0);
+                }
+                30% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            /* Responsive design */
+            @media (max-width: 768px) {
+                .chatbot-container {
+                    width: 300px;
+                    height: 450px;
+                }
+                
+                #chatbot-widget {
+                    bottom: 70px;
+                    right: 15px;
+                }
+            }
+
+            .booking-bar .container {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            /* Pastikan dua kolom waktu tidak overlap */
+            .booking-form .row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0;
+            }
+
+            .booking-form .col-md-6 {
+                width: 50%;
+                min-width: 180px;
+                box-sizing: border-box;
+                padding: 0 10px;
+            }
+
+            @media (max-width: 900px) {
+                .booking-form .col-md-6 {
+                    width: 100%;
+                    min-width: 100%;
+                    padding: 0;
+                    margin-bottom: 10px;
+                }
+                
+                .booking-bar {
+                    margin-top: -80px;
+                    margin-bottom: 40px;
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .booking-bar {
+                    margin-top: -60px;
+                    margin-bottom: 30px;
+                    padding: 0 15px;
+                }
+            }
+
+            .booking-bar {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                margin: 0 auto;
+                padding: 0;
+                position: relative;
+                margin-top: -120px;
+                z-index: 100;
+                margin-bottom: 60px;
+            }
+            
+            .booking-bar-floating {
+                box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            
+            /* Force 24-hour format for time inputs */
+            input[type="time"] {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+            
+            input[type="time"]::-webkit-datetime-edit-ampm-field {
+                display: none;
+            }
+            
+            input[type="time"]::-webkit-calendar-picker-indicator {
+                background: transparent;
+                bottom: 0;
+                color: transparent;
+                cursor: pointer;
+                height: auto;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: auto;
+            }
+            
+            /* For Firefox */
+            input[type="time"]::-moz-datetime-edit-ampm-field {
+                display: none;
+            }
+            
+            /* Ensure time inputs show 24-hour format */
+            .booking-form input[type="time"] {
+                text-align: center;
+                font-family: monospace;
+                font-size: 16px;
+            }
+            
+            /* Make time selection boxes smaller */
+            .booking-form select[name="start-hour"],
+            .booking-form select[name="start-minute"],
+            .booking-form select[name="end-hour"],
+            .booking-form select[name="end-minute"] {
+                min-width: 80px !important;
+                width: 80px !important;
+                font-size: 14px;
+                padding: 8px 5px;
+            }
+            
+            /* Adjust spacing for time selection rows */
+            .booking-form .time-block .row .col-6 {
+                padding: 0 5px;
+            }
+            
+            /* Make the time selection container more compact */
+            .booking-form .time-block .row .col-md-6 .row {
+                margin: 0;
+                align-items: center;
+            }
+        </style>    
+</head>
+
+<body>
+
+	<!-- SESSION CHECK -->
+	<script>
+		// Check if user is logged in
+		if (!localStorage.getItem('loggedIn')) {
+			window.location.href = 'login.html';
+		}
+		
+		// Display user information
+		document.addEventListener('DOMContentLoaded', function() {
+			var username = localStorage.getItem('username');
+			if (username) {
+				document.getElementById('user-display').textContent = username;
+			}
+		});
+		
+		// Logout function
+		function logout() {
+			// Clear localStorage
+			localStorage.removeItem('loggedIn');
+			localStorage.removeItem('username');
+			localStorage.removeItem('user_type');
+			
+			// Redirect to login page
+			window.location.href = 'login.html';
+		}
+		
+		// Handle booking form submission
+		function handleBookingSubmit(event) {
+			event.preventDefault();
+			
+			// Get form data
+			const formData = new FormData(event.target);
+			const bookingData = {};
+			
+			// Convert FormData to object
+			for (let [key, value] of formData.entries()) {
+				bookingData[key] = value;
+			}
+			
+			// Store booking data in localStorage for the booking form
+			localStorage.setItem('bookingData', JSON.stringify(bookingData));
+			
+			// Redirect to booking form
+			window.location.href = 'booking-form.html';
+		}
+		
+		// Add event listener to booking form when page loads
+		document.addEventListener('DOMContentLoaded', function() {
+			const bookingForm = document.querySelector('.booking-form form');
+			if (bookingForm) {
+				bookingForm.addEventListener('submit', handleBookingSubmit);
+			}
+		});
+	</script>
+
+	<div class="page-wraper"> 
+
+        <!-- HEADER START -->
+        <header class="site-header header-style-1 mobile-sider-drawer-menu">
+            <div class="sticky-header main-bar-wraper">
+                <div class="main-bar p-t5">
+                    <div class="container">
+                        <div class="logo-header">
+                            <div class="logo-header-inner logo-header-one">
+                                <a href="index.html">
+                                    <img src="images/logo-light.png" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                            <!-- NAV Toggle Button -->
+                            <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar icon-bar-first"></span>
+                                <span class="icon-bar icon-bar-two"></span>
+                                <span class="icon-bar icon-bar-three"></span>
+                            </button>
+                            <!-- ETRA Nav -->
+
+                            <!-- MAIN Vav -->
+                            <div class="header-nav navbar-collapse collapse">
+                                <ul class=" nav navbar-nav">
+                                    <li class="active">
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="about-1.html">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact-1.html">Contact</a>
+                                    </li>
+                                    <!-- Logout Button -->
+                                    <li>
+                                        <a href="javascript:void(0);" onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="fa fa-user"></i> <span id="user-display">User</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="extra-nav">
+                                <div class="extra-cell">
+                                    <a href="#" class="contact-slide-show text-white"><i class="fa fa-envelope-o"></i></a>
+                                </div>    
+                                <div class="extra-cell">											
+                                    <a href="#search" class=" text-white">
+                                    	<i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="extra-cell">   
+                                    <a href="javascript:;" class="socialicon_show  text-white">
+                                    	<i class="fa fa-share-alt"></i>
+                                    </a>
+                                </div>   	
+                            </div>
+                            <!-- ETRA Nav -->
+                               
+                            <!-- Social Nav -->
+                            <div class="social_hide"> 
+                                <div class="side-social-nav">
+                                     <a href="javascript:void(0)" class="socialicon_close">&times;</a>
+                                     <ul class="list-unstyled">
+                                        <li><a href="javascript:void(0);" class="fa fa-facebook"><span class="social-tooltip">Facebook</span></a></li>
+                                        <li><a href="javascript:void(0);" class="fa fa-rss"><span class="social-tooltip">Rss</span></a></li>                            
+                                        <li><a href="javascript:void(0);" class="fa fa-linkedin"><span class="social-tooltip">Linkedin</span></a></li>
+                                        <li><a href="javascript:void(0);" class="fa fa-google-plus"><span class="social-tooltip">Google Plus</span></a></li>
+                                        <li><a href="javascript:void(0);" class="fa fa-instagram"><span class="social-tooltip">Instagram</span></a></li>
+                                    </ul>
+                                </div> 
+                            </div>
+
+                            <!-- Contact Nav -->                            
+                         	<div class="contact-slide-hide"> 
+                                <div class="contact-nav">
+                                     <a href="javascript:void(0)" class="contact_close">&times;</a>
+                                     <div class="contact-nav-form p-a30">
+                            			<form class="cons-contact-form" method="post" action="form-handler.php">
+                                            <div class="contact-one m-b30">
+                                            
+                                                <!-- TITLE START -->
+                                                <div class="section-head text-center">
+                                                    <h2 class="m-b5" data-title="Form">Get In Touch</h2>
+                                                </div>
+                                                <!-- TITLE END -->  
+                                                 <div class="row">
+                                                     <div class="col-md-6">                               
+                                                        <div class="form-group wt-inputicon-box">
+                                                            <input name="username" type="text" required class="form-control" placeholder="Name">
+                                                            <i class="fs-input-icon sl-icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-md-6">
+                                                        <div class="form-group wt-inputicon-box"> 
+                                                            <input name="email" type="text" class="form-control" required placeholder="Email">
+                                                            <i class="fs-input-icon sl-icon-envolope-letter"></i>
+                                                        </div>                                                    
+                                                    </div>
+                                                     <div class="col-md-12">
+                                                        <div class="form-group wt-inputicon-box">
+                                                            <textarea name="message" rows="3" class="form-control " required placeholder="Message"></textarea>
+                                                            <i class="fs-input-icon sl-icon-envolope"></i>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-md-12">
+                                                        <div class="text-center">
+                                                            <button name="submit" type="submit" value="Submit" class="btn-half site-button button-lg m-b15">
+                                                                    <span>Submit</span><em></em>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+        										  </div>
+                                            </div>
+                                        </form>
+                            			<div class="contact-info text-black m-b30">
+                                            <!-- TITLE START -->
+                                            <div class="section-head text-center">
+                                                <h2 class="m-b5" data-title="Info">Contact Info</h2>
+                                            </div>
+                                            <!-- TITLE END -->
+                                            <ul> 
+                                                <li>                           
+                                                	<div class="wt-icon-box-wraper center p-b40">
+                                                        <div class="icon-md m-b20"><i class="sl-icon-phone"></i></div>
+                                                        <div class="icon-content">
+                                                            <h5 class="m-t0 font-weight-500">Nomor Telepon</h5>
+                                                            <p>(456) 789 10 12</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                	<div class="wt-icon-box-wraper center p-b40">
+                                                        <div class="icon-md m-b20"><i class="sl-icon-envolope-letter"></i></div>
+                                                        <div class="icon-content">
+                                                            <h5 class="m-t0 font-weight-500">Alamat Email</h5>
+                                                            <p>fst@apps.uinjkt.ac.id</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                	<div class="wt-icon-box-wraper center">
+                                                        <div class="icon-md m-b20"><i class="sl-icon-map"></i></div>
+                                                        <div class="icon-content">
+                                                            <h5 class="m-t0 font-weight-500">Alamat</h5>
+                                                            <p>Gedung FST UIN Jakarta, UIN Jakarta, Jl. Lkr. Kampus 1, Cempaka Putih, Ciputat Timur, South Tangerang City, Banten 15412</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                
+                                            </ul>    
+                                        </div>                                        
+                                     </div>
+                                </div> 
+                            </div>                               
+                            <!-- SITE Search -->
+                            <div id="search"> 
+                                <span class="close"></span>
+                                <form role="search" id="searchform" action="/search" method="get" class="radius-xl">
+                                    <div class="input-group">
+                                        <input value="" name="q" type="search" placeholder="Type to search"/>
+                                        <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                                    </div>   
+                                </form>
+                            </div>                                                                                                          
+                            
+                            
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+        
+        <!-- CONTENT START -->
+        <div class="page-content">
+                                            
+            <!-- SLIDER START -->
+            <div id="welcome_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="goodnews-header" data-source="gallery" style="background:#eeeeee;padding:0px;">
+                <div id="welcome" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.3.1">
+                    <ul>	
+                        <!-- SLIDE 1 -->
+                        <li data-index="rs-901" 
+                        data-transition="fadethroughdark" 
+                        data-slotamount="default" 
+                        data-hideafterloop="0" 
+                        data-hideslideonmobile="off"  
+                        data-easein="default" 
+                        data-easeout="default" 
+                        data-masterspeed="default"  
+                        data-thumb="images/main-slider/slider1/slide1.jpg"  
+                        data-rotate="0"  
+                        data-fstransition="fade" 
+                        data-fsmasterspeed="300" 
+                        data-fsslotamount="7" 
+                        data-saveperformance="off"  
+                        data-title="Click" 
+                        data-param1="" 
+                        data-param2="" 
+                        data-param3="" 
+                        data-param4="" 
+                        data-param5="" 
+                        data-param6="" 
+                        data-param7="" 
+                        data-param8="" 
+                        data-param9="" 
+                        data-param10="" 
+                        data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/main-slider/slider1/slide1.jpg"  alt=""  data-lazyload="images/main-slider/slider1/slide1.jpg" data-bgposition="center center" 
+                            data-bgfit="cover" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 0 [ for overlay ] -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " 
+                            id="slide-901-layer-0" 
+                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                            data-width="full"
+                            data-height="full"
+                            data-whitespace="nowrap"
+                            data-type="shape" 
+                            data-basealign="slide" 
+                            data-responsive_offset="off" 
+                            data-responsive="off"
+                            data-frames='[
+                            {"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                            style="z-index: 1;background-color:rgba(0, 0, 0, 0.5);border-color:rgba(0, 0, 0, 0);border-width:0px;"> 
+                            </div>
+                           
+                            <!-- LAYER NR. 1 [ Black Box ] -->
+                            <div class="tp-caption   tp-resizeme" 
+                            id="slide-901-layer-1" 
+                            data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
+                            data-y="['top','top','top','top']" data-voffset="['250','250','250','250']"  
+                            data-fontsize="['46','46','46','32']"
+                            data-lineheight="['56','56','56','50']"
+                            data-width="['0','0','0','0']"
+                            data-height="['','','','']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                        
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames='[
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                        
+                            style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:#fff;
+                            border-width:0px;">
+                            <div class=" rev-slider-style-1"></div>
+                            </div>
+                            
+                            
+                                                        
+                            <!-- LAYER NR. 2 [ for title ] -->
+                            <div class="tp-caption   tp-resizeme" 
+                            id="slide-901-layer-2" 
+                            data-x="['left','left','left','left']" data-hoffset="['40','40','40','40']" 
+                            data-y="['top','top','top','top']" data-voffset="['270','270','270','270']"  
+                            data-fontsize="['56','56','38','28']"
+                            data-lineheight="['66','66','48','38']"
+                            data-width="['700','700','96%','96%']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                        
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames='[
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":1000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[5,5,5,5]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[20,20,20,20]"
+                        
+                            style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:#fff;
+                            border-width:0px;">
+                            <div style="font-family: 'DM Serif Text', serif;text-transform:uppercase;">
+                                <span class="site-text-primary">FST UIN Jakarta</span><br>
+                                Selamat Datang di FST UIN Jakarta, Kampus Inovasi dan Prestasi
+                            </div>
+                            
+                            </div>
+                            
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption tp-resizeme" 	
+                            id="slide-901-layer-3"						
+                            data-x="['right','right','right','left']" data-hoffset="['40','40','40','40']" 
+                            data-y="['top','top','top','top']" data-voffset="['400','570','570','180']" 
+                            data-fontsize="['400','400','400','80']"
+                            data-lineheight="['66','66','48','38']"                             
+                            data-width="['800','800','800','800']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                            
+                            data-type="text" 
+                            data-responsive_offset="on"
+                            data-frames='[ 
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['right','right','right','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                           style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:rgba(0,0,0,0);">
+                            </div>  
+                            
+                            <!-- LAYER NR. 4 [ for see all service botton ] -->
+                            <div class="tp-caption tp-resizeme" 	
+                            id="slide-901-layer-4"						
+                            data-x="['left','left','left','left']" data-hoffset="['40','40','40','40']" 
+    
+                            data-y="['top','top','top','top']" data-voffset="['570','570','520','460']"  
+                            data-lineheight="['none','none','none','none']"
+                            data-width="['300','300','300','300']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                            
+                            data-type="text" 
+                            data-responsive_offset="on"
+                            data-frames='[ 
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                            style="z-index:13; text-transform:uppercase;">
+                            <a href="https://fst.uinjkt.ac.id/id" class="site-button slider-btn-left btn-half"><span> More About</span><em></em></a>
+                            </div>
+
+                             
+                        
+     
+                        </li>
+                        
+                        
+                        <!-- SLIDE 2 -->
+                        <li data-index="rs-902" 
+                        data-transition="fadethroughdark" 
+                        data-slotamount="default" 
+                        data-hideafterloop="0" 
+                        data-hideslideonmobile="off"  
+                        data-easein="default" 
+                        data-easeout="default" 
+                        data-masterspeed="default"  
+                        data-thumb="images/main-slider/slider1/slide2.jpg"  
+                        data-rotate="0"  
+                        data-fstransition="fade" 
+                        data-fsmasterspeed="300" 
+                        data-fsslotamount="7" 
+                        data-saveperformance="off"  
+                        data-title="Click" 
+                        data-param1="" 
+                        data-param2="" 
+                        data-param3="" 
+                        data-param4="" 
+                        data-param5="" 
+                        data-param6="" 
+                        data-param7="" 
+                        data-param8="" 
+                        data-param9="" 
+                        data-param10="" 
+                        data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/main-slider/slider1/slide2.jpg"  alt=""  data-lazyload="images/main-slider/slider1/slide2.jpg" data-bgposition="center center" 
+                            data-bgfit="cover" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 0 [ for overlay ] -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " 
+                            id="slide-902-layer-0" 
+                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                            data-width="full"
+                            data-height="full"
+                            data-whitespace="nowrap"
+                            data-type="shape" 
+                            data-basealign="slide" 
+                            data-responsive_offset="off" 
+                            data-responsive="off"
+                            data-frames='[
+                            {"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                            style="z-index: 1;background-color:rgba(0, 0, 0, 0.5);border-color:rgba(0, 0, 0, 0);border-width:0px;"> 
+                            </div>
+                           
+                            <!-- LAYER NR. 1 [ Black Box ] -->
+                            <div class="tp-caption   tp-resizeme" 
+                            id="slide-902-layer-1" 
+                            data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
+                            data-y="['top','top','top','top']" data-voffset="['250','250','250','250']"  
+                            data-fontsize="['46','46','46','32']"
+                            data-lineheight="['56','56','56','50']"
+                            data-width="['0','0','0','0']"
+                            data-height="['','','','']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                        
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames='[
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                        
+                            style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:#fff;
+                            border-width:0px;">
+                            <div class=" rev-slider-style-1"></div>
+                            </div>
+                            
+                            
+                                                        
+                            <!-- LAYER NR. 2 [ for title ] -->
+                            <div class="tp-caption   tp-resizeme" 
+                            id="slide-902-layer-2" 
+                            data-x="['left','left','left','left']" data-hoffset="['40','40','40','40']" 
+                            data-y="['top','top','top','top']" data-voffset="['270','270','270','270']"  
+                            data-fontsize="['56','56','38','28']"
+                            data-lineheight="['66','66','48','38']"
+                            data-width="['700','700','96%','96%']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                        
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames='[
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":1000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[5,5,5,5]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[20,20,20,20]"
+                        
+                            style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:#fff;
+                            border-width:0px;">
+                            <div style="font-family: 'DM Serif Text', serif;text-transform:uppercase;">
+                                <span class="site-text-primary">Fasilitas Modern</span><br>
+                                Untuk Mendukung Kegiatan Akademik dan Riset di FST UIN Jakarta
+                            </div>
+                            
+                            </div>
+                            
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption tp-resizeme" 	
+                            id="slide-902-layer-3"						
+                            data-x="['right','right','right','left']" data-hoffset="['40','40','40','40']" 
+                            data-y="['top','top','top','top']" data-voffset="['400','570','570','180']" 
+                            data-fontsize="['400','400','400','80']"
+                            data-lineheight="['66','66','48','38']"                             
+                            data-width="['800','800','800','800']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                            
+                            data-type="text" 
+                            data-responsive_offset="on"
+                            data-frames='[ 
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['right','right','right','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                           style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:rgba(0,0,0,0);">
+                            </div>  
+                            
+                            <!-- LAYER NR. 4 [ for see all service botton ] -->
+                            <div class="tp-caption tp-resizeme" 	
+                            id="slide-902-layer-4"						
+                            data-x="['left','left','left','left']" data-hoffset="['40','40','40','40']" 
+    
+                            data-y="['top','top','top','top']" data-voffset="['570','570','520','460']"  
+                            data-lineheight="['none','none','none','none']"
+                            data-width="['300','300','300','300']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                            
+                            data-type="text" 
+                            data-responsive_offset="on"
+                            data-frames='[ 
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                            style="z-index:13; text-transform:uppercase;">
+                            <a href="https://fst.uinjkt.ac.id/id" class="site-button slider-btn-left btn-half"><span> More About</span><em></em></a>
+                            </div>
+
+                        </li>                                          
+                                         
+ 
+                        <!-- SLIDE 3 -->
+                        <li data-index="rs-903" 
+                        data-transition="fadethroughdark" 
+                        data-slotamount="default" 
+                        data-hideafterloop="0" 
+                        data-hideslideonmobile="off"  
+                        data-easein="default" 
+                        data-easeout="default" 
+                        data-masterspeed="default"  
+                        data-thumb="images/main-slider/slider1/slide3.jpg"  
+                        data-rotate="0"  
+                        data-fstransition="fade" 
+                        data-fsmasterspeed="300" 
+                        data-fsslotamount="7" 
+                        data-saveperformance="off"  
+                        data-title="Click" 
+                        data-param1="" 
+                        data-param2="" 
+                        data-param3="" 
+                        data-param4="" 
+                        data-param5="" 
+                        data-param6="" 
+                        data-param7="" 
+                        data-param8="" 
+                        data-param9="" 
+                        data-param10="" 
+                        data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="images/main-slider/slider1/slide3.jpg"  alt=""  data-lazyload="images/main-slider/slider1/slide3.jpg" data-bgposition="center center" 
+                            data-bgfit="cover" data-bgparallax="4" class="rev-slidebg" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 0 [ for overlay ] -->
+                            <div class="tp-caption tp-shape tp-shapewrapper " 
+                            id="slide-903-layer-0" 
+                            data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                            data-width="full"
+                            data-height="full"
+                            data-whitespace="nowrap"
+                            data-type="shape" 
+                            data-basealign="slide" 
+                            data-responsive_offset="off" 
+                            data-responsive="off"
+                            data-frames='[
+                            {"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                            style="z-index: 1;background-color:rgba(0, 0, 0, 0.5);border-color:rgba(0, 0, 0, 0);border-width:0px;"> 
+                            </div>
+                           
+                            <!-- LAYER NR. 1 [ Black Box ] -->
+                            <div class="tp-caption   tp-resizeme" 
+                            id="slide-903-layer-1" 
+                            data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
+                            data-y="['top','top','top','top']" data-voffset="['250','250','250','250']"  
+                            data-fontsize="['46','46','46','32']"
+                            data-lineheight="['56','56','56','50']"
+                            data-width="['0','0','0','0']"
+                            data-height="['','','','']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                        
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames='[
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                        
+                            style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:#fff;
+                            border-width:0px;">
+                            <div class=" rev-slider-style-1"></div>
+                            </div>
+                            
+                            
+                                                        
+                            <!-- LAYER NR. 2 [ for title ] -->
+                            <div class="tp-caption   tp-resizeme" 
+                            id="slide-903-layer-2" 
+                            data-x="['left','left','left','left']" data-hoffset="['40','40','40','40']" 
+                            data-y="['top','top','top','top']" data-voffset="['270','270','270','270']"  
+                            data-fontsize="['56','56','38','28']"
+                            data-lineheight="['66','66','48','38']"
+                            data-width="['700','700','96%','96%']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                        
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames='[
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":1000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[5,5,5,5]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[20,20,20,20]"
+                        
+                            style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:#fff;
+                            border-width:0px;">
+                            <div style="font-family: 'DM Serif Text', serif;text-transform:uppercase;">
+                                <span class="site-text-primary">Reservasi Mudah</span><br>
+                                Ruang Kelas, Teater, dan Event di FST UIN Jakarta
+                            </div>
+                            
+                            </div>
+                            
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption tp-resizeme" 	
+                            id="slide-903-layer-3"						
+                            data-x="['right','right','right','left']" data-hoffset="['40','40','40','40']" 
+                            data-y="['top','top','top','top']" data-voffset="['400','570','570','180']" 
+                            data-fontsize="['400','400','400','80']"
+                            data-lineheight="['66','66','48','38']"                             
+                            data-width="['800','800','800','800']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                            
+                            data-type="text" 
+                            data-responsive_offset="on"
+                            data-frames='[ 
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['right','right','right','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                           style="z-index: 13; 
+                            white-space: normal; 
+                            font-weight: 900;
+                            color:rgba(0,0,0,0);">
+                            </div>  
+                            
+                            <!-- LAYER NR. 4 [ for see all service botton ] -->
+                            <div class="tp-caption tp-resizeme" 	
+                            id="slide-903-layer-4"						
+                            data-x="['left','left','left','left']" data-hoffset="['40','40','40','40']" 
+    
+                            data-y="['top','top','top','top']" data-voffset="['570','570','520','460']"  
+                            data-lineheight="['none','none','none','none']"
+                            data-width="['300','300','300','300']"
+                            data-height="['none','none','none','none']"
+                            data-whitespace="['normal','normal','normal','normal']"
+                            
+                            data-type="text" 
+                            data-responsive_offset="on"
+                            data-frames='[ 
+                            {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                            {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                            ]'
+                            data-textAlign="['left','left','left','left']"
+                            data-paddingtop="[0,0,0,0]"
+                            data-paddingright="[0,0,0,0]"
+                            data-paddingbottom="[0,0,0,0]"
+                            data-paddingleft="[0,0,0,0]"
+                            
+                            style="z-index:13; text-transform:uppercase;">
+                            <a href="https://fst.uinjkt.ac.id/id" class="site-button slider-btn-left btn-half"><span> More About</span><em></em></a>
+                            </div>
+
+     
+                        </li> 
+                                                    
+                    </ul>
+                    <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>	
+                </div>
+            </div>
+            <!-- SLIDER END -->
+            
+            <!--BOOKING SECTION START-->
+            <div class="section-full booking-bar">
+                <div class="container">
+					<div class="booking-bar-inner site-bg-primary booking-bar-floating">
+                        <div class="booking-fram-name">
+                            <h3 class="m-a0">Reservasi Ruangan</h3>
+                        </div>
+                        <div class="booking-form">
+                            <form onsubmit="handleBookingSubmit(event)">
+                                <ul>
+                                    <li class="date-cal-block">
+                                        <div class="form-group clearfix">
+                                            <label>Tanggal Reservasi</label>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="date" class="form-control" name="reservation-date" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="time-block">
+                                        <div class="form-group clearfix">
+                                            <label>Waktu Penggunaan</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="small-label">Jam Mulai</label>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <select class="form-control" name="start-hour" required>
+                                                                <option value="">Jam</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <select class="form-control" name="start-minute" required>
+                                                                <option value="">Menit</option>
+                                                                <option value="00">00</option>
+                                                                <option value="15">15</option>
+                                                                <option value="30">30</option>
+                                                                <option value="45">45</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="small-label">Jam Selesai</label>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <select class="form-control" name="end-hour" required>
+                                                                <option value="">Jam</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <select class="form-control" name="end-minute" required>
+                                                                <option value="">Menit</option>
+                                                                <option value="00">00</option>
+                                                                <option value="15">15</option>
+                                                                <option value="30">30</option>
+                                                                <option value="45">45</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                                              
+                                    <li class="room-type-block">
+                                        <div class="form-group">
+                                            <label>Jenis Ruangan</label>
+                                            <div class="select-box">
+                                                <select class="form-control" name="room" required>
+                                                    <option selected="selected" disabled="disabled">Pilih Ruangan</option>
+                                                    <option value="ruang-kelas-biasa">Ruang Kelas Biasa</option>
+                                                    <option value="ruang-kelas-besar">Ruang Kelas Besar</option>
+                                                    <option value="lab-mikrobiologi" disabled>Lab Mikrobiologi</option>
+                                                    <option value="lab-komputer" disabled>Lab Komputer</option>
+                                                    <option value="ruang-teater-besar">Ruang Teater Besar</option>
+                                                    <option value="ruang-teater-double-proyektor">Ruang Teater Double Proyektor</option>
+                                                    <option value="ruang-meeting">Ruang Meeting</option>
+                                                </select>
+                                            </div>
+                                        </div>                            
+                                    </li>  
+                                    
+                                    <li class="adult-type-block">
+                                        <div class="form-group">
+                                            <label>Jumlah Peserta</label>
+                                            <div class="select-box">
+                                                <select class="form-control" name="No-participants" required>
+                                                    <option selected="selected" disabled="disabled">Pilih Jumlah</option>
+                                                    <option value="1-10">1-10 orang</option>
+                                                    <option value="11-25">11-25 orang</option>
+                                                    <option value="26-50">26-50 orang</option>
+                                                    <option value="50+">50+ orang</option>
+                                                </select>
+                                            </div>
+                                        </div>                            
+                                    </li>
+                                    
+                                    <li class="purpose-block">
+                                        <div class="form-group">
+                                            <label>Tujuan Penggunaan</label>
+                                            <div class="select-box">
+                                                <select class="form-control" name="purpose" required>
+                                                    <option selected="selected" disabled="disabled">Pilih Tujuan</option>
+                                                    <option value="kuliah">Kuliah</option>
+                                                    <option value="seminar">Seminar</option>
+                                                    <option value="rapat">Rapat</option>
+                                                    <option value="presentasi">Presentasi</option>
+                                                    <option value="workshop">Workshop</option>
+                                                    <option value="lainnya">Lainnya</option>
+                                                </select>
+                                            </div>
+                                        </div>                            
+                                    </li> 
+                                    
+                                    <li class="booking-form-btn-block">
+                                        <div class="form-group">
+                                            <button type="submit" class="site-button-secondry btn-half"><span> Reservasi</span><em></em></button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            <!--BOOKING SECTION END-->
+                                   
+            <!-- WELCOME SECTION START -->
+            <div class="section-full p-tb90 bg-white overflow-hide">
+              
+                <div class="container">
+                    <div class="section-content">
+
+                    	<div class="row d-flex align-items-center">
+                   
+                    		<div class="col-lg-6 col-md-12 text-black">
+                                <!-- TITLE START -->
+                                <div class="section-head text-left">
+                                    <h2 class=" m-b5" data-title="Tentang">Tentang FST UIN Jakarta</h2>
+                                    <div class="wt-separator-outer">
+                                        <div class="wt-separator site-bg-primary"></div>
+                                    </div>
+                                </div>
+                                <!-- TITLE END -->                             
+                                <h4 class=" m-t0">
+                                    Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta adalah pusat pendidikan, penelitian, dan inovasi di bidang sains dan teknologi.
+                                </h4>
+                                <p>
+                                    FST UIN Jakarta berkomitmen untuk mencetak lulusan yang unggul, berdaya saing global, dan berakhlak mulia. Dengan fasilitas modern, dosen profesional, serta lingkungan akademik yang kondusif, FST menjadi pilihan utama bagi calon ilmuwan dan teknolog muslim di Indonesia. Bergabunglah bersama kami untuk masa depan yang gemilang di dunia sains dan teknologi!
+                                </p>
+                                <a href="https://fst.uinjkt.ac.id/id" class="btn-half site-button button-lg m-b30"><span>Selengkapnya</span><em></em></a>
+                                <a href="booking-form.html" class="btn-half site-button-secondry button-lg m-l10"><span>Reservasi Baru</span><em></em></a>
+                            </div>
+                            
+                        	<div class="col-lg-6 col-md-12">
+                            	<div class="home-about-block-outer bg-repeat bg-white" style="background-image:url(images/background/bg-dot.jpg);">
+                                	<div class="home-about-block-inner">
+                                        <div class="home-about-slider owl-carousel owl-btn-vertical-center">
+                                        
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="images/about/pic1.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="images/about/pic2.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="images/about/pic3.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="images/about/pic4.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="home-about-slider-pic">
+                                                    <img src="images/about/pic5.jpg" alt="">
+                                                </div>
+                                            </div>                                                                                                                                                                                
+                                            
+                                        </div>  
+                                    </div>	
+                                </div>
+                            </div>                                 
+                        </div>
+
+                    </div>
+                </div>
+            </div>   
+            <!-- WELCOME  SECTION END -->  
+
+            <!-- ROOMS SLIDER START -->
+            <div class="section-full p-tb90 bg-gray">
+            	<div class="container">
+
+                    <!-- TITLE START -->
+                    <div class="section-head text-center">
+                        <h2 class="m-b5" data-title="Ruangan">Ruangan & Fasilitas FST</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->
+                    
+                    <div class="text-center">
+                        <p>
+                            FST UIN Syarif Hidayatullah Jakarta menyediakan berbagai pilihan ruangan seperti ruang kelas, laboratorium, ruang teater, dan fasilitas lainnya yang modern dan nyaman untuk mendukung kegiatan akademik, riset, dan event kampus.
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <ul class="btn-filter-wrap2">
+                            <li class="btn-filter btn-active" data-filter="*">Semua Ruangan</li>
+                            <li class="btn-filter" data-filter=".colum-1">Ruang Kelas</li>
+                            <li class="btn-filter" data-filter=".colum-2">Laboratorium</li>
+                            <li class="btn-filter" data-filter=".colum-3">Ruang Teater</li>
+                            <li class="btn-filter" data-filter=".colum-4">Ruang Meeting</li>
+                        </ul>
+                    </div>                    
+                </div>  
+                                
+				<div class="container-fluid">
+                    <!-- IMAGE CAROUSEL START -->
+                    <div class="section-content">
+                        <div class="owl-carousel owl-carousel-filter2 owl-btn-bottom-center">
+                            <!-- COLUMNS 1 --> 
+                            <div class="item colum-1">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic1.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Ruang Kelas Biasa</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 80m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 35 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Projector, Whiteboard, AC </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>
+                            
+                            <!-- COLUMNS 2 --> 
+                             <div class="item colum-2">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic3.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Lab Mikrobiologi</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 50m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 30 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Lab Equipment, Microscope, Safety Gear </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>                               
+                            
+                            <!-- COLUMNS 3 --> 
+                            <div class="item colum-3">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic6.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Ruang Teater Besar</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 150m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 75 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Large Screen, Sound System, Stage </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 4 --> 
+                            <div class="item colum-4">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic7.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Ruang Meeting</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 40m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 10 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Conference Table, Whiteboard, AC </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 5 --> 
+                            <div class="item colum-3">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic5.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Teater Double Proyektor</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 110m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 50 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Dual Projector, Sound System, Stage </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 6 --> 
+                            <div class="item colum-2">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic4.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Lab Komputer</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 40m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 20 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Computers, Network, AC </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>                                
+                            
+                            <!-- COLUMNS 7 --> 
+                            <div class="item colum-1">
+                                <div class="room-rent-section-outer">
+                                    <div class="room-rent-section">
+                                        <div class="rooms-pic-section">
+                                            <div class="wt-media">
+                                                <img src="images/rooms/pic2.jpg" alt="">
+                                                <div class="overlay-bx-3"></div>
+                                                <h3 class="m-b0 wt-title">Ruang Kelas Besar</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="room-info-section text-black">
+                                            <ul class="clearfix">
+                                                <li><i class="fa fa-expand"></i> <strong>Size:</strong> 100m² </li>
+                                                <li><i class="fa fa-user"></i> <strong>Capacity:</strong> 50 </li>
+                                                <li><i class="fa fa-cogs"></i> <strong>Equipment:</strong> Projector, Whiteboard, AC </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="booking-form.html" class="btn-half site-button button-lg"><span>Reservasi</span><em></em></a>
+                                </div>
+                            </div>                                 
+
+    
+                        </div>
+                    </div>
+                </div>
+                
+            </div>   
+            <!-- ROOMS  SLIDER END -->
+
+            <!-- OUR BLOG START -->
+            <div class="section-full p-t90 p-b60 bg-white">
+           
+				<div class="container">
+                
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5" data-title="Blog">Blog Terbaru Kami</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->  
+     
+                    <!-- IMAGE CAROUSEL START -->
+                    <div class="section-content">
+                        
+						<div class="row">
+                        
+                            <div class="col-lg-6 col-md-6">
+                                <div class="blog-post latest-blog-1 date-style-2">
+                                    <div class="wt-post-media wt-img-effect zoom-slow">
+                                        <a href="post-right-sidebar.html"><img src="images/blog/default/thum4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="wt-post-info">
+                                        <div class="post-date"> <strong>20 Mar 2024 </strong></div> 
+                                        
+                                            <div class="wt-post-meta">
+                                                <ul class="clearfix">
+                                                    <li class="post-author">
+                                                        <div class="post-author-pic">
+                                                            <span><img src="images/timfst.jpg" alt=""></span>
+                                                            <span><strong> Oleh</strong> <a href="https://fst.uinjkt.ac.id/id/testimoni-bedah-buku-dan-seminar-tentang-panasonic-gobel-falsafah-pancasila-industrialisasi-nasional-kewirausahaan-inovasi-teknologi">Tim FST UIN Jakarta</a></span>
+                                                        </div> 
+                                                    </li>
+                                                    <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="https://fst.uinjkt.ac.id/id/testimoni-bedah-buku-dan-seminar-tentang-panasonic-gobel-falsafah-pancasila-industrialisasi-nasional-kewirausahaan-inovasi-teknologi">15 Komentar</a> </li>
+                                                </ul>
+                                            </div> 
+                                                                               
+                                            <div class="wt-post-title">
+                                                <h3 class="post-title"><a href="https://fst.uinjkt.ac.id/id/testimoni-bedah-buku-dan-seminar-tentang-panasonic-gobel-falsafah-pancasila-industrialisasi-nasional-kewirausahaan-inovasi-teknologi">Testimoni, Bedah Buku dan Seminar tentang Panasonic Gobel: Falsafah Pancasila, Industrialisasi Nasional, Kewirausahaan & Inovasi Teknologi</a></h3>
+                                            </div>
+                                            
+                                            <div class="wt-post-text">
+                                                <p>Acara seminar yang mengangkat tema penting tentang falsafah Pancasila dalam konteks industrialisasi nasional dan kewirausahaan. Seminar ini menghadirkan pembicara dari Panasonic Gobel yang membagikan pengalaman dan wawasan tentang inovasi teknologi dalam mendukung pembangunan nasional.</p>
+                                            </div>
+                                            
+                                            <div class="readmore-line">
+                                                <a href="https://fst.uinjkt.ac.id/id/testimoni-bedah-buku-dan-seminar-tentang-panasonic-gobel-falsafah-pancasila-industrialisasi-nasional-kewirausahaan-inovasi-teknologi" class="site-button-ink site-text-primary font-weight-900 ">Baca Selengkapnya</a>
+                                            </div> 
+                                            
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="blog-post latest-blog-1 date-style-2">
+                                    <div class="wt-post-media wt-img-effect zoom-slow">
+                                        <a href="post-gallery.html"><img src="images/blog/default/thum7.jpg" alt=""></a>
+                                    </div>
+                                    <div class="wt-post-info">
+                                        <div class="post-date"> <strong>20 Mar 2024 </strong></div> 
+                                        
+                                            <div class="wt-post-meta">
+                                                <ul class="clearfix">
+                                                    <li class="post-author">
+                                                        <div class="post-author-pic">
+                                                            <span><img src="images/timfst.jpg" alt=""></span>
+                                                            <span><strong> Oleh</strong> <a href="https://fst.uinjkt.ac.id/id/pelantikan-dan-serah-terima-jabatan-kaprodi-dan-sekprodi-kimia-fst-uin-jakartal">Tim FST UIN Jakarta</a></span>
+                                                        </div> 
+                                                    </li>
+                                                    <li class="post-comment"><i class="fa fa fa-comments site-text-primary"></i><a href="https://fst.uinjkt.ac.id/id/pelantikan-dan-serah-terima-jabatan-kaprodi-dan-sekprodi-kimia-fst-uin-jakarta">12 Komentar</a> </li>
+                                                </ul>
+                                            </div> 
+                                                                               
+                                            <div class="wt-post-title">
+                                                <h3 class="post-title"><a href="https://fst.uinjkt.ac.id/id/pelantikan-dan-serah-terima-jabatan-kaprodi-dan-sekprodi-kimia-fst-uin-jakarta">Pelantikan dan Serah Terima Jabatan Kaprodi dan Sekprodi Kimia FST UIN Jakarta.</a></h3>
+                                            </div>
+                                            
+                                            <div class="wt-post-text">
+                                                <p>Acara serah terima jabatan yang menandai pergantian kepemimpinan di Program Studi Kimia FST UIN Jakarta. Pelantikan ini merupakan momentum penting dalam pengembangan program studi dan peningkatan kualitas pendidikan di bidang kimia.</p>
+                                            </div>
+                                            
+                                            <div class="readmore-line">
+                                                <a href="https://fst.uinjkt.ac.id/id/pelantikan-dan-serah-terima-jabatan-kaprodi-dan-sekprodi-kimia-fst-uin-jakarta" class="site-button-ink site-text-primary font-weight-900 ">Baca Selengkapnya</a>
+                                            </div> 
+                                            
+                                        </div>
+                                </div>
+                            </div>                                        
+                        </div> 
+                                               
+                    </div>
+                </div>
+                
+            </div>   
+            <!-- OUR BLOG END -->
+                        
+            <!-- OUR SPECIALLIZATION START -->
+            <div class="section-full bg-change-section overlay-wraper p-tb90"   data-toggle="tab-hover">
+                <div class="overlay-main bg-black opacity-06"></div>
+                <div class="bg-changer">
+                    <div  class=" section-bg active" style="background-image:url(images/background/room.jpg)"></div>
+                    <div  class="section-bg" style="background-image:url(images/background/appartment.jpg)"></div>
+                    <div  class="section-bg" style="background-image:url(images/background/architecture.jpg)"></div> 
+                    <div  class="section-bg" style="background-image:url(images/background/interior.jpg)"></div> 
+                </div>
+                                          
+                <div class="container">
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5 text-white" data-title="Fasilitas">Fasilitas Kampus</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->                                   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="services-part-left ">
+                            	<div class="text-white">
+                                <h3 class=" m-t0">Sistem reservasi ruangan terpadu untuk mendukung aktivitas akademik dan non-akademik.</h3>
+                                <p>Platform reservasi ruangan yang memudahkan mahasiswa, dosen, dan staff dalam memesan berbagai fasilitas kampus. Dikelola secara profesional dengan teknologi terkini untuk efisiensi maksimal dalam pengelolaan ruangan.</p>
+                                </div>
+                                <div class="section-content">
+                                    <div class="row">
+                                                
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
+                                            <div class="m-b30 wt-icon-box-wraper">
+												<h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="50">0</span><b>+</b></h2>                                            
+                                                <h5 class="wt-tilte m-b0 text-white">Ruang Tersedia</h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
+                                            <div class="m-b30  wt-icon-box-wraper">
+												<h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="1000">0</span><b>+</b></h2>                                                
+                                                <h5 class="wt-tilte m-b0 text-white">Reservasi Bulanan</h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
+                                            <div class="m-b30 wt-icon-box-wraper">
+                                                <h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="24">0</b></h2> 
+                                                <h5 class="wt-tilte m-b0 text-white">Jam Layanan</h5>
+                                            </div>
+                                        </div>
+                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row no-col-gap twm-our-speci-box-wrap">
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white  bgcall-block hover-box-effect" >
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="fi fi-rr-users-class"></i></span>
+                                        </div>
+                                        <div class="icon-content text-white">
+                                            <h4 class="wt-tilte m-b10">Ruang Kelas</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white  bgcall-block  hover-box-effect" >
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="fi fi-rr-books"></i></span>
+                                        </div>
+                                        <div class="icon-content  text-white">
+                                            <h4 class="wt-tilte m-b10">Perpustakaan</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white  bgcall-block  hover-box-effect">
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="fi fi-rr-leader-speech"></i></span>
+                                        </div>
+                                        <div class="icon-content  text-white">
+                                            <h4 class="wt-tilte m-b10">Ruang Konferensi</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6  col-sm-6 col-xs-6 col-xs-100pc">
+                                    <div class="wt-icon-box-wraper p-tb20 center bdr-1 bdr-solid bdr-white bgcall-block hover-box-effect">
+                                        <div class="icon-md site-text-primary">
+                                            <span class="icon-cell text-white"><i class="fi fi-rr-holding-hand-dinner"></i></span>
+                                        </div>
+                                        <div class="icon-content  text-white">
+                                            <h4 class="wt-tilte m-b10">Cafeteria</h4>
+                                        </div>
+                                    </div>
+                                </div>                                                                                
+                            </div>                        
+                        </div>
+                    </div>                                     
+                </div>
+            </div>   
+            <!-- OUR SPECIALLIZATION END -->
+            
+            <!-- OUR SERVICES START -->
+            <div class="section-full p-tb90">
+                                         
+                <div class="container">
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5" data-title="Layanan">Layanan Kami</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->                                   
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="fi fi-rr-wifi"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Free Wi-Fi</h4>
+                                    <p>Koneksi internet cepat dan stabil tersedia di seluruh area hotel untuk kenyamanan tamu.</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="fi fi-rr-meeting-alt"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Meetings & Events</h4>
+                                    <p>Ruang meeting dan acara yang dilengkapi dengan peralatan modern untuk berbagai kebutuhan.</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="fi fi-rr-envelope-dot"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Online Booking</h4>
+                                    <p>Pemesanan ruangan online yang mudah dan cepat melalui website resmi kami.</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="fi fi-rr-microscope"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Sarana & Prasarana Terbaik</h4>
+                                    <p>Fasilitas dan infrastruktur berkualitas tinggi untuk memastikan kenyamanan maksimal.</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="fi fi-rr-calendar-clock"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Reservasi Sekarang</h4>
+                                    <p>Layanan reservasi 24 jam untuk memudahkan tamu dalam memesan kamar kapan saja.</p>
+                                </div>
+                            </div>                                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="wt-icon-box-wraper center bdr-1 bdr-gray-light bdr-solid m-b30 p-a20 hover-box-effect  v-icon-effect">
+                                <div class="icon-md m-b20">
+                                    <span class="icon-cell"><i class="fi fi-rr-employee-man-alt"></i></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte ">Staff Profesional</h4>
+                                    <p>Tim staff yang terlatih dan profesional siap melayani dengan ramah dan efisien.</p>
+                                </div>
+                            </div>                                       
+                        </div>                                                                                                                        
+                    </div>
+                </div>
+            </div>   
+            <!-- OUR SERVICES END -->
+                     
+            <!-- TESTIMONIALS SECTION START -->
+            <div class="section-full p-tb90  overlay-wraper" style="background-image:url(images/background/bg-2.jpg);">
+            <div class="overlay-main opacity-05 bg-black"></div>
+ 
+                <div class="container">
+                    <div class="section-content">
+                    
+                        <!-- TITLE START -->
+                        <div class="section-head text-left">
+                            <h2 class="m-b5 text-white" data-title="Clients">Testimoni Pengguna</h2>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator site-bg-primary"></div>
+                            </div>
+                        </div>
+                        <!-- TITLE END --> 
+                    
+                        <!-- TESTIMONIAL 4 START ON BACKGROUND -->   
+                        <div class="section-content">
+                            <div class="testimonial-home owl-carousel  owl-btn-top-right">
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block"> 
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic1.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix text-white">
+                                            <div class="testimonial-detail ">
+                                                <h4 class="testimonial-name m-t0 m-b10">Myra Cahyati S.Kom M.Kom</h4>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t5">
+                                                <p>"Sistem reservasi ruangan ini sangat memudahkan saya sebagai dosen. Sekarang tidak perlu lagi antri di kantor untuk memesan ruang kelas. Prosesnya cepat dan efisien, sangat membantu untuk kegiatan mengajar dan penelitian."</p>
+                                            </div>
+                                            <div class="testimonial-detail ">
+                                            	<span class="testimonial-position">Dosen Informatika</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block"> 
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic2.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix text-white">
+                                            <div class="testimonial-detail ">
+                                                <h4 class="testimonial-name m-t0 m-b10">Sarah Nurhaliza</h4>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t5">
+                                                <p>"Sebagai ketua himpunan mahasiswa, saya sering perlu mengadakan rapat dan acara. Sistem reservasi online ini sangat praktis, bisa booking ruang meeting kapan saja. Interface-nya user-friendly dan proses konfirmasinya cepat."</p>
+                                            </div>
+                                            <div class="testimonial-detail ">
+                                            	<span class="testimonial-position">Mahasiswa Sistem Informasi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block"> 
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic3.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix text-white">
+                                            <div class="testimonial-detail ">
+                                                <h4 class="testimonial-name m-t0 m-b10">Timothy Ronald</h4>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t5">
+                                                <p>"Sistem reservasi ruangan ini sangat efisien dan modern. Sebagai investor yang sering mengadakan meeting dan presentasi, saya sangat terkesan dengan kemudahan booking ruang meeting. Interface yang clean dan proses yang cepat membuat pengalaman reservasi menjadi menyenangkan."</p>
+                                            </div>
+                                            <div class="testimonial-detail ">
+                                            	<span class="testimonial-position">Investor Bitcoin</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial-6">
+                                        <div class="testimonial-pic-block"> 
+                                            <div class="testimonial-pic">
+                                                <img src="images/testimonials/pic4.jpg" width="132" height="132" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-text clearfix text-white">
+                                            <div class="testimonial-detail ">
+                                                <h4 class="testimonial-name m-t0 m-b10">Maya Indah Sari</h4>
+                                            </div>
+                                            <div class="testimonial-paragraph text-black p-t5">
+                                                <p>"Sebagai staff administrasi, sistem ini sangat memudahkan pekerjaan saya. Tidak perlu lagi mencatat manual dan mengatur jadwal secara manual. Semua terintegrasi dengan baik dan mengurangi kesalahan penjadwalan."</p>
+                                            </div>
+                                            <div class="testimonial-detail ">
+                                            	<span class="testimonial-position">Staff Administrasi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            <!-- TESTIMONIALS SECTION END --> 
+             
+            <!-- OUR PARTNERS START -->
+            <div class="section-full p-tb90 bg-gray">
+				<div class="container">
+                
+                    <!-- TITLE START -->
+                    <div class="section-head text-left">
+                        <h2 class="m-b5" data-title="Partner">Partner Kami</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->  
+     
+					<div class="section-content">
+                    	<div class="client-grid grid-4 row">
+                        	<div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w1.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w2.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w3.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w4.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w5.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w6.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w7.png" alt=""> 
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                            	<a href="about-1.html" class="wt-img-effect client-logo-media" data-toggle="tooltip" data-placement="top" title="" data-original-title="Partner Logo">
+                               	<img src="images/client-logo/w8.png" alt=""> 
+                                </a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+            </div>   
+            <!-- OUR PARTNERS END --> 
+                                     
+        </div>
+        <!-- CONTENT END -->
+
+        <!-- FOOTER START -->
+        <footer class="site-footer footer-large footer-dark	footer-wide">
+            
+            <!-- FOOTER BLOCKES START -->  
+            <div class="footer-top overlay-wraper">
+                <div class="overlay-main"></div>
+                <div class="container">
+                
+                    <div class="news-letter-footer">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="newsletter-f-left">
+                                    <h4 class="text-uppercase m-t0 m-b10">Berlangganan Newsletter FST!</h4>
+                                    <p>Dapatkan informasi terbaru tentang kegiatan akademik, penelitian, dan event di FST UIN Jakarta. Jangan lewatkan update penting dari kami.</p>
+                                </div>
+                            </div>    
+                            <div class="col-lg-6 col-md-12">
+                                <div class="newsletter-f-right text-center">
+                                    <form role="search" method="post">
+                                        <div class="input-group">
+                                            <input name="news-letter" class="form-control" placeholder="MASUKKAN EMAIL ANDA" type="text">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn-half site-button button-lg"><span>Berlangganan</span><em></em></button>
+                                            </span>
+                                        </div>
+                                     </form>
+                                </div>
+                            </div>
+                        </div>                           
+                    </div>
+                    <div class="m-b10">
+                        <div class="wt-divider bg-gray-dark"></div>
+                    </div>
+                    <div class="row">
+                        <!-- ABOUT COMPANY -->
+                        <div class="col-lg-3 col-md-6 col-sm-6">  
+                            <div class="widget widget_about">
+                                <!--<h4 class="widget-title">About Company</h4>-->
+                                <div class="logo-footer clearfix p-b15">
+                                    <a href="index.html"><img src="images/logo-light.png" alt=""></a>
+                                </div>
+								<p class="max-w400">Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta adalah pusat pendidikan, penelitian, dan inovasi di bidang sains dan teknologi yang berkomitmen mencetak lulusan unggul dan berdaya saing global.</p>                                
+                                
+                                <ul class="social-icons social-tooltips-outer  wt-social-links">
+                                    <li><a href="https://www.facebook.com/fst.uinjkt" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
+                                    <li><a href="https://twitter.com/fst_uinjkt" class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>                            
+                                    <li><a href="https://www.linkedin.com/company/fst-uin-jakarta" class="fa fa-linkedin"><span class="social-tooltips">LinkedIn</span></a></li>
+                                    <li><a href="https://www.youtube.com/channel/UCfst_uinjkt" class="fa fa-youtube"><span class="social-tooltips">YouTube</span></a></li>
+                                    <li><a href="https://www.instagram.com/fst.uinjkt" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
+                                </ul>                                     
+                            </div>
+                        </div>                              
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="widget widget_services">
+                                <h4 class="widget-title">Program Studi</h4>
+                                <ul class="list-angle-right">
+                                    <li><a href="javascript:void(0);">Teknik Informatika</a></li>
+                                    <li><a href="javascript:void(0);">Sistem Informasi</a></li>
+                                    <li><a href="javascript:void(0);">Matematika</a></li>
+                                    <li><a href="javascript:void(0);">Fisika</a></li>
+                                    <li><a href="javascript:void(0);">Kimia</a></li>
+                                    <li><a href="javascript:void(0);">Biologi</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="widget widget_services">
+                                <h4 class="widget-title">Fasilitas</h4>
+                                <ul class="list-angle-right">
+                                    <li><a href="javascript:void(0);">Ruang Kelas</a></li>
+                                    <li><a href="javascript:void(0);">Laboratorium</a></li>
+                                    <li><a href="javascript:void(0);">Ruang Teater</a></li>
+                                    <li><a href="javascript:void(0);">Ruang Meeting</a></li>
+                                    <li><a href="javascript:void(0);">Perpustakaan</a></li>
+                                    <li><a href="javascript:void(0);">Wi-Fi Kampus</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="widget widget_address_outer">
+                                <h4 class="widget-title">Informasi Kontak</h4>
+                                <ul class="widget_address">
+                                    <li><i class="sl-icon-map site-text-primary"></i> Gedung FST UIN Jakarta, UIN Jakarta, Jl. Lkr. Kampus 1, Cempaka Putih, Ciputat Timur, South Tangerang City, Banten 15412</li>
+                                    <li><i class="sl-icon-envolope-letter site-text-primary"></i>fst@apps.uinjkt.ac.id</li>
+                                    <li><i class="sl-icon-phone site-text-primary"></i>(021) 740-1925</li>
+                                    <li><i class="sl-icon-printer site-text-primary"></i>(021) 740-1926</li>
+                                </ul>
+                            </div>                                              	
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <!-- FOOTER COPYRIGHT -->
+            <div class="footer-bottom overlay-wraper">
+                <div class="overlay-main"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="wt-footer-bot-center">
+                            <span class="copyrights-text">© 2024 Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. All Rights Reserved. | Designed By Narendra Yusuf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER END -->        
+
+
+        <!-- BUTTON TOP START -->
+		<button class="scroltop"><span class="fa fa-angle-up  relative" id="btn-vibrate"></span></button>
+        
+        <!-- AI CHATBOT WIDGET START -->
+        <div id="chatbot-widget">
+            <div id="chatbot-toggle" class="chatbot-toggle">
+                <i class="fa fa-comments"></i>
+            </div>
+            <div id="chatbot-container" class="chatbot-container">
+                <div class="chatbot-header">
+                    <h4>Asisten AI</h4>
+                    <button id="chatbot-close" class="chatbot-close">&times;</button>
+                </div>
+                <div id="chatbot-messages" class="chatbot-messages"></div>
+                <div class="chatbot-input-container">
+                    <input type="text" id="chatbot-input" placeholder="Tanyakan apa saja..." />
+                    <button id="chatbot-send" class="chatbot-send">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- AI CHATBOT WIDGET END -->
+        
+     
+    </div>
+ 
+<!-- LOADING AREA START ===== -->
+<div class="loading-area">
+    <div class="loading-box"></div>
+    <div class="loading-pic">
+        <div class="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+    </div>
+</div>
+<!-- LOADING AREA  END ====== -->
+
+
+
+<!-- JAVASCRIPT  FILES ========================================= --> 
+<script  src="js/jquery-3.7.1.min.js"></script><!-- JQUERY.MIN JS -->
+<script  src="js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+<script  src="js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+<script  src="js/magnific-popup.min.js"></script><!-- MAGNIFIC-POPUP JS -->
+<script  src="js/waypoints.min.js"></script><!-- WAYPOINTS JS -->
+<script  src="js/counterup.min.js"></script><!-- COUNTERUP JS -->
+<script  src="js/waypoints-sticky.min.js"></script><!-- COUNTERUP JS -->
+<script  src="js/isotope.pkgd.min.js"></script><!-- MASONRY  -->
+<script  src="js/imagesloaded.pkgd.min.js"></script><!-- MASONRY  -->
+<script  src="js/owl.carousel.min.js"></script><!-- OWL  SLIDER  -->
+<script  src="js/jquery.owl-filter.js"></script><!-- OWL  SLIDER FIlter -->
+<script  src="js/t-datepicker.min.js"></script>
+<script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+
+<!-- AI CHATBOT JAVASCRIPT - SECURE BACKEND VERSION -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+
+    // Sound effect functions using Web Audio API
+    function playOpenSound() {
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        } catch (e) {
+            console.log('Audio not supported');
+        }
+    }
+    
+    function playMessageSound() {
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.05);
+            oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.15);
+        } catch (e) {
+            console.log('Audio not supported');
+        }
+    }
+
+    // Toggle chatbot visibility
+    chatbotToggle.addEventListener('click', function() {
+        chatbotContainer.classList.toggle('active');
+        if (chatbotContainer.classList.contains('active')) {
+            playOpenSound();
+            chatbotInput.focus();
+        }
+    });
+
+    // Close chatbot
+    chatbotClose.addEventListener('click', function() {
+        chatbotContainer.classList.remove('active');
+    });
+
+    // Send message function with API integration
+    async function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (message === '') return;
+
+        // Add user message to chat
+        addMessage(message, 'user');
+        chatbotInput.value = '';
+
+        // Show typing indicator
+        showTypingIndicator();
+
+        try {
+            // Call backend API
+            const response = await fetch('api/chatbot.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            
+            hideTypingIndicator();
+            
+            if (data.success) {
+                addMessage(data.response, 'bot');
+                playMessageSound();
+            } else {
+                addMessage('Maaf, terjadi kesalahan. Silakan coba lagi.', 'bot');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            hideTypingIndicator();
+            addMessage('Maaf, tidak dapat terhubung ke server. Silakan coba lagi nanti.', 'bot');
+        }
+    }
+
+    // Send button click
+    chatbotSend.addEventListener('click', sendMessage);
+
+    // Enter key press
+    chatbotInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Add message to chat
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = text;
+        
+        messageDiv.appendChild(contentDiv);
+        chatbotMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Show typing indicator
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot typing-message';
+        typingDiv.innerHTML = `
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        chatbotMessages.appendChild(typingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Hide typing indicator
+    function hideTypingIndicator() {
+        const typingMessage = chatbotMessages.querySelector('.typing-message');
+        if (typingMessage) {
+            typingMessage.remove();
+        }
+    }
+
+    // Add welcome message when chatbot opens
+    chatbotToggle.addEventListener('click', function() {
+        if (chatbotContainer.classList.contains('active') && chatbotMessages.children.length === 0) {
+            setTimeout(() => {
+                addMessage('Halo! Saya adalah asisten AI untuk FST UIN Jakarta. Bagaimana saya bisa membantu Anda hari ini?', 'bot');
+            }, 500);
+        }
+    });
+});
+</script>
+<!-- AI CHATBOT JAVASCRIPT END -->
+
+
+<!-- REVOLUTION JS FILES -->
+<script  src="plugins/revolution/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script  src="plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script  src="plugins/revolution/revolution/js/extensions/revolution-plugin.js"></script>
+
+<!-- REVOLUTION SLIDER SCRIPT FILES -->
+<script  src="js/rev-script-1.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var dateInput = document.querySelector('input[name="reservation-date"]');
+    if (dateInput) {
+        dateInput.addEventListener('input', function() {
+            var val = this.value;
+            if (val) {
+                var day = new Date(val).getDay();
+                // 0 = Sunday, 6 = Saturday
+                if (day === 0 || day === 6) {
+                    alert('Reservasi tidak tersedia pada hari Sabtu dan Minggu.');
+                    this.value = '';
+                }
+            }
+        });
+    }
+    
+    // Time input validation for 24-hour format
+    var startHourSelect = document.querySelector('select[name="start-hour"]');
+    var startMinuteSelect = document.querySelector('select[name="start-minute"]');
+    var endHourSelect = document.querySelector('select[name="end-hour"]');
+    var endMinuteSelect = document.querySelector('select[name="end-minute"]');
+    
+    if (startHourSelect && startMinuteSelect && endHourSelect && endMinuteSelect) {
+        // Set default values
+        startHourSelect.value = '08';
+        startMinuteSelect.value = '00';
+        endHourSelect.value = '09';
+        endMinuteSelect.value = '00';
+        
+        // Add event listeners for validation
+        function validateTimeSelection() {
+            var startHour = parseInt(startHourSelect.value);
+            var startMinute = parseInt(startMinuteSelect.value);
+            var endHour = parseInt(endHourSelect.value);
+            var endMinute = parseInt(endMinuteSelect.value);
+            
+            // Check if both hours and minutes are selected
+            if (!startHourSelect.value || !startMinuteSelect.value || !endHourSelect.value || !endMinuteSelect.value) {
+                return;
+            }
+            
+            // Convert to total minutes for easier comparison
+            var startTotalMinutes = startHour * 60 + startMinute;
+            var endTotalMinutes = endHour * 60 + endMinute;
+            
+            // Check if end time is before or equal to start time
+            if (endTotalMinutes <= startTotalMinutes) {
+                alert('Jam selesai harus setelah jam mulai');
+                // Auto-adjust end time
+                var newEndTotalMinutes = startTotalMinutes + 60; // Add 1 hour
+                if (newEndTotalMinutes > 17 * 60) { // 17:00 = 1020 minutes
+                    newEndTotalMinutes = 17 * 60;
+                }
+                var newEndHour = Math.floor(newEndTotalMinutes / 60);
+                var newEndMinute = newEndTotalMinutes % 60;
+                endHourSelect.value = newEndHour.toString().padStart(2, '0');
+                endMinuteSelect.value = newEndMinute.toString().padStart(2, '0');
+            }
+        }
+        
+        // Add event listeners
+        startHourSelect.addEventListener('change', validateTimeSelection);
+        startMinuteSelect.addEventListener('change', validateTimeSelection);
+        endHourSelect.addEventListener('change', validateTimeSelection);
+        endMinuteSelect.addEventListener('change', validateTimeSelection);
+    }
+});
+</script>
+
+</body>
+
+</html>

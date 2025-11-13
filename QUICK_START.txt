@@ -1,0 +1,154 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║    FST BOOKING SYSTEM - QUICK START GUIDE                    ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+❌ PROBLEM: Opening index.html directly doesn't work!
+   - Chatbot error: "Tidak dapat terhubung ke server"
+   - Reason: PHP needs a web server to run
+
+✅ SOLUTION: Use one of these methods below
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📦 METHOD 1: XAMPP (Easiest for Beginners)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Download XAMPP: https://www.apachefriends.org/download.html
+2. Install to: C:\xampp
+3. Copy project folder to: C:\xampp\htdocs\sharan
+4. Open XAMPP Control Panel
+5. Click "Start" on Apache
+6. Open browser: http://localhost/sharan/index.html
+7. ✅ Done! Chatbot should work now!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ METHOD 2: PHP Built-in Server (Fastest)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A. Install PHP:
+   - Download: https://windows.php.net/download/
+   - Choose: PHP 8.x Thread Safe (ZIP)
+   - Extract to: C:\php
+   - Add C:\php to PATH environment variable
+
+B. Run Server:
+   Option A - Manual:
+     1. Open Command Prompt or PowerShell
+     2. cd "C:\Users\Narendra Yusuf\Desktop\sharan"
+     3. php -S localhost:8000
+     4. Open browser: http://localhost:8000/index.html
+
+   Option B - Automatic:
+     1. Double-click: START_SERVER.bat
+     2. Browser will open automatically
+     3. ✅ Done!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 TESTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Test PHP Server:
+   http://localhost:8000/test_php.php
+   (Should show "PHP is working correctly!")
+
+2. Test Main Website:
+   http://localhost:8000/index.html
+   (Should load the full website)
+
+3. Test Chatbot:
+   - Click chatbot icon (bottom right)
+   - Send message: "apa itu fst"
+   - Should get detailed response
+   - No error messages!
+
+4. Check Browser Console:
+   - Press F12
+   - Go to Console tab
+   - Should see NO errors
+   - Network tab: POST to api/chatbot.php = Status 200
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🐛 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Error: "PHP not found"
+→ Install PHP or XAMPP first
+→ Add to PATH environment variable
+→ Restart terminal/command prompt
+
+Error: "Failed to fetch" or "CORS error"
+→ Make sure you're using http://localhost NOT file:///
+→ Check if server is running
+→ Verify api/chatbot.php file exists
+
+Error: "404 Not Found"
+→ Check file path: api/chatbot.php
+→ Case-sensitive on Linux servers
+→ Check folder permissions
+
+Chatbot icon not showing
+→ Clear browser cache (Ctrl + F5)
+→ Check browser console for errors
+→ Verify index.html loaded correctly
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 PROJECT STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+sharan/
+├── index.html              ← Main website (with chatbot UI)
+├── api/
+│   └── chatbot.php        ← Backend API (handles chatbot logic)
+├── css/                    ← Stylesheets
+├── js/                     ← JavaScript files
+├── images/                 ← Images & assets
+├── START_SERVER.bat       ← Quick start script
+├── test_php.php           ← PHP test file
+├── SETUP_LOCAL_SERVER.md  ← Detailed setup guide
+└── QUICK_START.txt        ← This file
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ SUCCESS CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+☐ PHP installed (or XAMPP installed)
+☐ Server running (Apache or php -S)
+☐ Browser URL shows: http://localhost:xxxx (NOT file:///)
+☐ test_php.php shows "PHP is working correctly!"
+☐ index.html loads without errors
+☐ Chatbot icon appears (bottom right)
+☐ Sending message gets proper response
+☐ No errors in browser console (F12)
+☐ Network tab shows: api/chatbot.php → Status 200 OK
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 NEED HELP?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Read full documentation: SETUP_LOCAL_SERVER.md
+
+Common commands:
+- Start server: php -S localhost:8000
+- Stop server: Ctrl + C
+- Check PHP: php --version
+- Check server: http://localhost:8000/test_php.php
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 Happy Coding!
+
+╔═══════════════════════════════════════════════════════════════╗
+║  After server is running, open:                              ║
+║  http://localhost:8000/index.html                            ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+

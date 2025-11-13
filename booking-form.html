@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />    
+    <meta name="description" content="" />
+    
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- PAGE TITLE HERE -->
+    <title>Booking Form - FST UIN Jakarta</title>
+    
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- CSS FILES -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" class="skin" href="css/skin/skin-1.css">
+    <link rel="stylesheet" href="css/flaticon.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text:400,400i&display=swap&subset=latin-ext" rel="stylesheet"> 
+    
+    <!-- CUSTOM CSS FOR BOOKING FORM -->
+    <style>
+        .booking-form-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+        
+        .booking-form-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        
+        .booking-form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .booking-form-header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .booking-form-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            background: #f8f9fa;
+            min-height: auto;
+        }
+        
+        .form-section h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            min-height: auto;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            line-height: 1.5;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            outline: none;
+        }
+        
+        /* Specific styling for select elements */
+        select.form-control {
+            height: 50px;
+            padding: 10px 15px;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 10px center;
+            background-repeat: no-repeat;
+            background-size: 16px 12px;
+            padding-right: 40px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        /* Ensure select options are visible */
+        select.form-control option {
+            padding: 10px;
+            font-size: 16px;
+            background: white;
+            color: #333;
+        }
+        
+        .time-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        
+        .time-row .form-control {
+            flex: 1;
+        }
+        
+        .time-row > div {
+            flex: 1;
+        }
+        
+        .time-row label {
+            margin-bottom: 8px;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .room-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .room-info h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .room-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .room-info li {
+            padding: 5px 0;
+            color: #333;
+        }
+        
+        .room-info li i {
+            color: #667eea;
+            margin-right: 8px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Checkbox styling */
+        .form-check {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-check-input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .form-check-label {
+            margin-bottom: 0;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        /* Textarea specific styling */
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        /* Time input specific styling for 24-hour format */
+        input[type="time"] {
+            font-family: monospace;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        input[type="time"]::-webkit-datetime-edit-ampm-field {
+            display: none;
+        }
+        
+        input[type="time"]::-moz-datetime-edit-ampm-field {
+            display: none;
+        }
+        
+        .text-muted {
+            color: #6c757d;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        /* Time validation styling */
+        .time-validation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #856404;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-form-card {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .booking-form-header h1 {
+                font-size: 2rem;
+            }
+            
+            .time-row {
+                flex-direction: column;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+            
+            .form-control {
+                min-height: 45px;
+            }
+            
+            select.form-control {
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SESSION CHECK -->
+    <script>
+        // Check if user is logged in
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+        
+        // Display user information
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('user-display').textContent = username;
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('user_type');
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <div class="page-wraper">
+        <!-- HEADER START -->
+        <header class="site-header header-style-1 mobile-sider-drawer-menu">
+            <div class="sticky-header main-bar-wraper">
+                <div class="main-bar p-t5">
+                    <div class="container">
+                        <div class="logo-header">
+                            <div class="logo-header-inner logo-header-one">
+                                <a href="index.html">
+                                    <img src="images/logo-light.png" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- NAV Toggle Button -->
+                        <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar icon-bar-first"></span>
+                            <span class="icon-bar icon-bar-two"></span>
+                            <span class="icon-bar icon-bar-three"></span>
+                        </button>
+                        
+                        <!-- MAIN Nav -->
+                        <div class="header-nav navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about-1.html">About</a></li>
+                                <li><a href="contact-1.html">Contact</a></li>
+                                <li><a href="javascript:void(0);" onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-user"></i> <span id="user-display">User</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+
+        <!-- CONTENT START -->
+        <div class="page-content">
+            <div class="booking-form-container">
+                <div class="container">
+                    <a href="index.html" class="back-btn">
+                        <i class="fa fa-arrow-left"></i> Back to Home
+                    </a>
+                    
+                    <div class="booking-form-card">
+                        <div class="booking-form-header">
+                            <h1>Reservasi Ruangan FST</h1>
+                            <p>Silakan isi formulir di bawah ini untuk melakukan reservasi ruangan</p>
+                        </div>
+
+                        <div id="alert-container"></div>
+
+                        <form id="bookingForm" onsubmit="submitBooking(event)">
+                            <!-- Personal Information Section -->
+                            <div class="form-section">
+                                <h3><i class="fa fa-user"></i> Informasi Pemesan</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="fullName">Nama Lengkap *</label>
+                                            <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email *</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone">Nomor Telepon *</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="institution">Institusi/Organisasi</label>
+                                            <input type="text" class="form-control" id="institution" name="institution">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Booking Details Section -->
+                            <div class="form-section">
+                                <h3><i class="fa fa-calendar"></i> Detail Reservasi</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bookingDate">Tanggal Reservasi *</label>
+                                            <input type="date" class="form-control" id="bookingDate" name="bookingDate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="participants">Jumlah Peserta *</label>
+                                            <select class="form-control" id="participants" name="participants" required>
+                                                <option value="">Pilih Jumlah</option>
+                                                <option value="1-10">1-10 orang</option>
+                                                <option value="11-25">11-25 orang</option>
+                                                <option value="26-50">26-50 orang</option>
+                                                <option value="50+">50+ orang</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Waktu Penggunaan *</label>
+                                    <div class="time-row">
+                                        <div>
+                                            <label for="startTime">Jam Mulai</label>
+                                            <input type="time" class="form-control" id="startTime" name="startTime" min="08:00" max="17:00" step="900" required>
+                                        </div>
+                                        <div>
+                                            <label for="endTime">Jam Selesai</label>
+                                            <input type="time" class="form-control" id="endTime" name="endTime" min="08:00" max="17:00" step="900" required>
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">Reservasi tersedia dari jam 08:00 - 17:00 (format 24 jam)</small>
+                                </div>
+                            </div>
+
+                            <!-- Room Selection Section -->
+                            <div class="form-section">
+                                <h3><i class="fa fa-building"></i> Pilihan Ruangan</h3>
+                                <div class="form-group">
+                                    <label for="roomType">Jenis Ruangan *</label>
+                                    <select class="form-control" id="roomType" name="roomType" required onchange="showRoomInfo()">
+                                        <option value="">Pilih Ruangan</option>
+                                        <option value="ruang-kelas-biasa">Ruang Kelas Biasa</option>
+                                        <option value="ruang-kelas-besar">Ruang Kelas Besar</option>
+                                        <option value="ruang-teater-besar">Ruang Teater Besar</option>
+                                        <option value="ruang-teater-double-proyektor">Ruang Teater Double Proyektor</option>
+                                        <option value="ruang-meeting">Ruang Meeting</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="roomInfo" class="room-info" style="display: none;">
+                                    <!-- Room information will be populated here -->
+                                </div>
+                            </div>
+
+                            <!-- Purpose Section -->
+                            <div class="form-section">
+                                <h3><i class="fa fa-info-circle"></i> Tujuan Penggunaan</h3>
+                                <div class="form-group">
+                                    <label for="purpose">Tujuan Penggunaan *</label>
+                                    <select class="form-control" id="purpose" name="purpose" required>
+                                        <option value="">Pilih Tujuan</option>
+                                        <option value="kuliah">Kuliah</option>
+                                        <option value="seminar">Seminar</option>
+                                        <option value="rapat">Rapat</option>
+                                        <option value="presentasi">Presentasi</option>
+                                        <option value="workshop">Workshop</option>
+                                        <option value="lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="description">Deskripsi Kegiatan</label>
+                                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Jelaskan detail kegiatan yang akan dilakukan..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Additional Requirements Section -->
+                            <div class="form-section">
+                                <h3><i class="fa fa-cogs"></i> Kebutuhan Tambahan</h3>
+                                <div class="form-group">
+                                    <label>Fasilitas Tambahan (Opsional)</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="projector" name="additionalFacilities" value="projector">
+                                                <label class="form-check-label" for="projector">
+                                                    Proyektor
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="soundSystem" name="additionalFacilities" value="soundSystem">
+                                                <label class="form-check-label" for="soundSystem">
+                                                    Sound System
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="whiteboard" name="additionalFacilities" value="whiteboard">
+                                                <label class="form-check-label" for="whiteboard">
+                                                    Whiteboard
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="ac" name="additionalFacilities" value="ac">
+                                                <label class="form-check-label" for="ac">
+                                                    AC
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="internet" name="additionalFacilities" value="internet">
+                                                <label class="form-check-label" for="internet">
+                                                    Internet/WiFi
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="catering" name="additionalFacilities" value="catering">
+                                                <label class="form-check-label" for="catering">
+                                                    Catering
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="fa fa-paper-plane"></i> Kirim Reservasi
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT END -->
+
+        <!-- FOOTER START -->
+        <footer class="site-footer footer-large footer-dark footer-wide">
+            <div class="footer-bottom overlay-wraper">
+                <div class="overlay-main"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="wt-footer-bot-center">
+                            <span class="copyrights-text">© 2024 FST UIN Jakarta. Designed By Narendra Yusuf.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+        // Room information data
+        const roomData = {
+            'ruang-kelas-biasa': {
+                name: 'Ruang Kelas Biasa',
+                capacity: '35 orang',
+                size: '80m²',
+                equipment: 'Proyektor, Whiteboard, AC',
+                description: 'Ruang kelas standar untuk kegiatan pembelajaran'
+            },
+            'ruang-kelas-besar': {
+                name: 'Ruang Kelas Besar',
+                capacity: '50 orang',
+                size: '100m²',
+                equipment: 'Proyektor, Whiteboard, AC, Sound System',
+                description: 'Ruang kelas besar untuk kuliah umum atau seminar kecil'
+            },
+            'ruang-teater-besar': {
+                name: 'Ruang Teater Besar',
+                capacity: '75 orang',
+                size: '150m²',
+                equipment: 'Large Screen, Sound System, Stage, AC',
+                description: 'Ruang teater untuk seminar besar dan presentasi'
+            },
+            'ruang-teater-double-proyektor': {
+                name: 'Ruang Teater Double Proyektor',
+                capacity: '50 orang',
+                size: '110m²',
+                equipment: 'Dual Projector, Sound System, Stage, AC',
+                description: 'Ruang teater dengan dual proyektor untuk presentasi kompleks'
+            },
+            'ruang-meeting': {
+                name: 'Ruang Meeting',
+                capacity: '10 orang',
+                size: '40m²',
+                equipment: 'Conference Table, Whiteboard, AC',
+                description: 'Ruang meeting untuk rapat kecil dan diskusi'
+            }
+        };
+
+        // Show room information when room is selected
+        function showRoomInfo() {
+            const roomType = document.getElementById('roomType').value;
+            const roomInfo = document.getElementById('roomInfo');
+            
+            if (roomType && roomData[roomType]) {
+                const room = roomData[roomType];
+                roomInfo.innerHTML = `
+                    <h4>${room.name}</h4>
+                    <ul>
+                        <li><i class="fa fa-users"></i> <strong>Kapasitas:</strong> ${room.capacity}</li>
+                        <li><i class="fa fa-expand"></i> <strong>Ukuran:</strong> ${room.size}</li>
+                        <li><i class="fa fa-cogs"></i> <strong>Fasilitas:</strong> ${room.equipment}</li>
+                        <li><i class="fa fa-info-circle"></i> <strong>Deskripsi:</strong> ${room.description}</li>
+                    </ul>
+                `;
+                roomInfo.style.display = 'block';
+            } else {
+                roomInfo.style.display = 'none';
+            }
+        }
+
+        // Date validation - no weekends
+        document.getElementById('bookingDate').addEventListener('input', function() {
+            const selectedDate = new Date(this.value);
+            const day = selectedDate.getDay();
+            
+            if (day === 0 || day === 6) {
+                alert('Reservasi tidak tersedia pada hari Sabtu dan Minggu.');
+                this.value = '';
+            }
+        });
+
+        // Time validation
+        document.getElementById('startTime').addEventListener('change', validateTime);
+        document.getElementById('endTime').addEventListener('change', validateTime);
+
+        function validateTime() {
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            
+            if (startTime && endTime) {
+                // Convert times to minutes for easier comparison
+                const startMinutes = convertTimeToMinutes(startTime);
+                const endMinutes = convertTimeToMinutes(endTime);
+                
+                // Check if end time is before or equal to start time
+                if (endMinutes <= startMinutes) {
+                    alert('Jam selesai harus setelah jam mulai');
+                    document.getElementById('endTime').value = '';
+                    return;
+                }
+                
+                // Check if times are within allowed range (8:00 - 17:00)
+                const minTime = 8 * 60; // 8:00 in minutes
+                const maxTime = 17 * 60; // 17:00 in minutes
+                
+                if (startMinutes < minTime || startMinutes > maxTime) {
+                    alert('Jam mulai harus antara 08:00 dan 17:00');
+                    document.getElementById('startTime').value = '';
+                    return;
+                }
+                
+                if (endMinutes < minTime || endMinutes > maxTime) {
+                    alert('Jam selesai harus antara 08:00 dan 17:00');
+                    document.getElementById('endTime').value = '';
+                    return;
+                }
+                
+                // Ensure minimum booking duration (30 minutes)
+                const duration = endMinutes - startMinutes;
+                if (duration < 30) {
+                    alert('Durasi reservasi minimal 30 menit');
+                    document.getElementById('endTime').value = '';
+                    return;
+                }
+            }
+        }
+        
+        // Helper function to convert time string to minutes
+        function convertTimeToMinutes(timeString) {
+            const [hours, minutes] = timeString.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        // Form submission
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const bookingData = Object.fromEntries(formData);
+            
+            // Get additional facilities
+            const additionalFacilities = [];
+            const facilityCheckboxes = document.querySelectorAll('input[name="additionalFacilities"]:checked');
+            facilityCheckboxes.forEach(checkbox => {
+                additionalFacilities.push(checkbox.value);
+            });
+            bookingData.additionalFacilities = additionalFacilities;
+            
+            // Validate form
+            if (!validateForm(bookingData)) {
+                return;
+            }
+            
+            // Save booking data to localStorage
+            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+            
+            // Show success message
+            showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
+            
+            // Redirect to confirmation page after a short delay
+            setTimeout(() => {
+                window.location.href = 'booking-confirmation.html';
+            }, 2000);
+        }
+
+        function validateForm(data) {
+            // Basic validation
+            if (!data.fullName || !data.email || !data.phone || !data.bookingDate || 
+                !data.startTime || !data.endTime || !data.roomType || !data.purpose) {
+                showAlert('Mohon lengkapi semua field yang wajib diisi.', 'danger');
+                return false;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showAlert('Format email tidak valid.', 'danger');
+                return false;
+            }
+            
+            // Phone validation
+            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+            if (!phoneRegex.test(data.phone)) {
+                showAlert('Format nomor telepon tidak valid.', 'danger');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = message;
+            
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alertDiv);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        // Set default values
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default time values in 24-hour format
+            document.getElementById('startTime').value = '08:00';
+            document.getElementById('endTime').value = '09:00';
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').min = today;
+            
+            // Load data from localStorage if available (from main page booking form)
+            const storedBookingData = localStorage.getItem('bookingData');
+            if (storedBookingData) {
+                try {
+                    const bookingData = JSON.parse(storedBookingData);
+                    
+                    // Fill in the form with stored data
+                    if (bookingData['reservation-date']) {
+                        document.getElementById('bookingDate').value = bookingData['reservation-date'];
+                    }
+                    
+                    if (bookingData['start-hour'] && bookingData['start-minute']) {
+                        const startTime = `${bookingData['start-hour']}:${bookingData['start-minute']}`;
+                        document.getElementById('startTime').value = startTime;
+                    }
+                    
+                    if (bookingData['end-hour'] && bookingData['end-minute']) {
+                        const endTime = `${bookingData['end-hour']}:${bookingData['end-minute']}`;
+                        document.getElementById('endTime').value = endTime;
+                    }
+                    
+                    if (bookingData['room']) {
+                        document.getElementById('roomType').value = bookingData['room'];
+                        showRoomInfo(); // Show room information
+                    }
+                    
+                    if (bookingData['No-participants']) {
+                        document.getElementById('participants').value = bookingData['No-participants'];
+                    }
+                    
+                    if (bookingData['purpose']) {
+                        document.getElementById('purpose').value = bookingData['purpose'];
+                    }
+                    
+                    // Clear the stored data after using it
+                    localStorage.removeItem('bookingData');
+                    
+                } catch (error) {
+                    console.error('Error parsing stored booking data:', error);
+                }
+            }
+            
+            // Force 24-hour format display
+            const timeInputs = document.querySelectorAll('input[type="time"]');
+            timeInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // Ensure the time is displayed in 24-hour format
+                    if (this.value) {
+                        const [hours, minutes] = this.value.split(':');
+                        const hour = parseInt(hours);
+                        if (hour < 8 || hour > 17) {
+                            alert('Reservasi hanya tersedia dari jam 08:00 sampai 17:00');
+                            this.value = '';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

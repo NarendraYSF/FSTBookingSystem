@@ -1,0 +1,33 @@
+# Security Headers for Chatbot
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Enable XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # HTTPS Redirect (if you have SSL)
+    # RewriteEngine On
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(README|\.env|\.git)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Rate limiting for API (requires mod_ratelimit)
+# <IfModule mod_ratelimit.c>
+#     <Location /api/>
+#         SetOutputFilter RATE_LIMIT
+#         SetEnv rate-limit 400
+#     </Location>
+# </IfModule>

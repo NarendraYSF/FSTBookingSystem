@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />    
+    <meta name="description" content="" />
+    
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- PAGE TITLE HERE -->
+    <title>Konfirmasi Reservasi - FST UIN Jakarta</title>
+    
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- CSS FILES -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" class="skin" href="css/skin/skin-1.css">
+    <link rel="stylesheet" href="css/flaticon.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text:400,400i&display=swap&subset=latin-ext" rel="stylesheet"> 
+    
+    <!-- CUSTOM CSS FOR CONFIRMATION PAGE -->
+    <style>
+        .confirmation-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+        
+        .confirmation-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        
+        .confirmation-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .confirmation-header .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .confirmation-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .booking-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .booking-details h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 150px;
+        }
+        
+        .detail-value {
+            color: #666;
+            text-align: right;
+            flex: 1;
+            margin-left: 20px;
+        }
+        
+        .booking-id {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .booking-id h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .booking-id .id-number {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .status-badge {
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        @media (max-width: 768px) {
+            .confirmation-card {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .confirmation-header h1 {
+                font-size: 2rem;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            
+            .detail-value {
+                text-align: left;
+                margin-left: 0;
+                margin-top: 5px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SESSION CHECK -->
+    <script>
+        // Check if user is logged in
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+        
+        // Display user information
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('user-display').textContent = username;
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('user_type');
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <div class="page-wraper">
+        <!-- HEADER START -->
+        <header class="site-header header-style-1 mobile-sider-drawer-menu">
+            <div class="sticky-header main-bar-wraper">
+                <div class="main-bar p-t5">
+                    <div class="container">
+                        <div class="logo-header">
+                            <div class="logo-header-inner logo-header-one">
+                                <a href="index.html">
+                                    <img src="images/logo-light.png" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- NAV Toggle Button -->
+                        <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar icon-bar-first"></span>
+                            <span class="icon-bar icon-bar-two"></span>
+                            <span class="icon-bar icon-bar-three"></span>
+                        </button>
+                        
+                        <!-- MAIN Nav -->
+                        <div class="header-nav navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about-1.html">About</a></li>
+                                <li><a href="contact-1.html">Contact</a></li>
+                                <li><a href="javascript:void(0);" onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                <li><a href="javascript:void(0);"><i class="fa fa-user"></i> <span id="user-display">User</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+
+        <!-- CONTENT START -->
+        <div class="page-content">
+            <div class="confirmation-container">
+                <div class="container">
+                    <a href="index.html" class="back-btn">
+                        <i class="fa fa-arrow-left"></i> Back to Home
+                    </a>
+                    
+                    <div class="confirmation-card">
+                        <div class="confirmation-header">
+                            <div class="success-icon">
+                                <i class="fa fa-check-circle"></i>
+                            </div>
+                            <h1>Reservasi Berhasil!</h1>
+                            <p>Terima kasih telah melakukan reservasi ruangan di FST UIN Jakarta</p>
+                        </div>
+
+                        <div class="booking-id">
+                            <h4>Nomor Reservasi</h4>
+                            <div class="id-number" id="bookingId">FST-2025-0630-001</div>
+                        </div>
+
+                        <div class="booking-details">
+                            <h3><i class="fa fa-info-circle"></i> Detail Reservasi</h3>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Nama Pemesan:</div>
+                                <div class="detail-value" id="customerName">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Email:</div>
+                                <div class="detail-value" id="customerEmail">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Nomor Telepon:</div>
+                                <div class="detail-value" id="customerPhone">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Institusi:</div>
+                                <div class="detail-value" id="customerInstitution">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Tanggal Reservasi:</div>
+                                <div class="detail-value" id="reservationDate">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Waktu Penggunaan:</div>
+                                <div class="detail-value" id="reservationTime">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Jenis Ruangan:</div>
+                                <div class="detail-value" id="roomType">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Jumlah Peserta:</div>
+                                <div class="detail-value" id="participants">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Tujuan Penggunaan:</div>
+                                <div class="detail-value" id="purpose">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Deskripsi Kegiatan:</div>
+                                <div class="detail-value" id="description">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Fasilitas Tambahan:</div>
+                                <div class="detail-value" id="additionalFacilities">-</div>
+                            </div>
+                            
+                            <div class="detail-row">
+                                <div class="detail-label">Status:</div>
+                                <div class="detail-value">
+                                    <span class="status-badge">Menunggu Konfirmasi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <a href="booking-form.html" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> Reservasi Baru
+                            </a>
+                            <a href="index.html" class="btn btn-secondary">
+                                <i class="fa fa-home"></i> Kembali ke Beranda
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT END -->
+
+        <!-- FOOTER START -->
+        <footer class="site-footer footer-large footer-dark footer-wide">
+            <div class="footer-bottom overlay-wraper">
+                <div class="overlay-main"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="wt-footer-bot-center">
+                            <span class="copyrights-text">© 2024 FST UIN Jakarta. Designed By Narendra Yusuf.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to format date
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            return date.toLocaleDateString('id-ID', options);
+        }
+
+        // Function to generate booking ID
+        function generateBookingId() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 1000);
+            return `FST-2024-${random.toString().padStart(3, '0')}`;
+        }
+
+        // Populate booking details from URL parameters or localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate booking ID
+            const bookingId = generateBookingId();
+            document.getElementById('bookingId').textContent = bookingId;
+
+            // Get booking data from localStorage (if available)
+            const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
+
+            // Populate form data
+            document.getElementById('customerName').textContent = bookingData.fullName || getUrlParameter('fullName') || 'John Doe';
+            document.getElementById('customerEmail').textContent = bookingData.email || getUrlParameter('email') || 'john.doe@example.com';
+            document.getElementById('customerPhone').textContent = bookingData.phone || getUrlParameter('phone') || '+62 812-3456-7890';
+            document.getElementById('customerInstitution').textContent = bookingData.institution || getUrlParameter('institution') || 'FST UIN Jakarta';
+            
+            // Format and display date
+            const reservationDate = bookingData.bookingDate || getUrlParameter('bookingDate') || new Date().toISOString().split('T')[0];
+            document.getElementById('reservationDate').textContent = formatDate(reservationDate);
+            
+            // Display time
+            const startTime = bookingData.startTime || getUrlParameter('startTime') || '08:00';
+            const endTime = bookingData.endTime || getUrlParameter('endTime') || '09:00';
+            document.getElementById('reservationTime').textContent = `${startTime} - ${endTime}`;
+            
+            // Room type mapping
+            const roomTypeMapping = {
+                'ruang-kelas-biasa': 'Ruang Kelas Biasa',
+                'ruang-kelas-besar': 'Ruang Kelas Besar',
+                'ruang-teater-besar': 'Ruang Teater Besar',
+                'ruang-teater-double-proyektor': 'Ruang Teater Double Proyektor',
+                'ruang-meeting': 'Ruang Meeting'
+            };
+            const roomType = bookingData.roomType || getUrlParameter('roomType') || 'ruang-kelas-biasa';
+            document.getElementById('roomType').textContent = roomTypeMapping[roomType] || 'Ruang Kelas Biasa';
+            
+            // Participants
+            document.getElementById('participants').textContent = bookingData.participants || getUrlParameter('participants') || '1-10 orang';
+            
+            // Purpose mapping
+            const purposeMapping = {
+                'kuliah': 'Kuliah',
+                'seminar': 'Seminar',
+                'rapat': 'Rapat',
+                'presentasi': 'Presentasi',
+                'workshop': 'Workshop',
+                'lainnya': 'Lainnya'
+            };
+            const purpose = bookingData.purpose || getUrlParameter('purpose') || 'kuliah';
+            document.getElementById('purpose').textContent = purposeMapping[purpose] || 'Kuliah';
+            
+            // Description
+            document.getElementById('description').textContent = bookingData.description || getUrlParameter('description') || 'Tidak ada deskripsi';
+            
+            // Additional facilities
+            const facilities = bookingData.additionalFacilities || getUrlParameter('additionalFacilities') || [];
+            if (facilities.length > 0) {
+                const facilityNames = facilities.map(f => {
+                    const facilityMapping = {
+                        'projector': 'Proyektor',
+                        'soundSystem': 'Sound System',
+                        'whiteboard': 'Whiteboard',
+                        'ac': 'AC',
+                        'internet': 'Internet/WiFi',
+                        'catering': 'Catering'
+                    };
+                    return facilityMapping[f] || f;
+                });
+                document.getElementById('additionalFacilities').textContent = facilityNames.join(', ');
+            } else {
+                document.getElementById('additionalFacilities').textContent = 'Tidak ada';
+            }
+
+            // Clear booking data from localStorage after displaying
+            localStorage.removeItem('bookingData');
+        });
+    </script>
+</body>
+</html> 
