@@ -2372,14 +2372,19 @@ document.addEventListener('DOMContentLoaded', function() {
         showTypingIndicator();
 
         try {
-            // Call backend API
-            const response = await fetch('api/chatbot.php', {
+            // Call backend API - FIXED: Added leading slash and removed .php
+            const response = await fetch('/api/chatbot', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ message: message })
             });
+
+            // Check if response is OK before parsing
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
             const data = await response.json();
             
