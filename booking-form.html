@@ -927,17 +927,21 @@
             bookingData.status = 'pending'; // Default status
             bookingData.createdAt = new Date().toISOString();
             
+            // Debug: Log booking data
+            console.log('Booking Data to be saved:', bookingData);
+            
             // Show loading message
             showAlert('Mengirim reservasi...', 'info');
+            
+            // Save current booking data for confirmation page (do this BEFORE Supabase)
+            localStorage.setItem('currentBooking', JSON.stringify(bookingData));
+            console.log('Saved to currentBooking localStorage');
             
             // Try to save to Supabase first
             if (window.BookingDB && !window.BookingDB.useFallback()) {
                 const result = await window.BookingDB.createBooking(bookingData);
                 
                 if (result.success) {
-                    // Save current booking data for confirmation page
-                    localStorage.setItem('currentBooking', JSON.stringify(bookingData));
-                    
                     // Show success message
                     showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
                     
@@ -947,6 +951,8 @@
                     }, 1500);
                 } else {
                     showAlert('Error: ' + result.error + '. Mohon coba lagi.', 'danger');
+                    // Remove from localStorage if failed
+                    localStorage.removeItem('currentBooking');
                 }
             } else {
                 // Fallback to localStorage if Supabase not configured
@@ -955,7 +961,6 @@
                 const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
                 bookings.push(bookingData);
                 localStorage.setItem('bookings', JSON.stringify(bookings));
-                localStorage.setItem('currentBooking', JSON.stringify(bookingData));
                 
                 showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
                 

@@ -263,12 +263,15 @@
         }
         
         // Display user information
-        document.addEventListener('DOMContentLoaded', function() {
-            var username = localStorage.getItem('username');
-            if (username) {
-                document.getElementById('user-display').textContent = username;
-            }
-        });
+        var username = localStorage.getItem('username');
+        if (username) {
+            // Will be set after page loads
+            window.addEventListener('load', function() {
+                if (document.getElementById('user-display')) {
+                    document.getElementById('user-display').textContent = username;
+                }
+            });
+        }
         
         // Logout function
         function logout() {
@@ -406,6 +409,9 @@
                         </div>
 
                         <div class="action-buttons">
+                            <button onclick="refreshStatus()" class="btn btn-primary" id="refreshBtn">
+                                <i class="fa fa-refresh"></i> Refresh Status
+                            </button>
                             <a href="booking-form.html" class="btn btn-primary">
                                 <i class="fa fa-plus"></i> Reservasi Baru
                             </a>
@@ -480,19 +486,30 @@
             return `FST-${year}${month}${day}-${hours}${minutes}${seconds}-${random}`;
         }
 
-        // Populate booking details from URL parameters or localStorage
+        // Populate booking details - Run immediately when script loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Get booking data from localStorage (current booking just submitted)
-            const bookingData = JSON.parse(localStorage.getItem('currentBooking')) || {};
+            console.log('=== BOOKING CONFIRMATION PAGE LOADED ===');
             
-            // If no current booking, try to get from bookings array
-            if (!bookingData.bookingId) {
-                const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-                if (bookings.length > 0) {
-                    // Get the most recent booking
-                    const latestBooking = bookings[bookings.length - 1];
-                    Object.assign(bookingData, latestBooking);
-                }
+            // Get booking data from localStorage (current booking just submitted)
+            const currentBookingStr = localStorage.getItem('currentBooking');
+            console.log('Raw currentBooking from localStorage:', currentBookingStr);
+            
+            let bookingData = null;
+            try {
+                bookingData = JSON.parse(currentBookingStr);
+            } catch (e) {
+                console.error('Error parsing currentBooking:', e);
+            }
+            
+            // Debug: Log what we got
+            console.log('Parsed Booking Data:', bookingData);
+            
+            // If no current booking data, show error
+            if (!bookingData) {
+                console.error('No booking data found in localStorage');
+                alert('Tidak ada data reservasi. Silakan buat reservasi baru.');
+                // Use default data as fallback
+                bookingData = {};
             }
 
             // Display booking ID
@@ -518,6 +535,8 @@
             const roomTypeMapping = {
                 'ruang-kelas-biasa': 'Ruang Kelas Biasa',
                 'ruang-kelas-besar': 'Ruang Kelas Besar',
+                'lab-komputer': 'Lab Komputer',
+                'lab-mikrobiologi': 'Lab Mikrobiologi',
                 'ruang-teater-besar': 'Ruang Teater Besar',
                 'ruang-teater-double-proyektor': 'Ruang Teater Double Proyektor',
                 'ruang-meeting': 'Ruang Meeting'
@@ -574,9 +593,125 @@
             statusBadge.className = 'status-badge ' + statusInfo.class;
             statusBadge.textContent = statusInfo.text;
 
-            // Clear current booking data from localStorage after displaying
-            localStorage.removeItem('currentBooking');
+            // Debug: Log final data
+            console.log('Confirmation page loaded with data:', bookingData);
+            
+            // Store booking ID globally for status refresh
+            window.currentBookingId = bookingId;
+            
+            // Auto-refresh status every 10 seconds if using Supabase
+            if (window.BookingDB && !window.BookingDB.useFallback()) {
+                setInterval(autoRefreshStatus, 10000); // Every 10 seconds
+            }
+            
+            // Clear current booking data from localStorage after displaying (with delay)
+            setTimeout(() => {
+                localStorage.removeItem('currentBooking');
+                console.log('Cleared currentBooking from localStorage');
+            }, 2000);
         });
+        
+        // Function to refresh booking status from database
+        async function refreshStatus() {
+            const bookingId = window.currentBookingId;
+            const refreshBtn = document.getElementById('refreshBtn');
+            
+            if (!bookingId) {
+                alert('Booking ID tidak ditemukan');
+                return;
+            }
+            
+            // Show loading state
+            if (refreshBtn) {
+                refreshBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Memeriksa...';
+                refreshBtn.disabled = true;
+            }
+            
+            try {
+                // Check if using Supabase
+                if (window.BookingDB && !window.BookingDB.useFallback()) {
+                    const result = await window.BookingDB.getBookingById(bookingId);
+                    
+                    if (result.success && result.data) {
+                        const updatedBooking = result.data;
+                        const newStatus = updatedBooking.status;
+                        
+                        // Update status badge
+                        updateStatusDisplay(newStatus);
+                        
+                        // Show success message
+                        const statusText = getStatusText(newStatus);
+                        alert(`Status diperbarui!\n\nStatus terbaru: ${statusText}`);
+                    } else {
+                        alert('Gagal memuat status. Booking tidak ditemukan.');
+                    }
+                } else {
+                    // Fallback to localStorage
+                    const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                    const booking = bookings.find(b => b.bookingId === bookingId);
+                    
+                    if (booking) {
+                        updateStatusDisplay(booking.status);
+                        alert('Status dimuat dari localStorage');
+                    } else {
+                        alert('Booking tidak ditemukan');
+                    }
+                }
+            } catch (error) {
+                console.error('Error refreshing status:', error);
+                alert('Error: ' + error.message);
+            } finally {
+                // Restore button state
+                if (refreshBtn) {
+                    refreshBtn.innerHTML = '<i class="fa fa-refresh"></i> Refresh Status';
+                    refreshBtn.disabled = false;
+                }
+            }
+        }
+        
+        // Auto-refresh status (silent, no alerts)
+        async function autoRefreshStatus() {
+            const bookingId = window.currentBookingId;
+            
+            if (!bookingId) return;
+            
+            try {
+                if (window.BookingDB && !window.BookingDB.useFallback()) {
+                    const result = await window.BookingDB.getBookingById(bookingId);
+                    
+                    if (result.success && result.data) {
+                        const updatedBooking = result.data;
+                        updateStatusDisplay(updatedBooking.status);
+                        console.log('Auto-refreshed status:', updatedBooking.status);
+                    }
+                }
+            } catch (error) {
+                console.error('Auto-refresh error:', error);
+            }
+        }
+        
+        // Update status display on page
+        function updateStatusDisplay(status) {
+            const statusBadge = document.getElementById('bookingStatus');
+            const statusMap = {
+                'pending': { class: 'status-pending', text: 'Menunggu Konfirmasi' },
+                'approved': { class: 'status-approved', text: 'Disetujui' },
+                'rejected': { class: 'status-rejected', text: 'Ditolak' }
+            };
+            const statusInfo = statusMap[status] || statusMap['pending'];
+            statusBadge.className = 'status-badge ' + statusInfo.class;
+            statusBadge.textContent = statusInfo.text;
+        }
+        
+        // Get status text
+        function getStatusText(status) {
+            const statusMap = {
+                'pending': 'Menunggu Konfirmasi',
+                'approved': 'Disetujui',
+                'rejected': 'Ditolak'
+            };
+            return statusMap[status] || 'Menunggu Konfirmasi';
+        }
     </script>
 </body>
 </html> 
