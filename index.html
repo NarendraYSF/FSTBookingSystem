@@ -464,7 +464,7 @@
 			window.location.href = 'login.html';
 		}
 		
-		// Handle booking form submission
+		// Handle quick booking form submission
 		function handleBookingSubmit(event) {
 			event.preventDefault();
 			
@@ -477,10 +477,27 @@
 				bookingData[key] = value;
 			}
 			
-			// Store booking data in localStorage for the booking form
-			localStorage.setItem('bookingData', JSON.stringify(bookingData));
+			// Get the time values from the select boxes
+			const startHour = formData.get('start-hour');
+			const startMinute = formData.get('start-minute');
+			const endHour = formData.get('end-hour');
+			const endMinute = formData.get('end-minute');
 			
-			// Redirect to booking form
+			// Combine into time strings
+			if (startHour && startMinute) {
+				bookingData.startTime = `${startHour}:${startMinute}`;
+			}
+			if (endHour && endMinute) {
+				bookingData.endTime = `${endHour}:${endMinute}`;
+			}
+			
+			// Get participants value
+			bookingData.participants = formData.get('No-participants');
+			
+			// Store partial booking data and redirect to full form
+			localStorage.setItem('partialBookingData', JSON.stringify(bookingData));
+			
+			// Redirect to booking form to complete the booking
 			window.location.href = 'booking-form.html';
 		}
 		
@@ -1240,145 +1257,121 @@
             <div class="section-full booking-bar">
                 <div class="container">
 					<div class="booking-bar-inner site-bg-primary booking-bar-floating">
-                        <div class="booking-fram-name">
-                            <h3 class="m-a0">Reservasi Ruangan</h3>
-                        </div>
-                        <div class="booking-form">
+                        <div class="booking-form-compact">
+                            <div class="booking-header-compact">
+                                <h3 class="m-a0">Reservasi Ruangan</h3>
+                            </div>
                             <form onsubmit="handleBookingSubmit(event)">
-                                <ul>
-                                    <li class="date-cal-block">
-                                        <div class="form-group clearfix">
-                                            <label>Tanggal Reservasi</label>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="date" class="form-control" name="reservation-date" required>
-                                                </div>
-                                            </div>
+                                <div class="booking-grid">
+                                    <!-- Row 1 -->
+                                    <div class="booking-field">
+                                        <label>Tanggal</label>
+                                        <input type="date" class="form-control" name="reservation-date" required>
+                                    </div>
+                                    
+                                    <div class="booking-field booking-time">
+                                        <label>Waktu Mulai</label>
+                                        <div class="time-inputs">
+                                            <select class="form-control time-select" name="start-hour" required>
+                                                <option value="">Jam</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                            </select>
+                                            <span class="time-separator">:</span>
+                                            <select class="form-control time-select" name="start-minute" required>
+                                                <option value="">Menit</option>
+                                                <option value="00">00</option>
+                                                <option value="15">15</option>
+                                                <option value="30">30</option>
+                                                <option value="45">45</option>
+                                            </select>
                                         </div>
-                                    </li>
+                                    </div>
                                     
-                                    <li class="time-block">
-                                        <div class="form-group clearfix">
-                                            <label>Waktu Penggunaan</label>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="small-label">Jam Mulai</label>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="start-hour" required>
-                                                                <option value="">Jam</option>
-                                                                <option value="08">08</option>
-                                                                <option value="09">09</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                                <option value="13">13</option>
-                                                                <option value="14">14</option>
-                                                                <option value="15">15</option>
-                                                                <option value="16">16</option>
-                                                                <option value="17">17</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="start-minute" required>
-                                                                <option value="">Menit</option>
-                                                                <option value="00">00</option>
-                                                                <option value="15">15</option>
-                                                                <option value="30">30</option>
-                                                                <option value="45">45</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="small-label">Jam Selesai</label>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="end-hour" required>
-                                                                <option value="">Jam</option>
-                                                                <option value="08">08</option>
-                                                                <option value="09">09</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                                <option value="13">13</option>
-                                                                <option value="14">14</option>
-                                                                <option value="15">15</option>
-                                                                <option value="16">16</option>
-                                                                <option value="17">17</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="end-minute" required>
-                                                                <option value="">Menit</option>
-                                                                <option value="00">00</option>
-                                                                <option value="15">15</option>
-                                                                <option value="30">30</option>
-                                                                <option value="45">45</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="booking-field booking-time">
+                                        <label>Waktu Selesai</label>
+                                        <div class="time-inputs">
+                                            <select class="form-control time-select" name="end-hour" required>
+                                                <option value="">Jam</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                            </select>
+                                            <span class="time-separator">:</span>
+                                            <select class="form-control time-select" name="end-minute" required>
+                                                <option value="">Menit</option>
+                                                <option value="00">00</option>
+                                                <option value="15">15</option>
+                                                <option value="30">30</option>
+                                                <option value="45">45</option>
+                                            </select>
                                         </div>
-                                    </li>
-                                                              
-                                    <li class="room-type-block">
-                                        <div class="form-group">
-                                            <label>Jenis Ruangan</label>
-                                            <div class="select-box">
-                                                <select class="form-control" name="room" required>
-                                                    <option selected="selected" disabled="disabled">Pilih Ruangan</option>
-                                                    <option value="ruang-kelas-biasa">Ruang Kelas Biasa</option>
-                                                    <option value="ruang-kelas-besar">Ruang Kelas Besar</option>
-                                                    <option value="lab-mikrobiologi" disabled>Lab Mikrobiologi</option>
-                                                    <option value="lab-komputer" disabled>Lab Komputer</option>
-                                                    <option value="ruang-teater-besar">Ruang Teater Besar</option>
-                                                    <option value="ruang-teater-double-proyektor">Ruang Teater Double Proyektor</option>
-                                                    <option value="ruang-meeting">Ruang Meeting</option>
-                                                </select>
-                                            </div>
-                                        </div>                            
-                                    </li>  
+                                    </div>
                                     
-                                    <li class="adult-type-block">
-                                        <div class="form-group">
-                                            <label>Jumlah Peserta</label>
-                                            <div class="select-box">
-                                                <select class="form-control" name="No-participants" required>
-                                                    <option selected="selected" disabled="disabled">Pilih Jumlah</option>
-                                                    <option value="1-10">1-10 orang</option>
-                                                    <option value="11-25">11-25 orang</option>
-                                                    <option value="26-50">26-50 orang</option>
-                                                    <option value="50+">50+ orang</option>
-                                                </select>
-                                            </div>
-                                        </div>                            
-                                    </li>
-                                    
-                                    <li class="purpose-block">
-                                        <div class="form-group">
-                                            <label>Tujuan Penggunaan</label>
-                                            <div class="select-box">
-                                                <select class="form-control" name="purpose" required>
-                                                    <option selected="selected" disabled="disabled">Pilih Tujuan</option>
-                                                    <option value="kuliah">Kuliah</option>
-                                                    <option value="seminar">Seminar</option>
-                                                    <option value="rapat">Rapat</option>
-                                                    <option value="presentasi">Presentasi</option>
-                                                    <option value="workshop">Workshop</option>
-                                                    <option value="lainnya">Lainnya</option>
-                                                </select>
-                                            </div>
-                                        </div>                            
-                                    </li> 
-                                    
-                                    <li class="booking-form-btn-block">
-                                        <div class="form-group">
-                                            <button type="submit" class="site-button-secondry btn-half"><span> Reservasi</span><em></em></button>
+                                    <!-- Row 2 -->
+                                    <div class="booking-field booking-field-wide">
+                                        <label>Jenis Ruangan</label>
+                                        <div class="select-box">
+                                            <select class="form-control" name="room" required>
+                                                <option selected="selected" disabled="disabled">Pilih Ruangan</option>
+                                                <option value="ruang-kelas-biasa">Ruang Kelas Biasa</option>
+                                                <option value="ruang-kelas-besar">Ruang Kelas Besar</option>
+                                                <option value="lab-mikrobiologi" disabled>Lab Mikrobiologi</option>
+                                                <option value="lab-komputer" disabled>Lab Komputer</option>
+                                                <option value="ruang-teater-besar">Ruang Teater Besar</option>
+                                                <option value="ruang-teater-double-proyektor">Ruang Teater Double Proyektor</option>
+                                                <option value="ruang-meeting">Ruang Meeting</option>
+                                            </select>
                                         </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    
+                                    <div class="booking-field">
+                                        <label>Jumlah Peserta</label>
+                                        <div class="select-box">
+                                            <select class="form-control" name="No-participants" required>
+                                                <option selected="selected" disabled="disabled">Pilih Jumlah</option>
+                                                <option value="1-10">1-10 orang</option>
+                                                <option value="11-25">11-25 orang</option>
+                                                <option value="26-50">26-50 orang</option>
+                                                <option value="50+">50+ orang</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="booking-field">
+                                        <label>Tujuan Penggunaan</label>
+                                        <div class="select-box">
+                                            <select class="form-control" name="purpose" required>
+                                                <option selected="selected" disabled="disabled">Pilih Tujuan</option>
+                                                <option value="kuliah">Kuliah</option>
+                                                <option value="seminar">Seminar</option>
+                                                <option value="rapat">Rapat</option>
+                                                <option value="presentasi">Presentasi</option>
+                                                <option value="workshop">Workshop</option>
+                                                <option value="lainnya">Lainnya</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="booking-field booking-btn-field">
+                                        <button type="submit" class="site-button-secondry btn-half booking-submit-btn"><span>Reservasi</span><em></em></button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -2222,7 +2215,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="wt-footer-bot-center">
-                            <span class="copyrights-text">© 2024 Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. All Rights Reserved. | Designed By Narendra Yusuf</span>
+                            <span class="copyrights-text">© 2024 Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. All Rights Reserved. | Designed By Narendra Yusuf | <a href="admin-login.html" style="color: #fff; opacity: 0.6; text-decoration: none; font-size: 11px;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'"><i class="fa fa-shield"></i> Admin</a></span>
                         </div>
                     </div>
                 </div>

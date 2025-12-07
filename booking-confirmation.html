@@ -195,13 +195,26 @@
         }
         
         .status-badge {
-            background: #28a745;
-            color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
+        }
+        
+        .status-badge.status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-badge.status-approved {
+            background: #28a745;
+            color: white;
+        }
+        
+        .status-badge.status-rejected {
+            background: #dc3545;
+            color: white;
         }
         
         @media (max-width: 768px) {
@@ -387,7 +400,7 @@
                             <div class="detail-row">
                                 <div class="detail-label">Status:</div>
                                 <div class="detail-value">
-                                    <span class="status-badge">Menunggu Konfirmasi</span>
+                                    <span class="status-badge" id="bookingStatus">Menunggu Konfirmasi</span>
                                 </div>
                             </div>
                         </div>
@@ -426,6 +439,11 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/database.js"></script>
 
     <script>
         // Function to get URL parameters
@@ -451,33 +469,49 @@
 
         // Function to generate booking ID
         function generateBookingId() {
-            const timestamp = Date.now();
-            const random = Math.floor(Math.random() * 1000);
-            return `FST-2024-${random.toString().padStart(3, '0')}`;
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const random = Math.floor(Math.random() * 9999).toString().padStart(4, '0');
+            return `FST-${year}${month}${day}-${hours}${minutes}${seconds}-${random}`;
         }
 
         // Populate booking details from URL parameters or localStorage
         document.addEventListener('DOMContentLoaded', function() {
-            // Generate booking ID
-            const bookingId = generateBookingId();
+            // Get booking data from localStorage (current booking just submitted)
+            const bookingData = JSON.parse(localStorage.getItem('currentBooking')) || {};
+            
+            // If no current booking, try to get from bookings array
+            if (!bookingData.bookingId) {
+                const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                if (bookings.length > 0) {
+                    // Get the most recent booking
+                    const latestBooking = bookings[bookings.length - 1];
+                    Object.assign(bookingData, latestBooking);
+                }
+            }
+
+            // Display booking ID
+            const bookingId = bookingData.bookingId || generateBookingId();
             document.getElementById('bookingId').textContent = bookingId;
 
-            // Get booking data from localStorage (if available)
-            const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
-
             // Populate form data
-            document.getElementById('customerName').textContent = bookingData.fullName || getUrlParameter('fullName') || 'John Doe';
-            document.getElementById('customerEmail').textContent = bookingData.email || getUrlParameter('email') || 'john.doe@example.com';
-            document.getElementById('customerPhone').textContent = bookingData.phone || getUrlParameter('phone') || '+62 812-3456-7890';
-            document.getElementById('customerInstitution').textContent = bookingData.institution || getUrlParameter('institution') || 'FST UIN Jakarta';
+            document.getElementById('customerName').textContent = bookingData.fullName || 'John Doe';
+            document.getElementById('customerEmail').textContent = bookingData.email || 'john.doe@example.com';
+            document.getElementById('customerPhone').textContent = bookingData.phone || '+62 812-3456-7890';
+            document.getElementById('customerInstitution').textContent = bookingData.institution || 'FST UIN Jakarta';
             
             // Format and display date
-            const reservationDate = bookingData.bookingDate || getUrlParameter('bookingDate') || new Date().toISOString().split('T')[0];
+            const reservationDate = bookingData.bookingDate || new Date().toISOString().split('T')[0];
             document.getElementById('reservationDate').textContent = formatDate(reservationDate);
             
             // Display time
-            const startTime = bookingData.startTime || getUrlParameter('startTime') || '08:00';
-            const endTime = bookingData.endTime || getUrlParameter('endTime') || '09:00';
+            const startTime = bookingData.startTime || '08:00';
+            const endTime = bookingData.endTime || '09:00';
             document.getElementById('reservationTime').textContent = `${startTime} - ${endTime}`;
             
             // Room type mapping
@@ -488,11 +522,11 @@
                 'ruang-teater-double-proyektor': 'Ruang Teater Double Proyektor',
                 'ruang-meeting': 'Ruang Meeting'
             };
-            const roomType = bookingData.roomType || getUrlParameter('roomType') || 'ruang-kelas-biasa';
+            const roomType = bookingData.roomType || 'ruang-kelas-biasa';
             document.getElementById('roomType').textContent = roomTypeMapping[roomType] || 'Ruang Kelas Biasa';
             
             // Participants
-            document.getElementById('participants').textContent = bookingData.participants || getUrlParameter('participants') || '1-10 orang';
+            document.getElementById('participants').textContent = bookingData.participants || '1-10 orang';
             
             // Purpose mapping
             const purposeMapping = {
@@ -503,14 +537,14 @@
                 'workshop': 'Workshop',
                 'lainnya': 'Lainnya'
             };
-            const purpose = bookingData.purpose || getUrlParameter('purpose') || 'kuliah';
+            const purpose = bookingData.purpose || 'kuliah';
             document.getElementById('purpose').textContent = purposeMapping[purpose] || 'Kuliah';
             
             // Description
-            document.getElementById('description').textContent = bookingData.description || getUrlParameter('description') || 'Tidak ada deskripsi';
+            document.getElementById('description').textContent = bookingData.description || 'Tidak ada deskripsi';
             
             // Additional facilities
-            const facilities = bookingData.additionalFacilities || getUrlParameter('additionalFacilities') || [];
+            const facilities = bookingData.additionalFacilities || [];
             if (facilities.length > 0) {
                 const facilityNames = facilities.map(f => {
                     const facilityMapping = {
@@ -527,9 +561,21 @@
             } else {
                 document.getElementById('additionalFacilities').textContent = 'Tidak ada';
             }
+            
+            // Display status with proper styling
+            const status = bookingData.status || 'pending';
+            const statusBadge = document.getElementById('bookingStatus');
+            const statusMap = {
+                'pending': { class: 'status-pending', text: 'Menunggu Konfirmasi' },
+                'approved': { class: 'status-approved', text: 'Disetujui' },
+                'rejected': { class: 'status-rejected', text: 'Ditolak' }
+            };
+            const statusInfo = statusMap[status] || statusMap['pending'];
+            statusBadge.className = 'status-badge ' + statusInfo.class;
+            statusBadge.textContent = statusInfo.text;
 
-            // Clear booking data from localStorage after displaying
-            localStorage.removeItem('bookingData');
+            // Clear current booking data from localStorage after displaying
+            localStorage.removeItem('currentBooking');
         });
     </script>
 </body>

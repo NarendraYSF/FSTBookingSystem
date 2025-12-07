@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Sample Bookings - FST Booking System</title>
+    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .icon {
+            font-size: 60px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .status-box {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .status-box.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            display: block;
+        }
+        
+        .status-box.info {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            color: #0c5460;
+            display: block;
+        }
+        
+        .current-data {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .current-data h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .current-data p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            color: #856404;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <i class="fa fa-database"></i>
+        </div>
+        
+        <h1>Sample Data Seeder</h1>
+        <p>Add sample bookings to test the admin panel functionality</p>
+        
+        <div class="current-data" id="currentData">
+            <h3><i class="fa fa-info-circle"></i> Current Data</h3>
+            <p id="dataInfo">Loading...</p>
+        </div>
+        
+        <div class="warning">
+            <i class="fa fa-exclamation-triangle"></i> <strong>Warning:</strong> This will add sample bookings to your system. Use this for testing purposes only.
+        </div>
+        
+        <div id="statusBox" class="status-box"></div>
+        
+        <div>
+            <button class="btn btn-primary" onclick="addSampleBookings()">
+                <i class="fa fa-plus-circle"></i> Add Sample Bookings
+            </button>
+            <button class="btn btn-danger" onclick="clearAllBookings()">
+                <i class="fa fa-trash"></i> Clear All Bookings
+            </button>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="admin-panel.html" class="btn btn-secondary">
+                <i class="fa fa-shield"></i> Go to Admin Panel
+            </a>
+            <a href="index.html" class="btn btn-secondary">
+                <i class="fa fa-home"></i> Go to Homepage
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Display current data count
+        function updateDataInfo() {
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const pending = bookings.filter(b => b.status === 'pending').length;
+            const approved = bookings.filter(b => b.status === 'approved').length;
+            const rejected = bookings.filter(b => b.status === 'rejected').length;
+            
+            document.getElementById('dataInfo').innerHTML = `
+                <strong>Total Bookings:</strong> ${bookings.length}<br>
+                <strong>Pending:</strong> ${pending} | 
+                <strong>Approved:</strong> ${approved} | 
+                <strong>Rejected:</strong> ${rejected}
+            `;
+        }
+        
+        // Generate sample bookings
+        function addSampleBookings() {
+            const sampleBookings = [
+                {
+                    bookingId: 'FST-20241207-093000-0001',
+                    fullName: 'Ahmad Rizki',
+                    email: 'ahmad.rizki@student.uinjkt.ac.id',
+                    phone: '+62 812-3456-7890',
+                    institution: 'FST UIN Jakarta',
+                    bookingDate: '2024-12-10',
+                    startTime: '09:00',
+                    endTime: '11:00',
+                    roomType: 'ruang-kelas-biasa',
+                    participants: '11-25',
+                    purpose: 'kuliah',
+                    description: 'Kuliah Matematika Diskrit Kelas A',
+                    additionalFacilities: ['projector', 'whiteboard'],
+                    status: 'pending',
+                    createdAt: new Date('2024-12-07T08:30:00').toISOString()
+                },
+                {
+                    bookingId: 'FST-20241207-093015-0002',
+                    fullName: 'Siti Nurhaliza',
+                    email: 'siti.nurhaliza@uinjkt.ac.id',
+                    phone: '+62 813-9876-5432',
+                    institution: 'FST UIN Jakarta',
+                    bookingDate: '2024-12-12',
+                    startTime: '13:00',
+                    endTime: '16:00',
+                    roomType: 'ruang-teater-besar',
+                    participants: '50+',
+                    purpose: 'seminar',
+                    description: 'Seminar Nasional Teknologi Informasi 2024',
+                    additionalFacilities: ['projector', 'soundSystem', 'internet', 'catering'],
+                    status: 'approved',
+                    createdAt: new Date('2024-12-06T14:20:00').toISOString(),
+                    updatedAt: new Date('2024-12-06T16:00:00').toISOString()
+                },
+                {
+                    bookingId: 'FST-20241207-093030-0003',
+                    fullName: 'Muhammad Irfan',
+                    email: 'irfan.m@gmail.com',
+                    phone: '+62 856-1234-5678',
+                    institution: 'Himpunan Mahasiswa Informatika',
+                    bookingDate: '2024-12-09',
+                    startTime: '08:00',
+                    endTime: '10:00',
+                    roomType: 'ruang-meeting',
+                    participants: '1-10',
+                    purpose: 'rapat',
+                    description: 'Rapat koordinasi kegiatan kemahasiswaan',
+                    additionalFacilities: ['whiteboard', 'ac'],
+                    status: 'rejected',
+                    createdAt: new Date('2024-12-05T10:15:00').toISOString(),
+                    updatedAt: new Date('2024-12-05T15:30:00').toISOString()
+                },
+                {
+                    bookingId: 'FST-20241207-093045-0004',
+                    fullName: 'Dewi Lestari',
+                    email: 'dewi.lestari@lecturer.uinjkt.ac.id',
+                    phone: '+62 821-5555-6666',
+                    institution: 'FST UIN Jakarta',
+                    bookingDate: '2024-12-15',
+                    startTime: '14:00',
+                    endTime: '17:00',
+                    roomType: 'ruang-kelas-besar',
+                    participants: '26-50',
+                    purpose: 'workshop',
+                    description: 'Workshop Python untuk Data Science',
+                    additionalFacilities: ['projector', 'ac', 'internet'],
+                    status: 'pending',
+                    createdAt: new Date('2024-12-07T09:00:00').toISOString()
+                },
+                {
+                    bookingId: 'FST-20241207-093100-0005',
+                    fullName: 'Budi Santoso',
+                    email: 'budi.santoso@external.com',
+                    phone: '+62 878-7777-8888',
+                    institution: 'PT Teknologi Nusantara',
+                    bookingDate: '2024-12-11',
+                    startTime: '10:00',
+                    endTime: '12:00',
+                    roomType: 'ruang-teater-double-proyektor',
+                    participants: '26-50',
+                    purpose: 'presentasi',
+                    description: 'Presentasi Kerja Sama Industri dan Kampus',
+                    additionalFacilities: ['projector', 'soundSystem', 'internet'],
+                    status: 'approved',
+                    createdAt: new Date('2024-12-04T11:45:00').toISOString(),
+                    updatedAt: new Date('2024-12-04T14:00:00').toISOString()
+                },
+                {
+                    bookingId: 'FST-20241207-093115-0006',
+                    fullName: 'Rina Kusuma',
+                    email: 'rina.kusuma@student.uinjkt.ac.id',
+                    phone: '+62 819-2222-3333',
+                    institution: 'FST UIN Jakarta',
+                    bookingDate: '2024-12-13',
+                    startTime: '08:00',
+                    endTime: '10:00',
+                    roomType: 'ruang-kelas-biasa',
+                    participants: '11-25',
+                    purpose: 'lainnya',
+                    description: 'Latihan presentasi tugas akhir',
+                    additionalFacilities: ['projector'],
+                    status: 'pending',
+                    createdAt: new Date('2024-12-07T07:30:00').toISOString()
+                }
+            ];
+            
+            // Get existing bookings
+            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            
+            // Add sample bookings
+            sampleBookings.forEach(booking => {
+                // Check if booking ID already exists
+                if (!bookings.find(b => b.bookingId === booking.bookingId)) {
+                    bookings.push(booking);
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            // Show success message
+            const statusBox = document.getElementById('statusBox');
+            statusBox.className = 'status-box success';
+            statusBox.innerHTML = '<i class="fa fa-check-circle"></i> <strong>Success!</strong> Sample bookings have been added.';
+            
+            // Update data info
+            updateDataInfo();
+            
+            // Auto-hide message after 3 seconds
+            setTimeout(() => {
+                statusBox.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Clear all bookings
+        function clearAllBookings() {
+            if (confirm('Are you sure you want to clear ALL bookings? This action cannot be undone!')) {
+                localStorage.removeItem('bookings');
+                
+                // Show info message
+                const statusBox = document.getElementById('statusBox');
+                statusBox.className = 'status-box info';
+                statusBox.innerHTML = '<i class="fa fa-info-circle"></i> <strong>Cleared!</strong> All bookings have been removed.';
+                
+                // Update data info
+                updateDataInfo();
+                
+                // Auto-hide message after 3 seconds
+                setTimeout(() => {
+                    statusBox.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Initialize on page load
+        updateDataInfo();
+    </script>
+</body>
+</html>

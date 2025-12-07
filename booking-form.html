@@ -201,6 +201,55 @@
             margin-right: 8px;
         }
         
+        .availability-info {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .availability-info.available {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .availability-info.full {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        
+        .availability-info h4 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .availability-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .availability-icon {
+            font-size: 20px;
+        }
+        
+        .availability-icon.available {
+            color: #28a745;
+        }
+        
+        .availability-icon.full {
+            color: #dc3545;
+        }
+        
+        .availability-details {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+        }
+        
         .alert {
             padding: 15px;
             border-radius: 8px;
@@ -501,6 +550,10 @@
                                 <div id="roomInfo" class="room-info" style="display: none;">
                                     <!-- Room information will be populated here -->
                                 </div>
+                                
+                                <div id="availabilityInfo" class="availability-info" style="display: none;">
+                                    <!-- Availability information will be populated here -->
+                                </div>
                             </div>
 
                             <!-- Purpose Section -->
@@ -605,6 +658,12 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/room-availability.js"></script>
 
     <script>
         // Room information data
@@ -653,18 +712,85 @@
             
             if (roomType && roomData[roomType]) {
                 const room = roomData[roomType];
+                const quota = window.RoomAvailability.getQuota(roomType);
                 roomInfo.innerHTML = `
                     <h4>${room.name}</h4>
                     <ul>
                         <li><i class="fa fa-users"></i> <strong>Kapasitas:</strong> ${room.capacity}</li>
                         <li><i class="fa fa-expand"></i> <strong>Ukuran:</strong> ${room.size}</li>
                         <li><i class="fa fa-cogs"></i> <strong>Fasilitas:</strong> ${room.equipment}</li>
+                        <li><i class="fa fa-building"></i> <strong>Jumlah Ruangan:</strong> ${quota} ruangan tersedia</li>
                         <li><i class="fa fa-info-circle"></i> <strong>Deskripsi:</strong> ${room.description}</li>
                     </ul>
                 `;
                 roomInfo.style.display = 'block';
+                
+                // Check availability when room is selected
+                checkAvailability();
             } else {
                 roomInfo.style.display = 'none';
+                document.getElementById('availabilityInfo').style.display = 'none';
+            }
+        }
+        
+        // Check room availability
+        async function checkAvailability() {
+            const roomType = document.getElementById('roomType').value;
+            const bookingDate = document.getElementById('bookingDate').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            const availabilityInfo = document.getElementById('availabilityInfo');
+            
+            // Need all fields to check availability
+            if (!roomType || !bookingDate || !startTime || !endTime) {
+                availabilityInfo.style.display = 'none';
+                return;
+            }
+            
+            // Show loading state
+            availabilityInfo.innerHTML = '<p><i class="fa fa-spinner fa-spin"></i> Memeriksa ketersediaan...</p>';
+            availabilityInfo.className = 'availability-info';
+            availabilityInfo.style.display = 'block';
+            
+            try {
+                const availability = await window.RoomAvailability.checkAvailability(
+                    roomType, bookingDate, startTime, endTime
+                );
+                
+                if (availability.available) {
+                    availabilityInfo.className = 'availability-info available';
+                    availabilityInfo.innerHTML = `
+                        <h4>
+                            <i class="fa fa-check-circle availability-icon available"></i>
+                            Ruangan Tersedia
+                        </h4>
+                        <p><strong>${availability.message}</strong></p>
+                        <div class="availability-details">
+                            <i class="fa fa-info-circle"></i> 
+                            ${availability.booked} dari ${availability.quota} ruangan sudah dipesan untuk waktu ini
+                        </div>
+                    `;
+                } else {
+                    availabilityInfo.className = 'availability-info full';
+                    availabilityInfo.innerHTML = `
+                        <h4>
+                            <i class="fa fa-times-circle availability-icon full"></i>
+                            Ruangan Penuh
+                        </h4>
+                        <p><strong>${availability.message}</strong></p>
+                        <div class="availability-details">
+                            <i class="fa fa-exclamation-triangle"></i> 
+                            Semua ${availability.quota} ruangan sudah terisi untuk waktu yang dipilih.
+                            Silakan pilih waktu atau ruangan lain.
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error checking availability:', error);
+                availabilityInfo.className = 'availability-info';
+                availabilityInfo.innerHTML = `
+                    <p><i class="fa fa-exclamation-circle"></i> Gagal memeriksa ketersediaan. Silakan coba lagi.</p>
+                `;
             }
         }
 
@@ -732,7 +858,7 @@
         }
 
         // Form submission
-        function submitBooking(event) {
+        async function submitBooking(event) {
             event.preventDefault();
             
             // Get form data
@@ -752,16 +878,75 @@
                 return;
             }
             
-            // Save booking data to localStorage
-            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+            // Check room availability before submitting
+            showAlert('Memeriksa ketersediaan ruangan...', 'info');
+            const availability = await window.RoomAvailability.checkAvailability(
+                bookingData.roomType,
+                bookingData.bookingDate,
+                bookingData.startTime,
+                bookingData.endTime
+            );
             
-            // Show success message
-            showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
+            if (!availability.available) {
+                showAlert(
+                    `Maaf, ruangan tidak tersedia! ${availability.message}. Silakan pilih waktu atau ruangan lain.`,
+                    'danger'
+                );
+                return;
+            }
             
-            // Redirect to confirmation page after a short delay
-            setTimeout(() => {
-                window.location.href = 'booking-confirmation.html';
-            }, 2000);
+            // Generate unique booking ID
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const random = Math.floor(Math.random() * 9999).toString().padStart(4, '0');
+            const bookingId = `FST-${year}${month}${day}-${hours}${minutes}${seconds}-${random}`;
+            
+            // Add booking metadata
+            bookingData.bookingId = bookingId;
+            bookingData.status = 'pending'; // Default status
+            bookingData.createdAt = new Date().toISOString();
+            
+            // Show loading message
+            showAlert('Mengirim reservasi...', 'info');
+            
+            // Try to save to Supabase first
+            if (window.BookingDB && !window.BookingDB.useFallback()) {
+                const result = await window.BookingDB.createBooking(bookingData);
+                
+                if (result.success) {
+                    // Save current booking data for confirmation page
+                    localStorage.setItem('currentBooking', JSON.stringify(bookingData));
+                    
+                    // Show success message
+                    showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
+                    
+                    // Redirect to confirmation page
+                    setTimeout(() => {
+                        window.location.href = 'booking-confirmation.html';
+                    }, 1500);
+                } else {
+                    showAlert('Error: ' + result.error + '. Mohon coba lagi.', 'danger');
+                }
+            } else {
+                // Fallback to localStorage if Supabase not configured
+                console.warn('Supabase not configured, using localStorage fallback');
+                
+                const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                bookings.push(bookingData);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+                localStorage.setItem('currentBooking', JSON.stringify(bookingData));
+                
+                showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'booking-confirmation.html';
+                }, 1500);
+            }
         }
 
         function validateForm(data) {
@@ -810,12 +995,18 @@
             document.getElementById('startTime').value = '08:00';
             document.getElementById('endTime').value = '09:00';
             
+            // Add event listeners for availability checking
+            document.getElementById('roomType').addEventListener('change', checkAvailability);
+            document.getElementById('bookingDate').addEventListener('change', checkAvailability);
+            document.getElementById('startTime').addEventListener('change', checkAvailability);
+            document.getElementById('endTime').addEventListener('change', checkAvailability);
+            
             // Set minimum date to today
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('bookingDate').min = today;
             
-            // Load data from localStorage if available (from main page booking form)
-            const storedBookingData = localStorage.getItem('bookingData');
+            // Load data from localStorage if available (from main page quick booking form)
+            const storedBookingData = localStorage.getItem('partialBookingData');
             if (storedBookingData) {
                 try {
                     const bookingData = JSON.parse(storedBookingData);
@@ -825,31 +1016,29 @@
                         document.getElementById('bookingDate').value = bookingData['reservation-date'];
                     }
                     
-                    if (bookingData['start-hour'] && bookingData['start-minute']) {
-                        const startTime = `${bookingData['start-hour']}:${bookingData['start-minute']}`;
-                        document.getElementById('startTime').value = startTime;
+                    if (bookingData.startTime) {
+                        document.getElementById('startTime').value = bookingData.startTime;
                     }
                     
-                    if (bookingData['end-hour'] && bookingData['end-minute']) {
-                        const endTime = `${bookingData['end-hour']}:${bookingData['end-minute']}`;
-                        document.getElementById('endTime').value = endTime;
+                    if (bookingData.endTime) {
+                        document.getElementById('endTime').value = bookingData.endTime;
                     }
                     
-                    if (bookingData['room']) {
-                        document.getElementById('roomType').value = bookingData['room'];
+                    if (bookingData.room) {
+                        document.getElementById('roomType').value = bookingData.room;
                         showRoomInfo(); // Show room information
                     }
                     
-                    if (bookingData['No-participants']) {
-                        document.getElementById('participants').value = bookingData['No-participants'];
+                    if (bookingData.participants) {
+                        document.getElementById('participants').value = bookingData.participants;
                     }
                     
-                    if (bookingData['purpose']) {
-                        document.getElementById('purpose').value = bookingData['purpose'];
+                    if (bookingData.purpose) {
+                        document.getElementById('purpose').value = bookingData.purpose;
                     }
                     
                     // Clear the stored data after using it
-                    localStorage.removeItem('bookingData');
+                    localStorage.removeItem('partialBookingData');
                     
                 } catch (error) {
                     console.error('Error parsing stored booking data:', error);
