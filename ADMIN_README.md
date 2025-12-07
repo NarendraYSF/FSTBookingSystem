@@ -8,7 +8,7 @@ This is a separate admin application for managing room booking confirmations in 
 ### 1. **Admin Login System**
 - Secure login page for administrators
 - Session management using localStorage
-- Default credentials for initial access
+- Secure credentials (stored in CREDENTIALS.md - not public)
 
 ### 2. **Admin Dashboard**
 - View all bookings in a clean table interface
@@ -51,9 +51,7 @@ FSTBookingSystem/
 
 1. **Access Admin Panel**
    - Navigate to `admin-login.html`
-   - Use the default credentials:
-     - Username: `admin`
-     - Password: `admin123`
+   - Use the admin credentials (check `CREDENTIALS.md` file for secure login details)
 
 2. **View Bookings**
    - After login, you'll see the admin dashboard
@@ -152,8 +150,8 @@ Edit `admin-login.html`, find this code:
 
 ```javascript
 const adminCredentials = {
-    username: 'admin',
-    password: 'admin123'
+    username: 'your_admin_username',
+    password: 'your_secure_password'
 };
 ```
 

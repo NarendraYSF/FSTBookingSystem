@@ -193,7 +193,7 @@ https://fst-booking-system.vercel.app
 ### Step 11: Test Admin Panel
 
 1. Go to `https://your-url.vercel.app/admin-login.html`
-2. Login with: `admin` / `admin123`
+2. Login with admin credentials (see `CREDENTIALS.md` file)
 3. You should see your booking in the dashboard!
 
 ### Step 12: Verify Data in Supabase

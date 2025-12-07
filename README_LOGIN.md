@@ -47,10 +47,12 @@ This system implements a secure login mechanism that prevents access to the main
 - Both PHP session and localStorage are cleared
 - User is redirected to `login.html`
 
-## Default Credentials
-- **Username:** 1234567890
-- **Password:** kelompok1keren
+## User Login Credentials
+- **Username:** RPLSeruBGT
+- **Password:** AkbarGanteng123
 - **User Type:** Student/Lecturer/Staff (selectable)
+
+⚠️ **Note:** For security, these credentials should be changed in production.
 
 ## Security Features
 - Session-based authentication
@@ -68,7 +70,7 @@ This system implements a secure login mechanism that prevents access to the main
 1. Upload all files to your web server
 2. Ensure PHP sessions are enabled
 3. Make sure mod_rewrite is enabled
-4. Test the login system with default credentials
+4. Test the login system with the credentials from `CREDENTIALS.md`
 
 ## Customization
 - Modify `login_handler.php` to connect to your database

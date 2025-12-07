@@ -246,12 +246,6 @@
             </button>
         </form>
         
-        <div class="default-credentials">
-            <strong><i class="fa fa-info-circle"></i> Default Credentials:</strong>
-            Username: <code>admin</code><br>
-            Password: <code>admin123</code>
-        </div>
-        
         <div class="back-link">
             <a href="index.html">
                 <i class="fa fa-arrow-left"></i> Back to Homepage
@@ -260,6 +254,35 @@
     </div>
     
     <script>
+        /* ⚠️ SECURITY WARNING ⚠️
+         * 
+         * This admin authentication uses client-side validation for DEMONSTRATION purposes only.
+         * 
+         * KNOWN LIMITATION:
+         * - Credentials are obfuscated (Base64) but NOT encrypted
+         * - Anyone with browser DevTools can decode and access admin panel
+         * - This is inherent to client-side authentication
+         * 
+         * SUITABLE FOR:
+         * - School/University projects ✅
+         * - Portfolio demonstrations ✅
+         * - Internal testing ✅
+         * 
+         * NOT SUITABLE FOR:
+         * - Production systems ❌
+         * - Public websites with sensitive data ❌
+         * - Commercial applications ❌
+         * 
+         * FOR PRODUCTION:
+         * - Implement Supabase Auth (recommended)
+         * - Or add Node.js/Express backend with bcrypt password hashing
+         * - Use JWT tokens or secure sessions
+         * - Never store credentials in frontend code
+         * 
+         * This implementation prioritizes simplicity and learning over security.
+         * It demonstrates booking system functionality while acknowledging security trade-offs.
+         */
+        
         document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -267,10 +290,13 @@
             const password = document.getElementById('adminPassword').value;
             const alertBox = document.getElementById('alertMessage');
             
-            // Default admin credentials (in production, this should be server-side)
+            // Admin credentials (Base64 obfuscated - easily decodable, for demo only)
+            // To decode: atob('ZnN0X2FkbWluXzIwMjQ=') in console
+            // For real security, see IMPORTANT_SECURITY_WARNING.md
+            const _0x4a2b = ['ZnN0X2FkbWluXzIwMjQ=', 'RlNUQEpha2FydGEhMjAyNCNTZWN1cmU='];
             const adminCredentials = {
-                username: 'admin',
-                password: 'admin123'
+                username: atob(_0x4a2b[0]),  // fst_admin_2024
+                password: atob(_0x4a2b[1])   // FST@Jakarta!2024#Secure
             };
             
             if (username === adminCredentials.username && password === adminCredentials.password) {

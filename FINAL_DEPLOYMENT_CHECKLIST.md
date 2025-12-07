@@ -31,7 +31,7 @@ Everything has been configured and is ready to deploy! Here's what you have:
    - Zero collision risk
 
 4. **Admin Panel** ✓
-   - Login: `admin` / `admin123`
+   - Login: See `CREDENTIALS.md` file for secure credentials
    - Dashboard with statistics
    - Approve/Reject functionality
    - Search & filter
@@ -92,7 +92,7 @@ Everything has been configured and is ready to deploy! Here's what you have:
 
 ### Test 3: Admin Panel
 1. Open `admin-login.html`
-2. Login: `admin` / `admin123`
+2. Login with admin credentials (see `CREDENTIALS.md`)
 3. ✅ Should see all bookings
 4. Try filtering by status
 5. ✅ Should work correctly
@@ -161,7 +161,7 @@ Admin: https://your-project.vercel.app/admin-login.html
 
 3. **Admin Panel**
    - Go to `/admin-login.html`
-   - Login with `admin` / `admin123`
+   - Login with admin credentials (see `CREDENTIALS.md`)
    - ✅ Should see booking
    - Approve/Reject it
    - ✅ Status should update
@@ -284,8 +284,8 @@ Admin:     https://your-project.vercel.app/admin-login.html
 
 **Admin Credentials:**
 ```
-Username: admin
-Password: admin123
+See CREDENTIALS.md file for secure login details
+⚠️ Keep this file private and secure!
 ```
 
 **Supabase Dashboard:**

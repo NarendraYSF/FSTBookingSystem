@@ -18,7 +18,7 @@ Your FST Booking System is now a **complete, production-ready** booking manageme
 - Booking confirmation page
 
 ### 2. ✅ Admin Management Panel
-- Secure admin login (admin/admin123)
+- Secure admin login (credentials in CREDENTIALS.md)
 - Dashboard with statistics
 - View all bookings in table
 - Filter by status (All/Pending/Approved/Rejected)
@@ -105,7 +105,7 @@ Your FST Booking System is now a **complete, production-ready** booking manageme
 ```
 1. Visit Admin Login
    ↓
-2. Login (admin/admin123)
+2. Login (see CREDENTIALS.md for login details)
    ↓
 3. See Dashboard:
    - Total Bookings

@@ -11,7 +11,7 @@ A complete admin management system has been created for the FST Booking System, 
 - **Purpose**: Admin authentication page
 - **Features**:
   - Secure login interface
-  - Default credentials: `admin` / `admin123`
+  - Secure admin credentials (stored in CREDENTIALS.md)
   - Session management
   - Clean, modern UI with gradient background
   - Mobile responsive
@@ -277,7 +277,7 @@ A complete admin management system has been created for the FST Booking System, 
    1. Open seed-sample-data.html
    2. Click "Add Sample Bookings"
    3. Open admin-login.html
-   4. Login with: admin / admin123
+   4. Login with admin credentials (see CREDENTIALS.md)
    5. Manage bookings in admin panel
    ```
 

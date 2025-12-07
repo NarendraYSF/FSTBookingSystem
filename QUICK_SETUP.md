@@ -67,7 +67,7 @@ Open terminal in your project folder:
 
 - [ ] Create a test booking on live site
 - [ ] Login to admin panel: `/admin-login.html`
-- [ ] Login with: `admin` / `admin123`
+- [ ] Login with admin credentials (see `CREDENTIALS.md` file - keep this file secure!)
 - [ ] Verify booking appears in admin panel
 - [ ] Check Supabase dashboard - booking should be there
 - [ ] Try approving/rejecting the booking
