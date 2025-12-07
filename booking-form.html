@@ -935,7 +935,12 @@
             
             // Save current booking data for confirmation page (do this BEFORE Supabase)
             localStorage.setItem('currentBooking', JSON.stringify(bookingData));
+            
+            // Also save booking ID separately for browser refresh fallback
+            localStorage.setItem('lastBookingId', bookingId);
+            
             console.log('Saved to currentBooking localStorage');
+            console.log('Saved lastBookingId for fallback:', bookingId);
             
             // Try to save to Supabase first
             if (window.BookingDB && !window.BookingDB.useFallback()) {

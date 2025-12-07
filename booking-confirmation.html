@@ -487,7 +487,7 @@
         }
 
         // Populate booking details - Run immediately when script loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             console.log('=== BOOKING CONFIRMATION PAGE LOADED ===');
             
             // Get booking data from localStorage (current booking just submitted)
@@ -504,12 +504,49 @@
             // Debug: Log what we got
             console.log('Parsed Booking Data:', bookingData);
             
-            // If no current booking data, show error
-            if (!bookingData) {
-                console.error('No booking data found in localStorage');
-                alert('Tidak ada data reservasi. Silakan buat reservasi baru.');
-                // Use default data as fallback
-                bookingData = {};
+            // FALLBACK: If no data (user refreshed browser), try to get from last booking ID
+            if (!bookingData || !bookingData.bookingId) {
+                console.warn('No currentBooking found. Checking for lastBookingId...');
+                const lastBookingId = localStorage.getItem('lastBookingId');
+                
+                if (lastBookingId) {
+                    console.log('Found lastBookingId:', lastBookingId);
+                    console.log('Attempting to fetch from database...');
+                    
+                    // Try to fetch from Supabase
+                    if (window.BookingDB && !window.BookingDB.useFallback()) {
+                        try {
+                            const result = await window.BookingDB.getBookingById(lastBookingId);
+                            
+                            if (result.success && result.data) {
+                                bookingData = result.data;
+                                console.log('Successfully fetched booking from database:', bookingData);
+                            } else {
+                                console.error('Failed to fetch booking from database');
+                                bookingData = null;
+                            }
+                        } catch (error) {
+                            console.error('Error fetching booking:', error);
+                            bookingData = null;
+                        }
+                    } else {
+                        // Fallback to localStorage bookings array
+                        const allBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                        const foundBooking = allBookings.find(b => b.bookingId === lastBookingId);
+                        
+                        if (foundBooking) {
+                            bookingData = foundBooking;
+                            console.log('Found booking in localStorage bookings array');
+                        }
+                    }
+                }
+                
+                // If still no data, show friendly error
+                if (!bookingData || !bookingData.bookingId) {
+                    console.error('No booking data found anywhere');
+                    showNoDataError();
+                    bookingData = {}; // Use empty object to prevent errors
+                }
             }
 
             // Display booking ID
@@ -599,6 +636,12 @@
             // Store booking ID globally for status refresh
             window.currentBookingId = bookingId;
             
+            // Store booking ID persistently for browser refresh fallback
+            if (bookingId && bookingId !== 'FST-') {
+                localStorage.setItem('lastBookingId', bookingId);
+                console.log('Stored lastBookingId for fallback:', bookingId);
+            }
+            
             // Auto-refresh status every 10 seconds if using Supabase
             if (window.BookingDB && !window.BookingDB.useFallback()) {
                 setInterval(autoRefreshStatus, 10000); // Every 10 seconds
@@ -607,9 +650,40 @@
             // Clear current booking data from localStorage after displaying (with delay)
             setTimeout(() => {
                 localStorage.removeItem('currentBooking');
-                console.log('Cleared currentBooking from localStorage');
+                console.log('Cleared currentBooking from localStorage (lastBookingId still kept)');
             }, 2000);
         });
+        
+        // Show error when no booking data found
+        function showNoDataError() {
+            const confirmationCard = document.querySelector('.confirmation-card');
+            if (confirmationCard) {
+                confirmationCard.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 60px; color: #ffc107; margin-bottom: 20px;">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <h2 style="color: #333; margin-bottom: 20px;">Data Reservasi Tidak Ditemukan</h2>
+                        <p style="color: #666; margin-bottom: 30px;">
+                            Halaman ini tidak memiliki data reservasi. Kemungkinan penyebab:
+                        </p>
+                        <ul style="text-align: left; max-width: 400px; margin: 0 auto 30px; color: #666;">
+                            <li>Anda membuka halaman ini secara langsung</li>
+                            <li>Data sudah terhapus dari browser</li>
+                            <li>Link yang Anda gunakan tidak valid</li>
+                        </ul>
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <a href="booking-form.html" class="btn btn-primary">
+                                <i class="fa fa-calendar-plus-o"></i> Buat Reservasi Baru
+                            </a>
+                            <a href="index.html" class="btn btn-secondary">
+                                <i class="fa fa-home"></i> Kembali ke Beranda
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+        }
         
         // Function to refresh booking status from database
         async function refreshStatus() {
