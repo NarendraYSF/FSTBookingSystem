@@ -263,14 +263,14 @@
         }
         
         // Display user information
-        var username = localStorage.getItem('username');
-        if (username) {
+            var username = localStorage.getItem('username');
+            if (username) {
             // Will be set after page loads
             window.addEventListener('load', function() {
                 if (document.getElementById('user-display')) {
-                    document.getElementById('user-display').textContent = username;
-                }
-            });
+                document.getElementById('user-display').textContent = username;
+            }
+        });
         }
         
         // Logout function
@@ -499,8 +499,8 @@
                 bookingData = JSON.parse(currentBookingStr);
             } catch (e) {
                 console.error('Error parsing currentBooking:', e);
-            }
-            
+        }
+
             // Debug: Log what we got
             console.log('Parsed Booking Data:', bookingData);
             
@@ -617,7 +617,7 @@
             } else {
                 document.getElementById('additionalFacilities').textContent = 'Tidak ada';
             }
-            
+
             // Display status with proper styling
             const status = bookingData.status || 'pending';
             const statusBadge = document.getElementById('bookingStatus');

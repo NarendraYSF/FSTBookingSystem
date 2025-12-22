@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Supabase Connection Test - FST</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .test-box {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .test-box h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .code-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+        .btn {
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .icon {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fa fa-stethoscope"></i> Supabase Connection Diagnostic</h1>
+        <p>Use this page to check if your Supabase connection is working properly.</p>
+        
+        <div class="test-box">
+            <h3><i class="fa fa-check-circle icon"></i> Test 1: Supabase Library</h3>
+            <div id="test1"></div>
+        </div>
+        
+        <div class="test-box">
+            <h3><i class="fa fa-cog icon"></i> Test 2: Configuration</h3>
+            <div id="test2"></div>
+        </div>
+        
+        <div class="test-box">
+            <h3><i class="fa fa-plug icon"></i> Test 3: Supabase Client</h3>
+            <div id="test3"></div>
+        </div>
+        
+        <div class="test-box">
+            <h3><i class="fa fa-database icon"></i> Test 4: Database Connection</h3>
+            <div id="test4"></div>
+            <button class="btn" onclick="testDatabaseConnection()">
+                <i class="fa fa-refresh"></i> Test Database Connection
+            </button>
+        </div>
+        
+        <div class="test-box">
+            <h3><i class="fa fa-list icon"></i> Test 5: Fetch Bookings</h3>
+            <div id="test5"></div>
+            <button class="btn" onclick="testFetchBookings()">
+                <i class="fa fa-download"></i> Fetch Bookings
+            </button>
+        </div>
+        
+        <div class="test-box">
+            <h3><i class="fa fa-wrench icon"></i> Actions</h3>
+            <button class="btn" onclick="runAllTests()">
+                <i class="fa fa-play"></i> Run All Tests
+            </button>
+            <button class="btn btn-secondary" onclick="location.href='index.html'">
+                <i class="fa fa-home"></i> Back to Homepage
+            </button>
+        </div>
+    </div>
+    
+    <!-- Load Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/database.js"></script>
+    
+    <script>
+        function showStatus(elementId, status, message, details = '') {
+            const element = document.getElementById(elementId);
+            const statusClass = status === 'success' ? 'success' : 
+                               status === 'error' ? 'error' : 
+                               status === 'warning' ? 'warning' : 'info';
+            
+            const icon = status === 'success' ? 'check-circle' : 
+                        status === 'error' ? 'times-circle' : 
+                        status === 'warning' ? 'exclamation-triangle' : 'info-circle';
+            
+            element.innerHTML = `
+                <div class="status ${statusClass}">
+                    <i class="fa fa-${icon}"></i> ${message}
+                </div>
+                ${details ? `<div class="code-box">${details}</div>` : ''}
+            `;
+        }
+        
+        function test1() {
+            if (typeof window.supabase !== 'undefined') {
+                showStatus('test1', 'success', 'Supabase library loaded successfully', 
+                    'window.supabase is available');
+                return true;
+            } else {
+                showStatus('test1', 'error', 'Supabase library NOT loaded', 
+                    'window.supabase is undefined. Check if CDN is accessible or internet connection.');
+                return false;
+            }
+        }
+        
+        function test2() {
+            if (typeof SUPABASE_CONFIG !== 'undefined') {
+                const configured = SUPABASE_CONFIG.url !== 'YOUR_SUPABASE_URL_HERE';
+                if (configured) {
+                    showStatus('test2', 'success', 'Supabase configured', 
+                        `URL: ${SUPABASE_CONFIG.url}\nKey: ${SUPABASE_CONFIG.anonKey.substring(0, 50)}...`);
+                    return true;
+                } else {
+                    showStatus('test2', 'warning', 'Supabase NOT configured', 
+                        'SUPABASE_CONFIG found but using placeholder values. Update js/supabase-config.js');
+                    return false;
+                }
+            } else {
+                showStatus('test2', 'error', 'SUPABASE_CONFIG not defined', 
+                    'js/supabase-config.js not loaded or has syntax error');
+                return false;
+            }
+        }
+        
+        function test3() {
+            if (window.supabaseClient) {
+                showStatus('test3', 'success', 'Supabase client initialized', 
+                    'window.supabaseClient is ready');
+                return true;
+            } else {
+                showStatus('test3', 'error', 'Supabase client NOT initialized', 
+                    'Check previous tests. Client initialization failed.');
+                return false;
+            }
+        }
+        
+        async function testDatabaseConnection() {
+            showStatus('test4', 'info', 'Testing database connection...', '');
+            
+            try {
+                if (!window.supabaseClient) {
+                    showStatus('test4', 'error', 'Cannot test - Supabase client not available', 
+                        'System will use localStorage fallback mode');
+                    return;
+                }
+                
+                const { data, error } = await window.supabaseClient
+                    .from('bookings')
+                    .select('count')
+                    .limit(1);
+                
+                if (error) {
+                    showStatus('test4', 'error', 'Database connection FAILED', 
+                        `Error: ${error.message}\n\nPossible causes:\n- Table 'bookings' doesn't exist\n- RLS policies blocking access\n- Network error`);
+                } else {
+                    showStatus('test4', 'success', 'Database connection SUCCESS', 
+                        'Successfully connected to bookings table');
+                }
+            } catch (error) {
+                showStatus('test4', 'error', 'Connection error', error.message);
+            }
+        }
+        
+        async function testFetchBookings() {
+            showStatus('test5', 'info', 'Fetching bookings...', '');
+            
+            try {
+                if (!window.BookingDB) {
+                    showStatus('test5', 'error', 'BookingDB not loaded', 
+                        'js/database.js not loaded properly');
+                    return;
+                }
+                
+                const result = await window.BookingDB.getAllBookings();
+                
+                if (result.success) {
+                    showStatus('test5', 'success', `Fetched ${result.data.length} bookings`, 
+                        `Total bookings in database: ${result.data.length}\n\n` +
+                        `Sample: ${JSON.stringify(result.data[0] || {}, null, 2)}`);
+                } else {
+                    showStatus('test5', 'warning', 'Fetch failed, using localStorage fallback', 
+                        `Error: ${result.error}`);
+                }
+            } catch (error) {
+                showStatus('test5', 'error', 'Error fetching bookings', error.message);
+            }
+        }
+        
+        async function runAllTests() {
+            const test1Result = test1();
+            const test2Result = test2();
+            const test3Result = test3();
+            
+            if (test1Result && test2Result && test3Result) {
+                await testDatabaseConnection();
+                await testFetchBookings();
+            }
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', function() {
+            setTimeout(runAllTests, 500); // Wait for all scripts to load
+        });
+    </script>
+</body>
+</html>

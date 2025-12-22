@@ -139,3 +139,4 @@ When importing bookings via CSV, ensure:
 
 **Last Updated**: December 7, 2024  
 **Format Version**: 2.0
+

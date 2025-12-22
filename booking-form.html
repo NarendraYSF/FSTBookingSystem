@@ -769,6 +769,16 @@
             availabilityInfo.style.display = 'block';
             
             try {
+                // Check if RoomAvailability is loaded
+                if (!window.RoomAvailability) {
+                    console.error('RoomAvailability not loaded');
+                    availabilityInfo.className = 'availability-info';
+                    availabilityInfo.innerHTML = `
+                        <p><i class="fa fa-exclamation-circle"></i> Sistem sedang memuat. Silakan tunggu sebentar dan coba lagi.</p>
+                    `;
+                    return;
+                }
+                
                 const availability = await window.RoomAvailability.checkAvailability(
                     roomType, bookingDate, startTime, endTime
                 );
@@ -803,10 +813,20 @@
                 }
             } catch (error) {
                 console.error('Error checking availability:', error);
-                availabilityInfo.className = 'availability-info';
-                availabilityInfo.innerHTML = `
-                    <p><i class="fa fa-exclamation-circle"></i> Gagal memeriksa ketersediaan. Silakan coba lagi.</p>
-                `;
+                
+                // Check if it's a SUPABASE_CONFIG error
+                if (error.message && error.message.includes('SUPABASE_CONFIG')) {
+                    availabilityInfo.className = 'availability-info';
+                    availabilityInfo.innerHTML = `
+                        <p><i class="fa fa-info-circle"></i> Database belum terkonfigurasi. Menggunakan mode lokal.</p>
+                        <p style="font-size: 12px; margin-top: 5px;">Anda masih dapat membuat reservasi.</p>
+                    `;
+                } else {
+                    availabilityInfo.className = 'availability-info';
+                    availabilityInfo.innerHTML = `
+                        <p><i class="fa fa-exclamation-circle"></i> Gagal memeriksa ketersediaan. Silakan coba lagi.</p>
+                    `;
+                }
             }
         }
 
@@ -947,12 +967,12 @@
                 const result = await window.BookingDB.createBooking(bookingData);
                 
                 if (result.success) {
-                    // Show success message
-                    showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
-                    
+            // Show success message
+            showAlert('Reservasi berhasil dikirim! Mengalihkan ke halaman konfirmasi...', 'success');
+            
                     // Redirect to confirmation page
-                    setTimeout(() => {
-                        window.location.href = 'booking-confirmation.html';
+            setTimeout(() => {
+                window.location.href = 'booking-confirmation.html';
                     }, 1500);
                 } else {
                     showAlert('Error: ' + result.error + '. Mohon coba lagi.', 'danger');

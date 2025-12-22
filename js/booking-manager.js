@@ -350,3 +350,4 @@ document.addEventListener('DOMContentLoaded', async function() {
     await updateStatistics();
     await displayBookings();
 });
+

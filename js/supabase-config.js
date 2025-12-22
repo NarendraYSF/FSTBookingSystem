@@ -18,8 +18,22 @@ const SUPABASE_CONFIG = {
 //     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
 // };
 
-// Initialize Supabase client
-const supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+// Initialize Supabase client with error handling
+let supabase = null;
 
-// Export for use in other files
-window.supabaseClient = supabase;
+try {
+    if (typeof window.supabase !== 'undefined') {
+        supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+        window.supabaseClient = supabase;
+        console.log('✅ Supabase client initialized successfully');
+    } else {
+        console.warn('⚠️ Supabase library not loaded. Check if CDN is accessible.');
+        console.warn('Falling back to localStorage mode.');
+        window.supabaseClient = null;
+    }
+} catch (error) {
+    console.error('❌ Error initializing Supabase:', error);
+    console.warn('Falling back to localStorage mode.');
+    window.supabaseClient = null;
+}
+

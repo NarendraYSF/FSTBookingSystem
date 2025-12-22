@@ -5,7 +5,12 @@ const BookingDB = {
     // Create a new booking
     async createBooking(bookingData) {
         try {
-            const { data, error } = await supabaseClient
+            // Check if supabaseClient is available
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { data, error } = await window.supabaseClient
                 .from('bookings')
                 .insert([{
                     booking_id: bookingData.bookingId,
@@ -37,7 +42,11 @@ const BookingDB = {
     // Get all bookings
     async getAllBookings() {
         try {
-            const { data, error } = await supabaseClient
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { data, error } = await window.supabaseClient
                 .from('bookings')
                 .select('*')
                 .order('created_at', { ascending: false });
@@ -75,7 +84,11 @@ const BookingDB = {
     // Get booking by ID
     async getBookingById(bookingId) {
         try {
-            const { data, error } = await supabaseClient
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { data, error } = await window.supabaseClient
                 .from('bookings')
                 .select('*')
                 .eq('booking_id', bookingId)
@@ -114,7 +127,11 @@ const BookingDB = {
     // Update booking status
     async updateBookingStatus(bookingId, newStatus) {
         try {
-            const { data, error } = await supabaseClient
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { data, error } = await window.supabaseClient
                 .from('bookings')
                 .update({ 
                     status: newStatus,
@@ -134,7 +151,11 @@ const BookingDB = {
     // Get bookings by status
     async getBookingsByStatus(status) {
         try {
-            const { data, error } = await supabaseClient
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { data, error } = await window.supabaseClient
                 .from('bookings')
                 .select('*')
                 .eq('status', status)
@@ -172,7 +193,11 @@ const BookingDB = {
     // Delete a booking (admin only)
     async deleteBooking(bookingId) {
         try {
-            const { error } = await supabaseClient
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { error } = await window.supabaseClient
                 .from('bookings')
                 .delete()
                 .eq('booking_id', bookingId);
@@ -188,7 +213,11 @@ const BookingDB = {
     // Get statistics
     async getStatistics() {
         try {
-            const { data, error } = await supabaseClient
+            if (!window.supabaseClient) {
+                throw new Error('Supabase client not initialized');
+            }
+            
+            const { data, error } = await window.supabaseClient
                 .from('bookings')
                 .select('status');
 
@@ -214,8 +243,10 @@ const BookingDB = {
 
     // Check if Supabase is configured
     isConfigured() {
-        return SUPABASE_CONFIG.url !== 'YOUR_SUPABASE_URL_HERE' && 
-               SUPABASE_CONFIG.anonKey !== 'YOUR_SUPABASE_ANON_KEY_HERE';
+        return typeof SUPABASE_CONFIG !== 'undefined' &&
+               SUPABASE_CONFIG.url !== 'YOUR_SUPABASE_URL_HERE' && 
+               SUPABASE_CONFIG.anonKey !== 'YOUR_SUPABASE_ANON_KEY_HERE' &&
+               window.supabaseClient !== null;
     },
 
     // Fallback to localStorage if Supabase not configured
@@ -226,3 +257,4 @@ const BookingDB = {
 
 // Make available globally
 window.BookingDB = BookingDB;
+
