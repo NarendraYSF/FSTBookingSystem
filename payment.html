@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="FST UIN Jakarta, Pembayaran, Payment, Room Booking" />
+    <meta name="author" content="FST UIN Jakarta" />
+    <meta name="robots" content="" />    
+    <meta name="description" content="Informasi pembayaran reservasi ruangan untuk pengguna non-institusi UIN Jakarta" />
+    
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- PAGE TITLE HERE -->
+    <title>FST UIN Jakarta | Pembayaran</title>
+    
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+   
+    <link rel="stylesheet"  href="css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
+	<link rel="stylesheet"  href="css/t-datepicker.min.css" ><!-- BOOTSTRAP DATEPICKER STYLE SHEET -->
+	<link rel="stylesheet"  href="css/t-datepicker-blue.css" ><!-- BOOTSTRAP DATEPICKER STYLE SHEET -->     
+    <link rel="stylesheet"  href="css/fontawesome/css/font-awesome.min.css" /><!-- FONTAWESOME STYLE SHEET -->
+    <link rel="stylesheet"  href="css/owl.carousel.min.css"><!-- OWL CAROUSEL STYLE SHEET -->
+    <link rel="stylesheet"  href="css/magnific-popup.min.css"><!-- MAGNIFIC POPUP STYLE SHEET -->
+    <link rel="stylesheet"  href="css/loader.min.css"><!-- LOADER STYLE SHEET -->    
+    <link rel="stylesheet"  href="css/style.css"><!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet"  class="skin"  href="css/skin/skin-1.css"><!-- THEME COLOR CHANGE STYLE SHEET -->
+    <link rel="stylesheet"  href="css/flaticon.min.css"><!-- FLATICON STYLE SHEET -->
+    <link rel="stylesheet"  href="css/language-switcher.css"><!-- LANGUAGE SWITCHER STYLE SHEET -->
+      
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text:400,400i&display=swap&subset=latin-ext" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="page-wraper"> 
+       	
+        <!-- HEADER START -->
+        <header class="site-header header-style-1 mobile-sider-drawer-menu nav-wide">
+            <div class="sticky-header main-bar-wraper">
+                <div class="main-bar p-t5">
+                    <div class="container">
+
+                        <div class="logo-header">
+                            <div class="logo-header-inner logo-header-one">
+                                <a href="index.html">
+                                    <img src="images/logo-light.png" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- NAV Toggle Button -->
+                        <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar icon-bar-first"></span>
+                            <span class="icon-bar icon-bar-two"></span>
+                            <span class="icon-bar icon-bar-three"></span>
+                        </button>
+                        <!-- ETRA Nav -->
+
+                        <!-- MAIN Vav -->
+                        <div class="header-nav navbar-collapse collapse">
+                            <ul class=" nav navbar-nav">
+                                <li>
+                                    <a href="index.html" data-translate="nav.home">Home</a>
+                                </li>
+                                <li>
+                                    <a href="about-1.html" data-translate="nav.about">About</a>
+                                </li>
+                                <li>
+                                    <a href="contact-1.html" data-translate="nav.contact">Contact</a>
+                                </li>
+                                <li class="active">
+                                    <a href="payment.html" data-translate="nav.payment">Payment</a>
+                                </li>
+                                <!-- Language Switcher -->
+                                <li class="language-switcher">
+                                    <button class="lang-btn" data-lang="id" onclick="changeLanguage('id')">ID</button>
+                                    <span class="lang-separator">|</span>
+                                    <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="extra-nav">
+                            <div class="extra-cell">											
+                                <a href="#search" class=" text-white">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ETRA Nav -->
+                               
+                        <!-- SITE Search -->
+                        <div id="search"> 
+                            <span class="close"></span>
+                            <form role="search" id="searchform" action="/search" method="get" class="radius-xl">
+                                <div class="input-group">
+                                    <input value="" name="q" type="search" placeholder="Type to search"/>
+                                    <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                                </div>   
+                            </form>
+                        </div>                                                                                                          
+                            
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+        
+        <!-- CONTENT START -->
+        <div class="page-content">
+        
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-parallax bg-top-center" style="background-image:url(images/background/bg-map.jpg);">
+            	<div class="overlay-main bg-black opacity-07"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                    	<div class="banner-title-outer">
+                        	<div class="banner-title-name">
+                        		<h2 class="text-white font-80 font-weight-900" data-translate="payment.title">Informasi Pembayaran</h2>
+                            </div>
+                        </div>
+                        <!-- BREADCRUMB ROW -->                            
+                        
+                            <div>
+                                <ul class="wt-breadcrumb breadcrumb-style-2">
+                                    <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                                    <li data-translate="payment.breadcrumb">Pembayaran</li>
+                                </ul>
+                            </div>
+                        
+                        <!-- BREADCRUMB ROW END -->                        
+                    </div>
+                </div>
+            </div>
+            <!-- INNER PAGE BANNER END -->
+             
+            <!-- PAYMENT INFO START -->
+            <div class="section-full p-tb90 bg-white">
+                <div class="container">
+                    
+                    <!-- TITLE START -->
+                    <div class="section-head text-center">
+                        <h2 class="m-b5" data-translate="payment.for-non-institution">Untuk Pengguna Non-Institusi UIN Jakarta</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                        <p data-translate="payment.subtitle">Berikut adalah informasi tarif dan metode pembayaran untuk reservasi ruangan bagi pengguna dari luar UIN Jakarta</p>
+                    </div>
+                    <!-- TITLE END -->
+
+                    <!-- PRICING TABLE START -->
+                    <div class="section-content">
+                        <div class="row">
+                            
+                            <!-- PRICING CARD 1 -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="pricing-table-1 circle-block-outer">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-icon">
+                                                <i class="fa fa-users"></i>
+                                            </div>
+                                            <h4 class="p-title" data-translate="payment.room.classroom">Ruang Kelas</h4>
+                                        </div>
+                                        <div class="pricing-bottom">
+                                            <div class="pricing-price">
+                                                <span class="pricing-currency">Rp</span>
+                                                <span class="p-price">150.000</span>
+                                                <span class="pricing-type" data-translate="payment.per-hour">/jam</span>
+                                            </div>
+                                            <ul class="pricing-list">
+                                                <li data-translate="payment.capacity.classroom">Kapasitas: 30-40 orang</li>
+                                                <li data-translate="payment.facilities.projector">Proyektor & Layar</li>
+                                                <li data-translate="payment.facilities.ac">AC & Sound System</li>
+                                                <li data-translate="payment.facilities.wifi">WiFi Gratis</li>
+                                                <li data-translate="payment.facilities.whiteboard">Whiteboard</li>
+                                            </ul>
+                                            <div class="p-btn">
+                                                <a href="booking-form.html" class="site-button btn-effect" data-translate="payment.book-now">Reservasi Sekarang</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PRICING CARD 2 -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="pricing-table-1 circle-block-outer active">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top bg-primary">
+                                            <div class="pricing-icon">
+                                                <i class="fa fa-flask"></i>
+                                            </div>
+                                            <h4 class="p-title text-white" data-translate="payment.room.lab">Laboratorium</h4>
+                                        </div>
+                                        <div class="pricing-bottom">
+                                            <div class="pricing-price">
+                                                <span class="pricing-currency">Rp</span>
+                                                <span class="p-price">250.000</span>
+                                                <span class="pricing-type" data-translate="payment.per-hour">/jam</span>
+                                            </div>
+                                            <ul class="pricing-list">
+                                                <li data-translate="payment.capacity.lab">Kapasitas: 20-30 orang</li>
+                                                <li data-translate="payment.facilities.equipment">Peralatan Lab Lengkap</li>
+                                                <li data-translate="payment.facilities.projector">Proyektor & Layar</li>
+                                                <li data-translate="payment.facilities.ac">AC & Ventilasi</li>
+                                                <li data-translate="payment.facilities.assistant">Asisten Lab (Opsional)</li>
+                                            </ul>
+                                            <div class="p-btn">
+                                                <a href="booking-form.html" class="site-button btn-effect" data-translate="payment.book-now">Reservasi Sekarang</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PRICING CARD 3 -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="pricing-table-1 circle-block-outer">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-icon">
+                                                <i class="fa fa-video-camera"></i>
+                                            </div>
+                                            <h4 class="p-title" data-translate="payment.room.theater">Ruang Teater</h4>
+                                        </div>
+                                        <div class="pricing-bottom">
+                                            <div class="pricing-price">
+                                                <span class="pricing-currency">Rp</span>
+                                                <span class="p-price">300.000</span>
+                                                <span class="pricing-type" data-translate="payment.per-hour">/jam</span>
+                                            </div>
+                                            <ul class="pricing-list">
+                                                <li data-translate="payment.capacity.theater">Kapasitas: 100-150 orang</li>
+                                                <li data-translate="payment.facilities.dual-projector">Dual Proyektor</li>
+                                                <li data-translate="payment.facilities.professional-sound">Sound System Profesional</li>
+                                                <li data-translate="payment.facilities.lighting">Sistem Pencahayaan</li>
+                                                <li data-translate="payment.facilities.mic">Microphone Wireless</li>
+                                            </ul>
+                                            <div class="p-btn">
+                                                <a href="booking-form.html" class="site-button btn-effect" data-translate="payment.book-now">Reservasi Sekarang</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PRICING CARD 4 -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="pricing-table-1 circle-block-outer">
+                                    <div class="pricing-table-inner">
+                                        <div class="pricing-top">
+                                            <div class="pricing-icon">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <h4 class="p-title" data-translate="payment.room.meeting">Ruang Meeting</h4>
+                                        </div>
+                                        <div class="pricing-bottom">
+                                            <div class="pricing-price">
+                                                <span class="pricing-currency">Rp</span>
+                                                <span class="p-price">200.000</span>
+                                                <span class="pricing-type" data-translate="payment.per-hour">/jam</span>
+                                            </div>
+                                            <ul class="pricing-list">
+                                                <li data-translate="payment.capacity.meeting">Kapasitas: 15-25 orang</li>
+                                                <li data-translate="payment.facilities.meeting-table">Meja Meeting Besar</li>
+                                                <li data-translate="payment.facilities.tv">TV LED 55"</li>
+                                                <li data-translate="payment.facilities.ac">AC & Sound System</li>
+                                                <li data-translate="payment.facilities.coffee">Coffee & Tea Service</li>
+                                            </ul>
+                                            <div class="p-btn">
+                                                <a href="booking-form.html" class="site-button btn-effect" data-translate="payment.book-now">Reservasi Sekarang</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- PRICING TABLE END -->
+
+                </div>
+            </div>
+            <!-- PAYMENT INFO END -->
+
+            <!-- PAYMENT METHODS START -->
+            <div class="section-full p-tb90 bg-gray">
+                <div class="container">
+                    
+                    <!-- TITLE START -->
+                    <div class="section-head text-center">
+                        <h2 class="m-b5" data-translate="payment.methods.title">Metode Pembayaran</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->
+
+                    <div class="section-content">
+                        <div class="row">
+                            
+                            <!-- BANK TRANSFER -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="wt-icon-box-wraper center bg-white p-a30 bdr-1 bdr-gray-light hover-box-effect">
+                                    <div class="icon-lg m-b20">
+                                        <span class="icon-cell site-text-primary"><i class="fa fa-university"></i></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte" data-translate="payment.methods.bank-transfer">Transfer Bank</h4>
+                                        <p data-translate="payment.methods.bank-desc">Transfer ke rekening resmi FST UIN Jakarta</p>
+                                        <div class="text-left m-t20">
+                                            <p><strong data-translate="payment.bank.name">Bank Mandiri</strong></p>
+                                            <p data-translate="payment.bank.account-number">No. Rekening: 1234567890</p>
+                                            <p data-translate="payment.bank.account-name">a.n. FST UIN Jakarta</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- E-WALLET -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="wt-icon-box-wraper center bg-white p-a30 bdr-1 bdr-gray-light hover-box-effect">
+                                    <div class="icon-lg m-b20">
+                                        <span class="icon-cell site-text-primary"><i class="fa fa-mobile"></i></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte" data-translate="payment.methods.ewallet">E-Wallet</h4>
+                                        <p data-translate="payment.methods.ewallet-desc">Bayar menggunakan GoPay, OVO, Dana, atau LinkAja</p>
+                                        <div class="text-left m-t20">
+                                            <p><strong>GoPay / OVO / Dana</strong></p>
+                                            <p>0812-3456-7890</p>
+                                            <p data-translate="payment.ewallet.name">a.n. FST UIN Jakarta</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CASH -->
+                            <div class="col-lg-4 col-md-6 m-b30">
+                                <div class="wt-icon-box-wraper center bg-white p-a30 bdr-1 bdr-gray-light hover-box-effect">
+                                    <div class="icon-lg m-b20">
+                                        <span class="icon-cell site-text-primary"><i class="fa fa-money"></i></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte" data-translate="payment.methods.cash">Tunai</h4>
+                                        <p data-translate="payment.methods.cash-desc">Bayar langsung di kasir FST</p>
+                                        <div class="text-left m-t20">
+                                            <p><strong data-translate="payment.cash.location">Lokasi:</strong></p>
+                                            <p data-translate="payment.cash.address">Gedung FST Lantai 1</p>
+                                            <p data-translate="payment.cash.hours">Senin - Jumat, 08:00 - 16:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- PAYMENT METHODS END -->
+
+            <!-- INSTRUCTIONS START -->
+            <div class="section-full p-tb90 bg-white">
+                <div class="container">
+                    
+                    <!-- TITLE START -->
+                    <div class="section-head text-center">
+                        <h2 class="m-b5" data-translate="payment.instructions.title">Cara Melakukan Pembayaran</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator site-bg-primary"></div>
+                        </div>
+                    </div>
+                    <!-- TITLE END -->
+
+                    <div class="section-content">
+                        <div class="row">
+                            
+                            <div class="col-lg-6 col-md-12 m-b30">
+                                <div class="wt-box">
+                                    <div class="wt-icon-box-wraper left p-a20 bg-gray">
+                                        <div class="icon-md m-b20">
+                                            <span class="icon-cell site-bg-primary text-white">1</span>
+                                        </div>
+                                        <div class="icon-content">
+                                            <h4 class="wt-tilte" data-translate="payment.step1.title">Lakukan Reservasi</h4>
+                                            <p data-translate="payment.step1.desc">Isi formulir reservasi ruangan melalui website atau datang langsung ke kantor FST.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 m-b30">
+                                <div class="wt-box">
+                                    <div class="wt-icon-box-wraper left p-a20 bg-gray">
+                                        <div class="icon-md m-b20">
+                                            <span class="icon-cell site-bg-primary text-white">2</span>
+                                        </div>
+                                        <div class="icon-content">
+                                            <h4 class="wt-tilte" data-translate="payment.step2.title">Terima Konfirmasi</h4>
+                                            <p data-translate="payment.step2.desc">Anda akan menerima email konfirmasi dengan rincian pembayaran dan nomor invoice.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 m-b30">
+                                <div class="wt-box">
+                                    <div class="wt-icon-box-wraper left p-a20 bg-gray">
+                                        <div class="icon-md m-b20">
+                                            <span class="icon-cell site-bg-primary text-white">3</span>
+                                        </div>
+                                        <div class="icon-content">
+                                            <h4 class="wt-tilte" data-translate="payment.step3.title">Lakukan Pembayaran</h4>
+                                            <p data-translate="payment.step3.desc">Lakukan pembayaran sesuai metode yang dipilih maksimal 2x24 jam setelah konfirmasi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 m-b30">
+                                <div class="wt-box">
+                                    <div class="wt-icon-box-wraper left p-a20 bg-gray">
+                                        <div class="icon-md m-b20">
+                                            <span class="icon-cell site-bg-primary text-white">4</span>
+                                        </div>
+                                        <div class="icon-content">
+                                            <h4 class="wt-tilte" data-translate="payment.step4.title">Upload Bukti Pembayaran</h4>
+                                            <p data-translate="payment.step4.desc">Upload bukti pembayaran melalui email atau WhatsApp admin untuk verifikasi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- INSTRUCTIONS END -->
+
+            <!-- NOTES START -->
+            <div class="section-full p-tb90 bg-primary text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <h3 data-translate="payment.notes.title">Catatan Penting:</h3>
+                            <ul class="list-angle-right m-t20">
+                                <li data-translate="payment.notes.note1">Pembayaran harus dilakukan maksimal 2x24 jam setelah konfirmasi reservasi</li>
+                                <li data-translate="payment.notes.note2">Reservasi akan otomatis dibatalkan jika pembayaran tidak diterima dalam waktu yang ditentukan</li>
+                                <li data-translate="payment.notes.note3">Bukti pembayaran wajib dikirimkan untuk verifikasi</li>
+                                <li data-translate="payment.notes.note4">Pembatalan reservasi maksimal H-3 untuk pengembalian 50% dari total pembayaran</li>
+                                <li data-translate="payment.notes.note5">Untuk reservasi di hari yang sama, pembayaran harus dilakukan secara tunai</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-12 text-center">
+                            <div class="m-t30">
+                                <h4 data-translate="payment.contact.title">Butuh Bantuan?</h4>
+                                <p data-translate="payment.contact.desc">Hubungi kami untuk informasi lebih lanjut</p>
+                                <div class="m-t20">
+                                    <a href="contact-1.html" class="site-button-secondry btn-half btn-lg"><span data-translate="payment.contact-us">Hubungi Kami</span><em></em></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NOTES END -->
+            
+        </div>
+        <!-- CONTENT END -->
+        
+        <!-- FOOTER START -->
+        <footer class="site-footer footer-large footer-light	footer-wide">
+            
+            <!-- FOOTER BLOCKES START -->  
+            <div class="footer-top overlay-wraper">
+                <div class="overlay-main"></div>
+                <div class="container">
+                
+                    <div class="news-letter-footer">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="newsletter-f-left">
+                                    <h4 class="text-uppercase m-t0 m-b10" data-translate="footer.newsletter-title">Berlangganan Newsletter FST!</h4>
+                                    <p data-translate="footer.newsletter-desc">Dapatkan informasi terbaru tentang kegiatan akademik, penelitian, dan event di FST UIN Jakarta. Jangan lewatkan update penting dari kami.</p>
+                                </div>
+                            </div>    
+                            <div class="col-lg-6 col-md-12">
+                                <div class="newsletter-f-right text-center">
+                                    <form role="search" method="post">
+                                        <div class="input-group">
+                                            <input name="news-letter" class="form-control" data-translate="footer.newsletter-placeholder" placeholder="MASUKKAN EMAIL ANDA" type="text">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn-half site-button button-lg"><span data-translate="footer.newsletter-button">Berlangganan</span><em></em></button>
+                                            </span>
+                                        </div>
+                                     </form>
+                                </div>
+                            </div>
+                        </div>                           
+                    </div>
+                    <div class="m-b10">
+                        <div class="wt-divider bg-gray-dark"></div>
+                    </div>
+                    <div class="row">
+                        <!-- ABOUT COMPANY -->
+                        <div class="col-lg-3 col-md-6 col-sm-6">  
+                            <div class="widget widget_about">
+                                <div class="logo-footer clearfix p-b15">
+                                    <a href="index.html"><img src="images/uni-logo.png" alt=""></a>
+                                </div>
+								<p class="max-w400" data-translate="footer.about-text">Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta adalah pusat pendidikan, penelitian, dan inovasi di bidang sains dan teknologi yang berkomitmen mencetak lulusan unggul dan berdaya saing global.</p>                                
+                                
+                                <ul class="social-icons social-tooltips-outer  wt-social-links">
+                                    <li><a href="https://www.facebook.com/fst.uinjkt" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
+                                    <li><a href="https://twitter.com/fst_uinjkt" class="fa fa-twitter"><span class="social-tooltips">Twitter</span></a></li>                            
+                                    <li><a href="https://www.linkedin.com/company/fst-uin-jakarta" class="fa fa-linkedin"><span class="social-tooltips">LinkedIn</span></a></li>
+                                    <li><a href="https://www.youtube.com/channel/UCfst_uinjkt" class="fa fa-youtube"><span class="social-tooltips">YouTube</span></a></li>
+                                    <li><a href="https://www.instagram.com/fst.uinjkt" class="fa fa-instagram"><span class="social-tooltips">Instagram</span></a></li>
+                                </ul>                                    
+                            </div>
+                        </div> 
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="widget widget_address_outer">
+                                <h4 class="widget-title" data-translate="footer.contact">Informasi Kontak</h4>
+                                <ul class="widget_address">
+                                    <li><i class="sl-icon-map site-text-primary"></i> Gedung FST UIN Jakarta, UIN Jakarta, Jl. Lkr. Kampus 1, Cempaka Putih, Ciputat Timur, South Tangerang City, Banten 15412</li>
+                                    <li><i class="sl-icon-envolope-letter site-text-primary"></i>fst@apps.uinjkt.ac.id</li>
+                                    <li><i class="sl-icon-phone site-text-primary"></i>(021) 740-1925</li>
+                                    <li><i class="sl-icon-printer site-text-primary"></i>(021) 740-1926</li>
+                                </ul>
+                           
+                            </div>                                              	
+                        </div>                              
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="widget widget_services">
+                                <h4 class="widget-title" data-translate="footer.programs">Program Studi</h4>
+                                <ul>
+                                    <li><a href="javascript:void(0);" data-translate="major.informatika">Teknik Informatika</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.sistem-informasi">Sistem Informasi</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.matematika">Matematika</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.fisika">Fisika</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.kimia">Kimia</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.biologi">Biologi</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="widget widget_services">
+                                <h4 class="widget-title" data-translate="footer.facilities">Fasilitas</h4>
+                                <ul>
+                                    <li><a href="javascript:void(0);" data-translate="facility.classroom">Ruang Kelas</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.lab">Laboratorium</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.theater">Ruang Teater</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.meeting">Ruang Meeting</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.library">Perpustakaan</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.wifi">Wi-Fi Kampus</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- FOOTER COPYRIGHT -->
+            <div class="footer-bottom overlay-wraper">
+                <div class="overlay-main"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="wt-footer-bot-center">
+                            <span class="copyrights-text" data-translate="footer.copyright">© 2024 Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. All Rights Reserved. | Designed By Narendra Yusuf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </footer>
+        <!-- FOOTER END -->
+        
+        <!-- BUTTON TOP START -->
+		<button class="scroltop"><span class="fa fa-angle-up  relative" id="btn-vibrate"></span></button>
+        
+    </div>
+
+<!-- LOADING AREA START ===== -->
+<div class="loading-area">
+    <div class="loading-box"></div>
+    <div class="loading-pic">
+        <div class="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+    </div>
+</div>
+<!-- LOADING AREA  END ====== -->
+
+
+
+<!-- JAVASCRIPT  FILES ========================================= --> 
+<script  src="js/jquery-3.7.1.min.js"></script><!-- JQUERY.MIN JS -->
+<script  src="js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+<script  src="js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+<script  src="js/magnific-popup.min.js"></script><!-- MAGNIFIC-POPUP JS -->
+<script  src="js/waypoints.min.js"></script><!-- WAYPOINTS JS -->
+<script  src="js/counterup.min.js"></script><!-- COUNTERUP JS -->
+<script  src="js/waypoints-sticky.min.js"></script><!-- COUNTERUP JS -->
+<script  src="js/isotope.pkgd.min.js"></script><!-- MASONRY  -->
+<script  src="js/imagesloaded.pkgd.min.js"></script><!-- MASONRY  -->
+<script  src="js/owl.carousel.min.js"></script><!-- OWL  SLIDER  -->
+<script  src="js/jquery.owl-filter.js"></script><!-- OWL  SLIDER FIlter -->
+<script src="js/t-datepicker.min.js"></script>
+<script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="js/translations.js"></script><!-- TRANSLATION SYSTEM  -->
+
+
+
+ 
+</body>
+
+</html>
+

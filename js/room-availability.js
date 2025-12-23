@@ -204,3 +204,5 @@ const RoomAvailability = {
 // Make available globally
 window.RoomAvailability = RoomAvailability;
 
+
+

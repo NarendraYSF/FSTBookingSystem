@@ -27,6 +27,7 @@
     <link rel="stylesheet" class="skin" href="css/skin/skin-1.css">
     <link rel="stylesheet" href="css/flaticon.min.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="css/language-switcher.css"><!-- LANGUAGE SWITCHER STYLE SHEET -->
     
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,800,800i,900" rel="stylesheet"> 
@@ -429,11 +430,17 @@
                         <!-- MAIN Nav -->
                         <div class="header-nav navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about-1.html">About</a></li>
-                                <li><a href="contact-1.html">Contact</a></li>
+                                <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                                <li><a href="about-1.html" data-translate="nav.about">About</a></li>
+                                <li><a href="contact-1.html" data-translate="nav.contact">Contact</a></li>
                                 <li><a href="javascript:void(0);" onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 <li><a href="javascript:void(0);"><i class="fa fa-user"></i> <span id="user-display">User</span></a></li>
+                                <!-- Language Switcher -->
+                                <li class="language-switcher">
+                                    <button class="lang-btn" data-lang="id" onclick="changeLanguage('id')">ID</button>
+                                    <span class="lang-separator">|</span>
+                                    <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -660,6 +667,7 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/translations.js"></script><!-- TRANSLATION SYSTEM  -->
     
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

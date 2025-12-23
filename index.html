@@ -33,6 +33,7 @@
     <link rel="stylesheet"  class="skin"  href="css/skin/skin-1.css"><!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet"  href="css/flaticon.min.css"><!-- FLATICON STYLE SHEET -->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet"  href="css/language-switcher.css"><!-- LANGUAGE SWITCHER STYLE SHEET -->
              
     
 
@@ -520,13 +521,16 @@
                             <div class="header-nav navbar-collapse collapse">
                                 <ul class=" nav navbar-nav">
                                     <li class="active">
-                                        <a href="index.html">Home</a>
+                                        <a href="index.html" data-translate="nav.home">Home</a>
                                     </li>
                                     <li>
-                                        <a href="about-1.html">About</a>
+                                        <a href="about-1.html" data-translate="nav.about">About</a>
                                     </li>
                                     <li>
-                                        <a href="contact-1.html">Contact</a>
+                                        <a href="contact-1.html" data-translate="nav.contact">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="payment.html" data-translate="nav.payment">Payment</a>
                                     </li>
                                     <!-- Logout Button -->
                                     <li>
@@ -534,6 +538,12 @@
                                     </li>
                                     <li>
                                         <a href="javascript:void(0);"><i class="fa fa-user"></i> <span id="user-display">User</span></a>
+                                    </li>
+                                    <!-- Language Switcher -->
+                                    <li class="language-switcher">
+                                        <button class="lang-btn" data-lang="id" onclick="changeLanguage('id')">ID</button>
+                                        <span class="lang-separator">|</span>
+                                        <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
                                     </li>
                                 </ul>
                             </div>
@@ -1240,145 +1250,140 @@
             <div class="section-full booking-bar">
                 <div class="container">
 					<div class="booking-bar-inner site-bg-primary booking-bar-floating">
-                        <div class="booking-fram-name">
-                            <h3 class="m-a0">Reservasi Ruangan</h3>
+                        <div class="booking-fram-name text-center">
+                            <h3 class="m-a0" data-translate="reservation.title">Reservasi Ruangan</h3>
                         </div>
                         <div class="booking-form">
                             <form onsubmit="handleBookingSubmit(event)">
-                                <ul>
-                                    <li class="date-cal-block">
-                                        <div class="form-group clearfix">
-                                            <label>Tanggal Reservasi</label>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="date" class="form-control" name="reservation-date" required>
+                                <div class="row">
+                                    <!-- LEFT COLUMN -->
+                                    <div class="col-md-6">
+                                        <!-- Tanggal Reservasi -->
+                                        <div class="form-group m-b15">
+                                            <label data-translate="reservation.date">Tanggal Reservasi</label>
+                                            <input type="date" class="form-control" name="reservation-date" required>
+                                        </div>
+                                        
+                                        <!-- Jam Mulai -->
+                                        <div class="form-group m-b15">
+                                            <label data-translate="reservation.start-time">Jam Mulai</label>
+                                            <div class="row" style="align-items: center;">
+                                                <div class="col-5">
+                                                    <select class="form-control" name="start-hour" required>
+                                                        <option value="" data-translate="reservation.hour">Jam</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-2 text-center p-0">
+                                                    <span style="font-size: 24px; font-weight: bold;">:</span>
+                                                </div>
+                                                <div class="col-5">
+                                                    <select class="form-control" name="start-minute" required>
+                                                        <option value="" data-translate="reservation.minute">Menit</option>
+                                                        <option value="00">00</option>
+                                                        <option value="15">15</option>
+                                                        <option value="30">30</option>
+                                                        <option value="45">45</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                    
-                                    <li class="time-block">
-                                        <div class="form-group clearfix">
-                                            <label>Waktu Penggunaan</label>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="small-label">Jam Mulai</label>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="start-hour" required>
-                                                                <option value="">Jam</option>
-                                                                <option value="08">08</option>
-                                                                <option value="09">09</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                                <option value="13">13</option>
-                                                                <option value="14">14</option>
-                                                                <option value="15">15</option>
-                                                                <option value="16">16</option>
-                                                                <option value="17">17</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="start-minute" required>
-                                                                <option value="">Menit</option>
-                                                                <option value="00">00</option>
-                                                                <option value="15">15</option>
-                                                                <option value="30">30</option>
-                                                                <option value="45">45</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                        
+                                        <!-- Jam Selesai -->
+                                        <div class="form-group m-b15">
+                                            <label data-translate="reservation.end-time">Jam Selesai</label>
+                                            <div class="row" style="align-items: center;">
+                                                <div class="col-5">
+                                                    <select class="form-control" name="end-hour" required>
+                                                        <option value="" data-translate="reservation.hour">Jam</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                    </select>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label class="small-label">Jam Selesai</label>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="end-hour" required>
-                                                                <option value="">Jam</option>
-                                                                <option value="08">08</option>
-                                                                <option value="09">09</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                                <option value="13">13</option>
-                                                                <option value="14">14</option>
-                                                                <option value="15">15</option>
-                                                                <option value="16">16</option>
-                                                                <option value="17">17</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <select class="form-control" name="end-minute" required>
-                                                                <option value="">Menit</option>
-                                                                <option value="00">00</option>
-                                                                <option value="15">15</option>
-                                                                <option value="30">30</option>
-                                                                <option value="45">45</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-2 text-center p-0">
+                                                    <span style="font-size: 24px; font-weight: bold;">:</span>
+                                                </div>
+                                                <div class="col-5">
+                                                    <select class="form-control" name="end-minute" required>
+                                                        <option value="" data-translate="reservation.minute">Menit</option>
+                                                        <option value="00">00</option>
+                                                        <option value="15">15</option>
+                                                        <option value="30">30</option>
+                                                        <option value="45">45</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                                              
-                                    <li class="room-type-block">
-                                        <div class="form-group">
-                                            <label>Jenis Ruangan</label>
-                                            <div class="select-box">
-                                                <select class="form-control" name="room" required>
-                                                    <option selected="selected" disabled="disabled">Pilih Ruangan</option>
-                                                    <option value="ruang-kelas-biasa">Ruang Kelas Biasa</option>
-                                                    <option value="ruang-kelas-besar">Ruang Kelas Besar</option>
-                                                    <option value="lab-mikrobiologi" disabled>Lab Mikrobiologi</option>
-                                                    <option value="lab-komputer" disabled>Lab Komputer</option>
-                                                    <option value="ruang-teater-besar">Ruang Teater Besar</option>
-                                                    <option value="ruang-teater-double-proyektor">Ruang Teater Double Proyektor</option>
-                                                    <option value="ruang-meeting">Ruang Meeting</option>
-                                                </select>
-                                            </div>
-                                        </div>                            
-                                    </li>  
+                                    </div>
                                     
-                                    <li class="adult-type-block">
-                                        <div class="form-group">
-                                            <label>Jumlah Peserta</label>
-                                            <div class="select-box">
-                                                <select class="form-control" name="No-participants" required>
-                                                    <option selected="selected" disabled="disabled">Pilih Jumlah</option>
-                                                    <option value="1-10">1-10 orang</option>
-                                                    <option value="11-25">11-25 orang</option>
-                                                    <option value="26-50">26-50 orang</option>
-                                                    <option value="50+">50+ orang</option>
-                                                </select>
-                                            </div>
-                                        </div>                            
-                                    </li>
-                                    
-                                    <li class="purpose-block">
-                                        <div class="form-group">
-                                            <label>Tujuan Penggunaan</label>
-                                            <div class="select-box">
-                                                <select class="form-control" name="purpose" required>
-                                                    <option selected="selected" disabled="disabled">Pilih Tujuan</option>
-                                                    <option value="kuliah">Kuliah</option>
-                                                    <option value="seminar">Seminar</option>
-                                                    <option value="rapat">Rapat</option>
-                                                    <option value="presentasi">Presentasi</option>
-                                                    <option value="workshop">Workshop</option>
-                                                    <option value="lainnya">Lainnya</option>
-                                                </select>
-                                            </div>
-                                        </div>                            
-                                    </li> 
-                                    
-                                    <li class="booking-form-btn-block">
-                                        <div class="form-group">
-                                            <button type="submit" class="site-button-secondry btn-half"><span> Reservasi</span><em></em></button>
+                                    <!-- RIGHT COLUMN -->
+                                    <div class="col-md-6">
+                                        <!-- Jenis Ruangan -->
+                                        <div class="form-group m-b15">
+                                            <label data-translate="reservation.room-type">Jenis Ruangan</label>
+                                            <select class="form-control" name="room" required>
+                                                <option selected="selected" disabled="disabled" data-translate="room.select">Pilih Ruangan</option>
+                                                <option value="ruang-kelas-biasa" data-translate="room.kelas-biasa">Ruang Kelas Biasa</option>
+                                                <option value="ruang-kelas-besar" data-translate="room.kelas-besar">Ruang Kelas Besar</option>
+                                                <option value="lab-mikrobiologi" disabled data-translate="room.lab-mikro">Lab Mikrobiologi</option>
+                                                <option value="lab-komputer" disabled data-translate="room.lab-komputer">Lab Komputer</option>
+                                                <option value="ruang-teater-besar" data-translate="room.teater-besar">Ruang Teater Besar</option>
+                                                <option value="ruang-teater-double-proyektor" data-translate="room.teater-double">Ruang Teater Double Proyektor</option>
+                                                <option value="ruang-meeting" data-translate="room.meeting">Ruang Meeting</option>
+                                            </select>
                                         </div>
-                                    </li>
-                                </ul>
+                                        
+                                        <!-- Jumlah Peserta -->
+                                        <div class="form-group m-b15">
+                                            <label data-translate="reservation.participants">Jumlah Peserta</label>
+                                            <select class="form-control" name="No-participants" required>
+                                                <option selected="selected" disabled="disabled" data-translate="participants.select">Pilih Jumlah</option>
+                                                <option value="1-10" data-translate="participants.1-10">1-10 orang</option>
+                                                <option value="11-25" data-translate="participants.11-25">11-25 orang</option>
+                                                <option value="26-50" data-translate="participants.26-50">26-50 orang</option>
+                                                <option value="50+" data-translate="participants.50+">50+ orang</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- Tujuan Penggunaan -->
+                                        <div class="form-group m-b15">
+                                            <label data-translate="reservation.purpose">Tujuan Penggunaan</label>
+                                            <select class="form-control" name="purpose" required>
+                                                <option selected="selected" disabled="disabled" data-translate="purpose.select">Pilih Tujuan</option>
+                                                <option value="kuliah" data-translate="purpose.kuliah">Kuliah</option>
+                                                <option value="seminar" data-translate="purpose.seminar">Seminar</option>
+                                                <option value="rapat" data-translate="purpose.rapat">Rapat</option>
+                                                <option value="presentasi" data-translate="purpose.presentasi">Presentasi</option>
+                                                <option value="workshop" data-translate="purpose.workshop">Workshop</option>
+                                                <option value="lainnya" data-translate="purpose.lainnya">Lainnya</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <div class="row m-t15">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="site-button-secondry btn-half"><span data-translate="reservation.button"> Reservasi</span><em></em></button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -1397,20 +1402,20 @@
                     		<div class="col-lg-6 col-md-12 text-black">
                                 <!-- TITLE START -->
                                 <div class="section-head text-left">
-                                    <h2 class=" m-b5" data-title="Tentang">Tentang FST UIN Jakarta</h2>
+                                    <h2 class=" m-b5" data-title="Tentang" data-translate="welcome.about-title">Tentang FST UIN Jakarta</h2>
                                     <div class="wt-separator-outer">
                                         <div class="wt-separator site-bg-primary"></div>
                                     </div>
                                 </div>
                                 <!-- TITLE END -->                             
-                                <h4 class=" m-t0">
+                                <h4 class=" m-t0" data-translate="welcome.about-intro">
                                     Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta adalah pusat pendidikan, penelitian, dan inovasi di bidang sains dan teknologi.
                                 </h4>
-                                <p>
+                                <p data-translate="welcome.about-desc">
                                     FST UIN Jakarta berkomitmen untuk mencetak lulusan yang unggul, berdaya saing global, dan berakhlak mulia. Dengan fasilitas modern, dosen profesional, serta lingkungan akademik yang kondusif, FST menjadi pilihan utama bagi calon ilmuwan dan teknolog muslim di Indonesia. Bergabunglah bersama kami untuk masa depan yang gemilang di dunia sains dan teknologi!
                                 </p>
-                                <a href="https://fst.uinjkt.ac.id/id" class="btn-half site-button button-lg m-b30"><span>Selengkapnya</span><em></em></a>
-                                <a href="booking-form.html" class="btn-half site-button-secondry button-lg m-l10"><span>Reservasi Baru</span><em></em></a>
+                                <a href="https://fst.uinjkt.ac.id/id" class="btn-half site-button button-lg m-b30"><span data-translate="welcome.read-more">Selengkapnya</span><em></em></a>
+                                <a href="booking-form.html" class="btn-half site-button-secondry button-lg m-l10"><span data-translate="welcome.new-reservation">Reservasi Baru</span><em></em></a>
                             </div>
                             
                         	<div class="col-lg-6 col-md-12">
@@ -1461,7 +1466,7 @@
 
                     <!-- TITLE START -->
                     <div class="section-head text-center">
-                        <h2 class="m-b5" data-title="Ruangan">Ruangan & Fasilitas FST</h2>
+                        <h2 class="m-b5" data-title="Ruangan" data-translate="rooms.title">Ruangan & Fasilitas FST</h2>
                         <div class="wt-separator-outer">
                             <div class="wt-separator site-bg-primary"></div>
                         </div>
@@ -1469,7 +1474,7 @@
                     <!-- TITLE END -->
                     
                     <div class="text-center">
-                        <p>
+                        <p data-translate="rooms.desc">
                             FST UIN Syarif Hidayatullah Jakarta menyediakan berbagai pilihan ruangan seperti ruang kelas, laboratorium, ruang teater, dan fasilitas lainnya yang modern dan nyaman untuk mendukung kegiatan akademik, riset, dan event kampus.
                         </p>
                     </div>
@@ -1776,7 +1781,7 @@
                 <div class="container">
                     <!-- TITLE START -->
                     <div class="section-head text-left">
-                        <h2 class="m-b5 text-white" data-title="Fasilitas">Fasilitas Kampus</h2>
+                        <h2 class="m-b5 text-white" data-title="Fasilitas" data-translate="home.spec.title">Fasilitas Kampus</h2>
                         <div class="wt-separator-outer">
                             <div class="wt-separator site-bg-primary"></div>
                         </div>
@@ -1786,8 +1791,8 @@
                         <div class="col-md-6">
                             <div class="services-part-left ">
                             	<div class="text-white">
-                                <h3 class=" m-t0">Sistem reservasi ruangan terpadu untuk mendukung aktivitas akademik dan non-akademik.</h3>
-                                <p>Platform reservasi ruangan yang memudahkan mahasiswa, dosen, dan staff dalam memesan berbagai fasilitas kampus. Dikelola secara profesional dengan teknologi terkini untuk efisiensi maksimal dalam pengelolaan ruangan.</p>
+                                <h3 class=" m-t0" data-translate="home.spec.heading">Sistem reservasi ruangan terpadu untuk mendukung aktivitas akademik dan non-akademik.</h3>
+                                <p data-translate="home.spec.description">Platform reservasi ruangan yang memudahkan mahasiswa, dosen, dan staff dalam memesan berbagai fasilitas kampus. Dikelola secara profesional dengan teknologi terkini untuk efisiensi maksimal dalam pengelolaan ruangan.</p>
                                 </div>
                                 <div class="section-content">
                                     <div class="row">
@@ -1795,21 +1800,21 @@
                                         <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
                                             <div class="m-b30 wt-icon-box-wraper">
 												<h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="50">0</span><b>+</b></h2>                                            
-                                                <h5 class="wt-tilte m-b0 text-white">Ruang Tersedia</h5>
+                                                <h5 class="wt-tilte m-b0 text-white" data-translate="home.spec.rooms-available">Ruang Tersedia</h5>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
                                             <div class="m-b30  wt-icon-box-wraper">
 												<h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="1000">0</span><b>+</b></h2>                                                
-                                                <h5 class="wt-tilte m-b0 text-white">Reservasi Bulanan</h5>
+                                                <h5 class="wt-tilte m-b0 text-white" data-translate="home.spec.monthly-reservations">Reservasi Bulanan</h5>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4 col-xs-4 col-xs-100pc">
                                             <div class="m-b30 wt-icon-box-wraper">
                                                 <h2 class="site-text-primary m-b5 font-weight-800 counter-box"><span class="counter m-r5" data-number="24">0</b></h2> 
-                                                <h5 class="wt-tilte m-b0 text-white">Jam Layanan</h5>
+                                                <h5 class="wt-tilte m-b0 text-white" data-translate="home.spec.service-hours">Jam Layanan</h5>
                                             </div>
                                         </div>
                     
@@ -1825,7 +1830,7 @@
                                             <span class="icon-cell text-white"><i class="fi fi-rr-users-class"></i></span>
                                         </div>
                                         <div class="icon-content text-white">
-                                            <h4 class="wt-tilte m-b10">Ruang Kelas</h4>
+                                            <h4 class="wt-tilte m-b10" data-translate="home.spec.classroom">Ruang Kelas</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -1835,7 +1840,7 @@
                                             <span class="icon-cell text-white"><i class="fi fi-rr-books"></i></span>
                                         </div>
                                         <div class="icon-content  text-white">
-                                            <h4 class="wt-tilte m-b10">Perpustakaan</h4>
+                                            <h4 class="wt-tilte m-b10" data-translate="home.spec.library">Perpustakaan</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -1845,7 +1850,7 @@
                                             <span class="icon-cell text-white"><i class="fi fi-rr-leader-speech"></i></span>
                                         </div>
                                         <div class="icon-content  text-white">
-                                            <h4 class="wt-tilte m-b10">Ruang Konferensi</h4>
+                                            <h4 class="wt-tilte m-b10" data-translate="home.spec.conference">Ruang Konferensi</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -1855,7 +1860,7 @@
                                             <span class="icon-cell text-white"><i class="fi fi-rr-holding-hand-dinner"></i></span>
                                         </div>
                                         <div class="icon-content  text-white">
-                                            <h4 class="wt-tilte m-b10">Cafeteria</h4>
+                                            <h4 class="wt-tilte m-b10" data-translate="home.spec.cafeteria">Cafeteria</h4>
                                         </div>
                                     </div>
                                 </div>                                                                                
@@ -1872,7 +1877,7 @@
                 <div class="container">
                     <!-- TITLE START -->
                     <div class="section-head text-left">
-                        <h2 class="m-b5" data-title="Layanan">Layanan Kami</h2>
+                        <h2 class="m-b5" data-title="Layanan" data-translate="services.title">Layanan Kami</h2>
                         <div class="wt-separator-outer">
                             <div class="wt-separator site-bg-primary"></div>
                         </div>
@@ -1885,8 +1890,8 @@
                                     <span class="icon-cell"><i class="fi fi-rr-wifi"></i></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte ">Free Wi-Fi</h4>
-                                    <p>Koneksi internet cepat dan stabil tersedia di seluruh area hotel untuk kenyamanan tamu.</p>
+                                    <h4 class="wt-tilte " data-translate="services.wifi">Free Wi-Fi</h4>
+                                    <p data-translate="services.wifi-desc">Koneksi internet cepat dan stabil tersedia di seluruh area hotel untuk kenyamanan tamu.</p>
                                 </div>
                             </div>                                       
                         </div>
@@ -1896,8 +1901,8 @@
                                     <span class="icon-cell"><i class="fi fi-rr-meeting-alt"></i></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte ">Meetings & Events</h4>
-                                    <p>Ruang meeting dan acara yang dilengkapi dengan peralatan modern untuk berbagai kebutuhan.</p>
+                                    <h4 class="wt-tilte " data-translate="services.meetings">Meetings & Events</h4>
+                                    <p data-translate="services.meetings-desc">Ruang meeting dan acara yang dilengkapi dengan peralatan modern untuk berbagai kebutuhan.</p>
                                 </div>
                             </div>                                       
                         </div>
@@ -1907,8 +1912,8 @@
                                     <span class="icon-cell"><i class="fi fi-rr-envelope-dot"></i></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte ">Online Booking</h4>
-                                    <p>Pemesanan ruangan online yang mudah dan cepat melalui website resmi kami.</p>
+                                    <h4 class="wt-tilte " data-translate="services.booking">Online Booking</h4>
+                                    <p data-translate="services.booking-desc">Pemesanan ruangan online yang mudah dan cepat melalui website resmi kami.</p>
                                 </div>
                             </div>                                       
                         </div>
@@ -1918,8 +1923,8 @@
                                     <span class="icon-cell"><i class="fi fi-rr-microscope"></i></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte ">Sarana & Prasarana Terbaik</h4>
-                                    <p>Fasilitas dan infrastruktur berkualitas tinggi untuk memastikan kenyamanan maksimal.</p>
+                                    <h4 class="wt-tilte " data-translate="services.facilities">Sarana & Prasarana Terbaik</h4>
+                                    <p data-translate="services.facilities-desc">Fasilitas dan infrastruktur berkualitas tinggi untuk memastikan kenyamanan maksimal.</p>
                                 </div>
                             </div>                                       
                         </div>
@@ -1929,8 +1934,8 @@
                                     <span class="icon-cell"><i class="fi fi-rr-calendar-clock"></i></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte ">Reservasi Sekarang</h4>
-                                    <p>Layanan reservasi 24 jam untuk memudahkan tamu dalam memesan kamar kapan saja.</p>
+                                    <h4 class="wt-tilte " data-translate="services.reservation">Reservasi Sekarang</h4>
+                                    <p data-translate="services.reservation-desc">Layanan reservasi 24 jam untuk memudahkan tamu dalam memesan kamar kapan saja.</p>
                                 </div>
                             </div>                                       
                         </div>
@@ -1940,8 +1945,8 @@
                                     <span class="icon-cell"><i class="fi fi-rr-employee-man-alt"></i></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte ">Staff Profesional</h4>
-                                    <p>Tim staff yang terlatih dan profesional siap melayani dengan ramah dan efisien.</p>
+                                    <h4 class="wt-tilte " data-translate="services.staff">Staff Profesional</h4>
+                                    <p data-translate="services.staff-desc">Tim staff yang terlatih dan profesional siap melayani dengan ramah dan efisien.</p>
                                 </div>
                             </div>                                       
                         </div>                                                                                                                        
@@ -2134,17 +2139,17 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="newsletter-f-left">
-                                    <h4 class="text-uppercase m-t0 m-b10">Berlangganan Newsletter FST!</h4>
-                                    <p>Dapatkan informasi terbaru tentang kegiatan akademik, penelitian, dan event di FST UIN Jakarta. Jangan lewatkan update penting dari kami.</p>
+                                    <h4 class="text-uppercase m-t0 m-b10" data-translate="footer.newsletter-title">Berlangganan Newsletter FST!</h4>
+                                    <p data-translate="footer.newsletter-desc">Dapatkan informasi terbaru tentang kegiatan akademik, penelitian, dan event di FST UIN Jakarta. Jangan lewatkan update penting dari kami.</p>
                                 </div>
                             </div>    
                             <div class="col-lg-6 col-md-12">
                                 <div class="newsletter-f-right text-center">
                                     <form role="search" method="post">
                                         <div class="input-group">
-                                            <input name="news-letter" class="form-control" placeholder="MASUKKAN EMAIL ANDA" type="text">
+                                            <input name="news-letter" class="form-control" data-translate="footer.newsletter-placeholder" placeholder="MASUKKAN EMAIL ANDA" type="text">
                                             <span class="input-group-btn">
-                                                <button type="submit" class="btn-half site-button button-lg"><span>Berlangganan</span><em></em></button>
+                                                <button type="submit" class="btn-half site-button button-lg"><span data-translate="footer.newsletter-button">Berlangganan</span><em></em></button>
                                             </span>
                                         </div>
                                      </form>
@@ -2163,7 +2168,7 @@
                                 <div class="logo-footer clearfix p-b15">
                                     <a href="index.html"><img src="images/logo-light.png" alt=""></a>
                                 </div>
-								<p class="max-w400">Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta adalah pusat pendidikan, penelitian, dan inovasi di bidang sains dan teknologi yang berkomitmen mencetak lulusan unggul dan berdaya saing global.</p>                                
+								<p class="max-w400" data-translate="footer.about-text">Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta adalah pusat pendidikan, penelitian, dan inovasi di bidang sains dan teknologi yang berkomitmen mencetak lulusan unggul dan berdaya saing global.</p>                                
                                 
                                 <ul class="social-icons social-tooltips-outer  wt-social-links">
                                     <li><a href="https://www.facebook.com/fst.uinjkt" class="fa fa-facebook"><span class="social-tooltips">Facebook</span></a></li>
@@ -2177,34 +2182,34 @@
                         
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="widget widget_services">
-                                <h4 class="widget-title">Program Studi</h4>
+                                <h4 class="widget-title" data-translate="footer.programs">Program Studi</h4>
                                 <ul class="list-angle-right">
-                                    <li><a href="javascript:void(0);">Teknik Informatika</a></li>
-                                    <li><a href="javascript:void(0);">Sistem Informasi</a></li>
-                                    <li><a href="javascript:void(0);">Matematika</a></li>
-                                    <li><a href="javascript:void(0);">Fisika</a></li>
-                                    <li><a href="javascript:void(0);">Kimia</a></li>
-                                    <li><a href="javascript:void(0);">Biologi</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.informatika">Teknik Informatika</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.sistem-informasi">Sistem Informasi</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.matematika">Matematika</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.fisika">Fisika</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.kimia">Kimia</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="major.biologi">Biologi</a></li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="widget widget_services">
-                                <h4 class="widget-title">Fasilitas</h4>
+                                <h4 class="widget-title" data-translate="footer.facilities">Fasilitas</h4>
                                 <ul class="list-angle-right">
-                                    <li><a href="javascript:void(0);">Ruang Kelas</a></li>
-                                    <li><a href="javascript:void(0);">Laboratorium</a></li>
-                                    <li><a href="javascript:void(0);">Ruang Teater</a></li>
-                                    <li><a href="javascript:void(0);">Ruang Meeting</a></li>
-                                    <li><a href="javascript:void(0);">Perpustakaan</a></li>
-                                    <li><a href="javascript:void(0);">Wi-Fi Kampus</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.classroom">Ruang Kelas</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.lab">Laboratorium</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.theater">Ruang Teater</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.meeting">Ruang Meeting</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.library">Perpustakaan</a></li>
+                                    <li><a href="javascript:void(0);" data-translate="facility.wifi">Wi-Fi Kampus</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="widget widget_address_outer">
-                                <h4 class="widget-title">Informasi Kontak</h4>
+                                <h4 class="widget-title" data-translate="footer.contact">Informasi Kontak</h4>
                                 <ul class="widget_address">
                                     <li><i class="sl-icon-map site-text-primary"></i> Gedung FST UIN Jakarta, UIN Jakarta, Jl. Lkr. Kampus 1, Cempaka Putih, Ciputat Timur, South Tangerang City, Banten 15412</li>
                                     <li><i class="sl-icon-envolope-letter site-text-primary"></i>fst@apps.uinjkt.ac.id</li>
@@ -2222,7 +2227,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="wt-footer-bot-center">
-                            <span class="copyrights-text">© 2024 Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. All Rights Reserved. | Designed By Narendra Yusuf</span>
+                            <span class="copyrights-text" data-translate="footer.copyright">© 2024 Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. All Rights Reserved. | Designed By Narendra Yusuf</span>
                         </div>
                     </div>
                 </div>
@@ -2288,6 +2293,7 @@
 <script  src="js/jquery.owl-filter.js"></script><!-- OWL  SLIDER FIlter -->
 <script  src="js/t-datepicker.min.js"></script>
 <script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="js/translations.js"></script><!-- TRANSLATION SYSTEM  -->
 
 <!-- AI CHATBOT JAVASCRIPT - SECURE BACKEND VERSION -->
 <script>

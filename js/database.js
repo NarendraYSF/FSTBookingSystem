@@ -258,3 +258,5 @@ const BookingDB = {
 // Make available globally
 window.BookingDB = BookingDB;
 
+
+

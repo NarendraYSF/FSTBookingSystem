@@ -37,3 +37,5 @@ try {
     window.supabaseClient = null;
 }
 
+
+

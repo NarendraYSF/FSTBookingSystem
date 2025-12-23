@@ -32,6 +32,7 @@
     <link rel="stylesheet"  href="css/style.css"><!-- MAIN STYLE SHEET -->
     <link rel="stylesheet"  class="skin"  href="css/skin/skin-1.css"><!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet"  href="css/flaticon.min.css"><!-- FLATICON STYLE SHEET -->
+    <link rel="stylesheet"  href="css/language-switcher.css"><!-- LANGUAGE SWITCHER STYLE SHEET -->
     
 
     <!-- GOOGLE FONTS -->
@@ -72,13 +73,22 @@
                         <div class="header-nav navbar-collapse collapse">
                             <ul class=" nav navbar-nav">
                                 <li>
-                                    <a href="index.html">Beranda</a>
+                                    <a href="index.html" data-translate="nav.home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="about-1.html">Tentang</a>
+                                    <a href="about-1.html" data-translate="nav.about">About</a>
                                 </li>
                                 <li class="active">
-                                    <a href="contact-1.html">Kontak</a>
+                                    <a href="contact-1.html" data-translate="nav.contact">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="payment.html" data-translate="nav.payment">Payment</a>
+                                </li>
+                                <!-- Language Switcher -->
+                                <li class="language-switcher">
+                                    <button class="lang-btn" data-lang="id" onclick="changeLanguage('id')">ID</button>
+                                    <span class="lang-separator">|</span>
+                                    <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
                                 </li>
                             </ul>
                         </div>
@@ -375,6 +385,7 @@
 <script  src="js/jquery.owl-filter.js"></script><!-- OWL  SLIDER FIlter -->
 <script src="js/t-datepicker.min.js"></script>
 <script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="js/translations.js"></script><!-- TRANSLATION SYSTEM  -->
 
 
 
